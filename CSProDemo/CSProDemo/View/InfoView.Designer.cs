@@ -1,4 +1,4 @@
-﻿namespace CSProDemo
+﻿namespace CSProDemo.View
 {
     partial class InfoView
     {

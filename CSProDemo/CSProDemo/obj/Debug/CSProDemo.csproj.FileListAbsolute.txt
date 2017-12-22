@@ -15,8 +15,9 @@ C:\Users\VMS\Desktop\C-prescription\CSProDemo\CSProDemo\obj\Debug\CSProDemo.pdb
 C:\Users\VMS\Desktop\C-prescription\CSProDemo\CSProDemo\bin\Debug\CSProDemo.exe
 C:\Users\VMS\Desktop\C-prescription\CSProDemo\CSProDemo\bin\Debug\CSProDemo.pdb
 C:\Users\VMS\Desktop\C-prescription\CSProDemo\CSProDemo\obj\Debug\CSProDemo.csprojResolveAssemblyReference.cache
-C:\Users\VMS\Desktop\C-prescription\CSProDemo\CSProDemo\obj\Debug\CSProDemo.Main.resources
 C:\Users\VMS\Desktop\C-prescription\CSProDemo\CSProDemo\obj\Debug\CSProDemo.Properties.Resources.resources
 C:\Users\VMS\Desktop\C-prescription\CSProDemo\CSProDemo\obj\Debug\CSProDemo.csproj.GenerateResource.Cache
-C:\Users\VMS\Desktop\C-prescription\CSProDemo\CSProDemo\obj\Debug\CSProDemo.InfoView.resources
 C:\Users\VMS\Desktop\C-prescription\CSProDemo\CSProDemo\bin\Debug\Newtonsoft.Json.dll
+C:\Users\VMS\Desktop\C-prescription\CSProDemo\CSProDemo\obj\Debug\CSProDemo.View.InfoView.resources
+C:\Users\VMS\Desktop\C-prescription\CSProDemo\CSProDemo\obj\Debug\CSProDemo.View.LoginForm.resources
+C:\Users\VMS\Desktop\C-prescription\CSProDemo\CSProDemo\obj\Debug\CSProDemo.View.Main.resources

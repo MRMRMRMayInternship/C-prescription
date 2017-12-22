@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CSProDemo.Model;
-namespace CSProDemo
+namespace CSProDemo.View
 {
     /***
      * Main Form class
@@ -123,7 +123,7 @@ namespace CSProDemo
         {
             InfoView newObj = new InfoView();
             // register insert Event
-            newObj.Event += new CSProDemo.ListItemEvent(insertListItem);
+            newObj.Event += new CSProDemo.View.ListItemEvent(insertListItem);
             newObj.ShowDialog();
             if (newObj.DialogResult == System.Windows.Forms.DialogResult.OK)
             {
@@ -154,7 +154,7 @@ namespace CSProDemo
             {
                 InfoView oldObj = new InfoView();
                 // register insert Event
-                oldObj.Event += new CSProDemo.ListItemEvent(updateListItem);
+                oldObj.Event += new CSProDemo.View.ListItemEvent(updateListItem);
                 oldObj.LoadEvent(loadItem());
                 oldObj.ShowDialog();
                 if (oldObj.DialogResult == System.Windows.Forms.DialogResult.OK)

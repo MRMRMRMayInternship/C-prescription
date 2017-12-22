@@ -16,7 +16,16 @@ namespace CSProDemo
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Main());
+            /***
+             * 1.login form
+             * 2.main form
+             ***/
+            /******** 1 login form *******/
+            CSProDemo.View.LoginForm loginForm = new CSProDemo.View.LoginForm();
+            loginForm.ShowDialog();
+            /******** 2 main form *******/
+            if(loginForm.DialogResult == DialogResult.OK)
+                Application.Run(new CSProDemo.View.Main());
         }
     }
 }

@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CSProDemo.Model;
-namespace CSProDemo
+namespace CSProDemo.View
 {   
     //declear lambdar
     public delegate void ListItemEvent(RX rx);
