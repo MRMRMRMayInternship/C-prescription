@@ -65,32 +65,41 @@ namespace CSProDemo.Model
         //Prescription prescription;
         //Patient patient;
         //Doctor doction;
-        private string col1;
-        private string col2;
-        private string col3;
-        private string col4;
-        private string col5;
-        private string col6;
+        //private string col1;
+        //private string col2;
+        //private string col3;
+        //private string col4;
+        //private string col5;
+        //private string col6;
         private System.Collections.ArrayList cols = new System.Collections.ArrayList();
+        private int count = 0;
         public RX() {}
         public RX(string c1, string c2, string c3, string c4, string c5, string c6)
         {
             
         }
+        public int Count
+        {
+            get
+            {
+                return this.count;
+            }
+        }
         public string this[int index]{
             get
             {
-                if (cols.Count < index && index > 0)
+                if (cols.Count > index && index >= 0)
                     return (string)cols[index];
                 else
                     return null;
             }
             set
             {
-                if (cols.Count < index && index >0)
+                if (cols.Count < index && index < 0)
                     cols[index] = value;
                 else if (cols.Count == index)
                 {
+                    this.count++;
                     cols.Add(value);
                 }
                 else
@@ -104,66 +113,66 @@ namespace CSProDemo.Model
             get
             {
 
-                return this.col1;
+                return this[0];
             }
             set
             {
-                this.col1 = value;
+                this[0] = value;
             }
         }
         public string Col2
         {
             get
             {
-                return this.col2;
+                return this[1];
             }
             set
             {
-                this.col2 = value;
+                this[1] = value;
             }
         }
         public string Col3
         {
             get
             {
-                return this.col3;
+                return this[2];
             }
             set
             {
-                this.col3 = value;
+                this[2] = value;
             }
         }
         public string Col4
         {
             get
             {
-                return this.col4;
+                return this[3];
             }
             set
             {
-                this.col4 = value;
+                this[3] = value;
             }
         }
         public string Col5
         {
             get
             {
-                return this.col5;
+                return this[4];
             }
             set
             {
-                this.col5 = value;
+                this[4] = value;
             }
         }
         public string Col6
         {
             get
             {
-                return this.col6;
+                return this[5];
             }
             set
             {
-                this.col6 = value;
+                this[5] = value;
             }
         }
     }

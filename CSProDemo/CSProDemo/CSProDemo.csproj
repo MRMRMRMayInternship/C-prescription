@@ -44,6 +44,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\Medication.cs" />
+    <Compile Include="Model\Person.cs" />
     <Compile Include="Model\RX.cs" />
     <Compile Include="View\InfoView.cs">
       <SubType>Form</SubType>

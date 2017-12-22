@@ -20,15 +20,25 @@ namespace CSProDemo
         public InfoView()
         {
             InitializeComponent();
+            this.textBoxArray.Add(textBox1);
+            this.textBoxArray.Add(textBox2);
+            this.textBoxArray.Add(textBox3);
+            this.textBoxArray.Add(textBox4);
+            this.textBoxArray.Add(textBox5);
+            this.textBoxArray.Add(textBox6);
         }
         public void LoadEvent(RX rx)
         {
-            this.textBox1.Text = rx.Col1;
-            this.textBox2.Text = rx.Col2;
-            this.textBox3.Text = rx.Col3;
-            this.textBox4.Text = rx.Col4;
-            this.textBox5.Text = rx.Col5;
-            this.textBox6.Text = rx.Col6;
+            for (int i = 0; i < textBoxArray.Count; i++)
+            {
+                ((TextBox)this.textBoxArray[i]).Text = rx[i];
+            }
+            //this.textBox1.Text = rx.Col1;
+            //this.textBox2.Text = rx.Col2;
+            //this.textBox3.Text = rx.Col3;
+            //this.textBox4.Text = rx.Col4;
+            //this.textBox5.Text = rx.Col5;
+            //this.textBox6.Text = rx.Col6;
         }
         private void label1_Click(object sender, EventArgs e)
         {
@@ -74,12 +84,15 @@ namespace CSProDemo
         private void button1_Click(object sender, EventArgs e) // SAVE_BTN
         {
             RX obj = new RX();
-            obj.Col1 = this.textBox1.Text;
-            obj.Col2 = this.textBox2.Text;
-            obj.Col3 = this.textBox3.Text;
-            obj.Col4 = this.textBox4.Text;
-            obj.Col5 = this.textBox5.Text;
-            obj.Col6 = this.textBox6.Text;
+            for (int i = 0; i < this.textBoxArray.Count; i++)
+                obj[i] = ((TextBox)this.textBoxArray[i]).Text;
+
+            //obj.Col1 = this.textBox1.Text;
+            //obj.Col2 = this.textBox2.Text;
+            //obj.Col3 = this.textBox3.Text;
+            //obj.Col4 = this.textBox4.Text;
+            //obj.Col5 = this.textBox5.Text;
+            //obj.Col6 = this.textBox6.Text;
             Event(obj);
             //MessageBox.Show(str);
             //this.Close();

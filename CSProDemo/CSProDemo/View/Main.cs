@@ -117,7 +117,7 @@ namespace CSProDemo
             this.listView1.Items.Add(item);
             //UpdateListViewColumnWidth();
         }
-        private void button1_Click_1(object sender, EventArgs e)    //new
+        private void button1_Click_1(object sender, EventArgs e)    //insert a new item
         {
             InfoView newObj = new InfoView();
             // register insert Event
@@ -131,6 +131,9 @@ namespace CSProDemo
             {
 
             }
+            if (selected != null && selected.Count>0 ){
+                selected.Clear();
+            }
            // this.Close();
 
         }
@@ -140,6 +143,7 @@ namespace CSProDemo
             this.listView1.Items.RemoveAt(index);
             ListViewItem item = createListItem(rx);
             this.listView1.Items.Insert(index, item); 
+
             //UpdateListViewColumnWidth();
         }
         private void button2_Click(object sender, EventArgs e)  //updata event
@@ -149,7 +153,7 @@ namespace CSProDemo
                 InfoView oldObj = new InfoView();
                 // register insert Event
                 oldObj.Event += new CSProDemo.ListItemEvent(updateListItem);
-                oldObj.LoadEvent(null);
+                oldObj.LoadEvent(loadItem());
                 oldObj.ShowDialog();
                 if (oldObj.DialogResult == System.Windows.Forms.DialogResult.OK)
                 {
@@ -159,6 +163,7 @@ namespace CSProDemo
                 {
 
                 }
+                selected.Clear();
             }
             else
             {
@@ -172,10 +177,12 @@ namespace CSProDemo
             if (selected != null && selected.Count > 0)
             {
                 System.Windows.Forms.DialogResult result = MessageBox .Show("Are you sure to delete it?","Form Deleting",MessageBoxButtons.YesNo,MessageBoxIcon.Question);
-                if (result == System.Windows.Forms.DialogResult.No) { }
+                if (result == System.Windows.Forms.DialogResult.No) {
+                }
                 else
                     foreach (ListViewItem item in selected)
                         listView1.Items.Remove(item);
+                selected.Clear();
             }
             else
                 System.Windows.Forms.MessageBox.Show("please select an item");
