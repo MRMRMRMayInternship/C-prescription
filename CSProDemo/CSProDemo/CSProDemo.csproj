@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="Controller\FileOperation.cs" />
     <Compile Include="DAO\JsonOP.cs" />
+    <Compile Include="Model\Common\Account.cs" />
     <Compile Include="Model\Common\Readonly.cs" />
     <Compile Include="Model\Medication.cs" />
     <Compile Include="Model\Person.cs" />

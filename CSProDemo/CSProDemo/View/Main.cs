@@ -23,13 +23,14 @@ namespace CSProDemo.View
         //private const System.Collections.Hashtable column = new System.Collections.Hashtable();
         //readonly string[] KEYS = { "P_ID", "P_NAME", "M_NAME", "M_ID", "CountOneDay", "CountOnce", "TimesOneDay", "Days", "How"};
         readonly string[] KEYS = { "Col1", "Col2", "Col3", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9" };
-        
         private ListView.SelectedListViewItemCollection selected;
         public Main()
         {
             InitializeComponent();
             SetListViewColumn();
         }
+        //doctor ID
+        public string SetTextView1 { set { this.textBox1.Text = value; } }
         private void SetListViewColumn() // seting listview item column width
         {
 

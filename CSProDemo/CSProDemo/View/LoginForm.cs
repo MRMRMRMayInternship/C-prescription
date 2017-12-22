@@ -18,7 +18,6 @@ namespace CSProDemo.View
      ***/
     public partial class LoginForm : Form
     {
-
         public LoginForm()
         {
             InitializeComponent();
@@ -40,8 +39,11 @@ namespace CSProDemo.View
         {
             string msg = "Are you sure to exit?";
             DialogResult result = MessageBox.Show(msg, ":FORM CLOSING", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if(result == System.Windows.Forms.DialogResult.Yes)
+            if (result == System.Windows.Forms.DialogResult.Yes)
+            {
+                this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
                 this.Close();
+            }
         }
         /***
          * LOGIN button action
@@ -51,12 +53,20 @@ namespace CSProDemo.View
             bool isSuccess = false;
             if (!isSuccess)
             {
+                System.IO.FileStream fs = new System.IO.FileStream(@".\account.txt",System.IO.FileMode.OpenOrCreate);
+                System.IO.StreamWriter sw = new System.IO.StreamWriter(fs, Encoding.UTF8);
+                DAO.JsonOP jsonOP = new DAO.JsonOP();
+                var json = jsonOP.GetJson((new Model.Common.Account(){ID = this.textBox1.Text, Password = this.textBox2.Text}));
+                sw.Write(json.ToString());
+                sw.Flush();
+                sw.Close();
+                fs.Close();
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }
             else
             {
-                MessageBox.Show("The ID or password entried is invalid, please entry angin.","Checking Form",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                DialogResult r =  MessageBox.Show("The ID or password entried is invalid, please entry angin.","Checking Form",MessageBoxButtons.OK,MessageBoxIcon.Warning);
             }
         }
     }

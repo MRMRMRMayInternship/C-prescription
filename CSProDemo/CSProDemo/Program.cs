@@ -20,12 +20,45 @@ namespace CSProDemo
              * 1.login form
              * 2.main form
              ***/
-            /******** 1 login form *******/
-            CSProDemo.View.LoginForm loginForm = new CSProDemo.View.LoginForm();
-            loginForm.ShowDialog();
-            /******** 2 main form *******/
-            if(loginForm.DialogResult == DialogResult.OK)
-                Application.Run(new CSProDemo.View.Main());
+            while (true)
+            {
+                /******** 1 login form *******/
+
+               
+                CSProDemo.View.LoginForm loginForm = new CSProDemo.View.LoginForm();
+                loginForm.ShowDialog();
+                /******** 2 main form *******/
+                if (loginForm.DialogResult == DialogResult.OK)
+                {
+                    CSProDemo.View.Main mainForm = new CSProDemo.View.Main();
+
+                    Application.Run(mainForm);
+                    if (mainForm.DialogResult == DialogResult.Cancel)
+                    {
+                        try
+                        {
+                            System.IO.File.Delete(@"./accout.txt");
+                        }
+                        catch (Exception e)
+                        {
+                            MessageBox.Show(e.ToString());
+                        }
+                        break;
+                    }
+                }
+                else if(loginForm.DialogResult == DialogResult.Cancel){
+                    try
+                    {
+                        System.IO.File.Delete(@"./accout.txt");
+                    }
+                    catch (Exception e)
+                    {
+                        MessageBox.Show(e.ToString());
+                    }
+                    break;
+                }
+            }
+            
         }
     }
 }
