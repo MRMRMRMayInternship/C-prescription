@@ -21,7 +21,9 @@ namespace CSProDemo
     public partial class Main : Form
     {
         //private const System.Collections.Hashtable column = new System.Collections.Hashtable();
-        readonly string[] keys = { "P_ID", "P_NAME", "M_NAME", "M_ID", "CountOneDay", "CountOnce", "TimesOneDay", "Days", "How"};
+        //readonly string[] KEYS = { "P_ID", "P_NAME", "M_NAME", "M_ID", "CountOneDay", "CountOnce", "TimesOneDay", "Days", "How"};
+        readonly string[] KEYS = { "Col1", "Col2", "Col3", "Col4", "Col5", "Col6", "Col7", "Col8", "Col9" };
+        
         private ListView.SelectedListViewItemCollection selected;
         public Main()
         {
@@ -31,10 +33,10 @@ namespace CSProDemo
         private void SetListViewColumn() // seting listview item column width
         {
 
-            foreach(string title in keys){
+            foreach(string title in KEYS){
                 this.listView1.Columns.Add(title, title, 150, HorizontalAlignment.Center,null);
             }
-            this.listView1.Columns[keys[keys.Length - 1]].Width = -2;
+            this.listView1.Columns[KEYS[KEYS.Length - 1]].Width = -2;
             /***
              * way2
             this.listView1.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
@@ -44,7 +46,7 @@ namespace CSProDemo
         }
         //private void UpdateListViewColumnWidth()
         //{
-        //    foreach (string title in keys)
+        //    foreach (string title in KEYS)
         //    {
         //        this.listView1.Columns[title].Width = -1;
         //    }
@@ -89,15 +91,15 @@ namespace CSProDemo
         {
             ListViewItem item = new ListViewItem();
             item.SubItems.Clear();
-            item.SubItems[0].Text = rx.Col1;
-            item.SubItems.Add(rx.Col2);
-            item.SubItems.Add(rx.Col3);
-            item.SubItems.Add(rx.Col4);
-            item.SubItems.Add(rx.Col5);
-            item.SubItems.Add(rx.Col6);
-            item.SubItems.Add(rx.Col1);
-            item.SubItems.Add(rx.Col1);
-            item.SubItems.Add(rx.Col1);
+            item.SubItems[0].Text = rx[0];
+            item.SubItems.Add(rx[1]);
+            item.SubItems.Add(rx[2]);
+            item.SubItems.Add(rx[3]);
+            item.SubItems.Add(rx[4]);
+            item.SubItems.Add(rx[5]);
+            item.SubItems.Add(rx[0]);
+            item.SubItems.Add(rx[0]);
+            item.SubItems.Add(rx[0]);
             return item;
         }
         private RX loadItem()
@@ -186,6 +188,66 @@ namespace CSProDemo
             }
             else
                 System.Windows.Forms.MessageBox.Show("please select an item");
+        }
+
+        private void button5_Click(object sender, EventArgs e) // submit
+        {
+            /***
+             * create json data
+             * formate "환자의ID_처방전의ID":[{"key1":"val1", "key2":"val2"},{},{}]
+             * RX class         :   {"key":"val"}
+             * List<RX class>   :   [{},{}]
+             * HashTable        :   "환자의 ID_처방전의 ID" : [{},{}]
+             * creation date : 2017-12-22 2:39PM;
+             ***/
+            System.Collections.Hashtable hash = new System.Collections.Hashtable();
+            foreach (ListViewItem item in this.listView1.Items)
+            {
+                RX obj = new RX();
+                obj.Col1 = item.SubItems[0].Text;
+                obj.Col2 = item.SubItems[1].Text;
+                obj.Col3 = item.SubItems[2].Text;
+                obj.Col4 = item.SubItems[3].Text;
+                obj.Col5 = item.SubItems[4].Text;
+                obj.Col6 = item.SubItems[5].Text;
+                if(hash != null && hash.ContainsKey(obj.Col1+"_"+obj.Col2) != false){
+                    ((List<RX>)hash[obj.Col1 + "_" + obj.Col2]).Add(obj);
+                }else{
+                    List<RX> newList = new List<RX>();
+                    newList.Add(obj);
+                    hash.Add(obj.Col1+"_"+obj.Col2, newList);
+                }
+            }
+            System.Web.Script.Serialization.JavaScriptSerializer js = new System.Web.Script.Serialization.JavaScriptSerializer();
+            var json = js.Serialize(hash);
+            MessageBox.Show(json.ToString());
+            //traverse keys 
+            System.Collections.IDictionaryEnumerator ie = hash.GetEnumerator();
+            /***
+             * create new files and save information
+             * formate "환자의ID_처방전의ID.txt"
+             * creation date : 2017-12-22 2:39PM;
+             ***/
+            while (ie.MoveNext())
+            {
+                //MessageBox.Show((string)ie.Key);
+                string[] substr = (ie.Key as string).Split('_').ToArray();
+                string dirName = @".\"+substr[0];
+                string fileName = dirName+@"\"+substr[1]+".txt";
+                /***
+                 * create new file
+                 ***/
+                if (System.IO.Directory.Exists(@dirName) != true)
+                {
+                    //MessageBox.Show(@dirName);
+                    System.IO.Directory.CreateDirectory(dirName);
+                }
+                System.IO.FileStream fs = System.IO.File.OpenWrite(@fileName);
+                System.IO.StreamWriter sw = new System.IO.StreamWriter(fs,System.Text.Encoding.UTF8);
+                sw.Write(js.Serialize(hash[ie.Key]).ToString());
+                sw.Flush();
+                sw.Close();
+            }
         }
     }
 }

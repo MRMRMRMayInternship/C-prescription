@@ -19,3 +19,4 @@ C:\Users\VMS\Desktop\C-prescription\CSProDemo\CSProDemo\obj\Debug\CSProDemo.Main
 C:\Users\VMS\Desktop\C-prescription\CSProDemo\CSProDemo\obj\Debug\CSProDemo.Properties.Resources.resources
 C:\Users\VMS\Desktop\C-prescription\CSProDemo\CSProDemo\obj\Debug\CSProDemo.csproj.GenerateResource.Cache
 C:\Users\VMS\Desktop\C-prescription\CSProDemo\CSProDemo\obj\Debug\CSProDemo.InfoView.resources
+C:\Users\VMS\Desktop\C-prescription\CSProDemo\CSProDemo\bin\Debug\Newtonsoft.Json.dll

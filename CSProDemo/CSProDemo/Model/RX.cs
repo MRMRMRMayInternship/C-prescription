@@ -110,70 +110,33 @@ namespace CSProDemo.Model
         }
         public string Col1
         {
-            get
-            {
-
-                return this[0];
-            }
-            set
-            {
-                this[0] = value;
-            }
+            get;
+            set;
         }
         public string Col2
         {
-            get
-            {
-                return this[1];
-            }
-            set
-            {
-                this[1] = value;
-            }
+            get;
+            set;
         }
         public string Col3
         {
-            get
-            {
-                return this[2];
-            }
-            set
-            {
-                this[2] = value;
-            }
+            get;
+            set;
         }
         public string Col4
         {
-            get
-            {
-                return this[3];
-            }
-            set
-            {
-                this[3] = value;
-            }
+            get;
+            set;
         }
         public string Col5
         {
-            get
-            {
-                return this[4];
-            }
-            set
-            {
-                this[4] = value;
-            }
+            get;
+            set;
         }
         public string Col6
         {
-            get
-            {
-                return this[5];
-            }
-            set
-            {
-                this[5] = value;
-            }
+            get;
+            set;
         }
     }
 }
