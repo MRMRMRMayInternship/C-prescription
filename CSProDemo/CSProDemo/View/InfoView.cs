@@ -11,17 +11,25 @@ using CSProDemo.Model;
 namespace CSProDemo
 {   
     //declear lambdar
-    public delegate void InsertListItem(RX rx);
-    
-    public partial class NewInfo : Form
+    public delegate void ListItemEvent(RX rx);
+    public delegate void UpdateListItem(RX rx);
+    public partial class InfoView : Form
     {
         // implement insert event
-        public event InsertListItem InsertEvent;
-        public NewInfo()
+        public event ListItemEvent Event;
+        public InfoView()
         {
             InitializeComponent();
         }
-
+        public void LoadEvent(RX rx)
+        {
+            this.textBox1.Text = rx.Col1;
+            this.textBox2.Text = rx.Col2;
+            this.textBox3.Text = rx.Col3;
+            this.textBox4.Text = rx.Col4;
+            this.textBox5.Text = rx.Col5;
+            this.textBox6.Text = rx.Col6;
+        }
         private void label1_Click(object sender, EventArgs e)
         {
 
@@ -72,7 +80,7 @@ namespace CSProDemo
             obj.Col4 = this.textBox4.Text;
             obj.Col5 = this.textBox5.Text;
             obj.Col6 = this.textBox6.Text;
-            InsertEvent(obj);
+            Event(obj);
             //MessageBox.Show(str);
             //this.Close();
         }

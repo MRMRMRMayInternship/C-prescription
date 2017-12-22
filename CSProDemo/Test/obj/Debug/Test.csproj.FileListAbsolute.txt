@@ -3,3 +3,8 @@ C:\Users\VMS\Desktop\C# project\CSProDemo\Test\bin\Debug\Test.exe
 C:\Users\VMS\Desktop\C# project\CSProDemo\Test\bin\Debug\Test.pdb
 C:\Users\VMS\Desktop\C# project\CSProDemo\Test\obj\Debug\Test.exe
 C:\Users\VMS\Desktop\C# project\CSProDemo\Test\obj\Debug\Test.pdb
+C:\Users\VMS\Desktop\C-prescription\CSProDemo\Test\bin\Debug\Test.exe.config
+C:\Users\VMS\Desktop\C-prescription\CSProDemo\Test\obj\Debug\Test.exe
+C:\Users\VMS\Desktop\C-prescription\CSProDemo\Test\obj\Debug\Test.pdb
+C:\Users\VMS\Desktop\C-prescription\CSProDemo\Test\bin\Debug\Test.exe
+C:\Users\VMS\Desktop\C-prescription\CSProDemo\Test\bin\Debug\Test.pdb

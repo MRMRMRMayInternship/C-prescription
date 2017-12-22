@@ -6,143 +6,8 @@ using System.Threading.Tasks;
 
 namespace CSProDemo.Model
 {
-    interface Person{
-        string Name{
-            get;
-            set;
-        }
-    }
-    class Doctor : Person
-    {
-        private string id;
-        private string name;
-        public string Name
-        {
-            get
-            {
-                return name;
-            }
-            set
-            {
-                name = value;
-            }
-        }
-        public string ID
-        {
-            get
-            {
-                return id;
-            }
-            set
-            {
-                id = value;
-            }
-        }
-    }
-    class Patient : Person{
-        private string id;
-        private string name;
-
-        public string Name{
-            get{
-                return name;
-            }
-            set{
-                this.name = value;
-            }
-        }
-        public string ID{
-            get{
-                return id;
-            }
-            set{
-                this.id = value;
-            }
-        }
-    }
-    interface IMedication
-    {
-        string Name { get; set; }
-        string ID { get; set; }
-        string DoseOfOnce { get; set; }
-        string DoseOfOneDay { get; set; }
-        string AmountOfDose { get; set; }
-        string Detail { get; set; }
-    }
-    class medication : IMedication{
-        private string name;
-        private string id;
-        private string doseOfOnce;
-        private string doseOfOneDay;
-        private string amountOfDose;
-        private string detail;
-        public string Name
-        {
-            get
-            {
-                return this.name;
-            }
-            set
-            {
-                this.name = value;
-            }
-        }
-        public string ID
-        {
-            get
-            {
-                return this.id;
-            }
-            set 
-            {
-                this.id = value;
-            }
-        }
-        public string DoseOfOnce
-        {
-            get
-            {
-                return this.doseOfOnce;
-            }
-            set
-            {
-                this.doseOfOnce = value;
-            }
-        }
-        public string DoseOfOneDay
-        {
-            get
-            {
-                return this.doseOfOneDay;
-            }
-            set
-            {
-                this.doseOfOneDay = value;
-            }
-        }
-        public string AmountOfDose
-        {
-            get
-            {
-                return this.amountOfDose;
-            }
-            set
-            {
-                this.amountOfDose = value;
-            }
-        }
-        public string Detail
-        {
-            get
-            {
-                return this.Detail;
-            }
-            set
-            {
-                this.detail = value;
-            }
-        }
-    }
+    
+    
     /***
      * preID: the # of the prescription
      * date: Date the prescription be written
@@ -206,10 +71,39 @@ namespace CSProDemo.Model
         private string col4;
         private string col5;
         private string col6;
+        private System.Collections.ArrayList cols = new System.Collections.ArrayList();
+        public RX() {}
+        public RX(string c1, string c2, string c3, string c4, string c5, string c6)
+        {
+            
+        }
+        public string this[int index]{
+            get
+            {
+                if (cols.Count < index && index > 0)
+                    return (string)cols[index];
+                else
+                    return null;
+            }
+            set
+            {
+                if (cols.Count < index && index >0)
+                    cols[index] = value;
+                else if (cols.Count == index)
+                {
+                    cols.Add(value);
+                }
+                else
+                {
+                    System.Windows.Forms.MessageBox.Show("error");
+                }
+            }
+        }
         public string Col1
         {
             get
             {
+
                 return this.col1;
             }
             set

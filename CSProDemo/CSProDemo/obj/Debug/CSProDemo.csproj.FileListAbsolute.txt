@@ -9,3 +9,13 @@ C:\Users\VMS\Desktop\C# project\CSProDemo\CSProDemo\obj\Debug\CSProDemo.csproj.G
 C:\Users\VMS\Desktop\C# project\CSProDemo\CSProDemo\obj\Debug\CSProDemo.exe
 C:\Users\VMS\Desktop\C# project\CSProDemo\CSProDemo\obj\Debug\CSProDemo.pdb
 C:\Users\VMS\Desktop\C# project\CSProDemo\CSProDemo\obj\Debug\CSProDemo.NewInfo.resources
+C:\Users\VMS\Desktop\C-prescription\CSProDemo\CSProDemo\bin\Debug\CSProDemo.exe.config
+C:\Users\VMS\Desktop\C-prescription\CSProDemo\CSProDemo\obj\Debug\CSProDemo.exe
+C:\Users\VMS\Desktop\C-prescription\CSProDemo\CSProDemo\obj\Debug\CSProDemo.pdb
+C:\Users\VMS\Desktop\C-prescription\CSProDemo\CSProDemo\bin\Debug\CSProDemo.exe
+C:\Users\VMS\Desktop\C-prescription\CSProDemo\CSProDemo\bin\Debug\CSProDemo.pdb
+C:\Users\VMS\Desktop\C-prescription\CSProDemo\CSProDemo\obj\Debug\CSProDemo.csprojResolveAssemblyReference.cache
+C:\Users\VMS\Desktop\C-prescription\CSProDemo\CSProDemo\obj\Debug\CSProDemo.Main.resources
+C:\Users\VMS\Desktop\C-prescription\CSProDemo\CSProDemo\obj\Debug\CSProDemo.Properties.Resources.resources
+C:\Users\VMS\Desktop\C-prescription\CSProDemo\CSProDemo\obj\Debug\CSProDemo.csproj.GenerateResource.Cache
+C:\Users\VMS\Desktop\C-prescription\CSProDemo\CSProDemo\obj\Debug\CSProDemo.InfoView.resources

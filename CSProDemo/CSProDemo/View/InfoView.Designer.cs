@@ -1,6 +1,6 @@
 ﻿namespace CSProDemo
 {
-    partial class NewInfo
+    partial class InfoView
     {
         /// <summary>
         /// Required designer variable.

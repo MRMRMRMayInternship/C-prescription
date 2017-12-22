@@ -10,10 +10,9 @@ namespace Test
     {
         static void Main(string[] args)
         {
-            String str = "asd";
-            StringBuilder sb = new StringBuilder(str);
-            sb[1] = 'd';
-            Console.WriteLine(str);
+            System.Collections.ArrayList test = new System.Collections.ArrayList();
+            test[2] = 0;
+            Console.WriteLine(test[2]);
         }
     }
 }
