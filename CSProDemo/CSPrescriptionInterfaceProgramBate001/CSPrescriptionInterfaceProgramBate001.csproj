@@ -56,6 +56,18 @@
     <Compile Include="Models\PrescriptionClass.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\DrugSearchForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\DrugSearchForm.Designer.cs">
+      <DependentUpon>DrugSearchForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\MyControl\ObjectListView.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -74,6 +86,15 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Views\DrugSearchForm.resx">
+      <DependentUpon>DrugSearchForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\MyControl\ObjectListView.resx">
+      <DependentUpon>ObjectListView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\PrescriptionInterfaceForm.resx">
       <DependentUpon>PrescriptionInterfaceForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -92,6 +113,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DAO\" />
+    <Folder Include="Models\CommonData\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -14,9 +14,31 @@ namespace CSPrescriptionInterfaceProgramBate001
         [STAThread]
         static void Main()
         {
+            
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Views.PrescriptionInterfaceForm prescriptionInterfaceForm = new Views.PrescriptionInterfaceForm();
+            while (true)
+            {
+                /******** 1 login form *******/
+                Views.LoginForm loginForm = new Views.LoginForm();
+                loginForm.ShowDialog();
+                if (loginForm.DialogResult == DialogResult.OK)
+                {
+                    Views.PrescriptionInterfaceForm prescriptionInterfaceForm = new Views.PrescriptionInterfaceForm();
+                    Models.DoctorClass doctor = ValidateLogin();
+                    prescriptionInterfaceForm.DoctorInfomation = doctor;
+                    prescriptionInterfaceForm.InitializeDoctorInformation();
+                    //prescriptionInterfaceForm.DoctorInfomation = doctor;
+                    Application.Run(prescriptionInterfaceForm);
+                }
+                else
+                {
+                    break;
+                }
+            }
+        }
+        private static Models.DoctorClass ValidateLogin(string ID = null, string password = null)
+        {
             Models.DoctorClass doctor = new Models.DoctorClass();
             doctor.Name = "신라";
             doctor.ID = "D100171227173011";
@@ -26,10 +48,7 @@ namespace CSPrescriptionInterfaceProgramBate001
             doctor.Sex = null;
             doctor.ResidentRegistrationNumber = null;
             doctor.Password = null;
-            prescriptionInterfaceForm.DoctorInfomation = doctor;
-            prescriptionInterfaceForm.InitializeDoctorInformation();
-            //prescriptionInterfaceForm.DoctorInfomation = doctor;
-            Application.Run(prescriptionInterfaceForm);
+            return doctor;
         }
     }
 }
