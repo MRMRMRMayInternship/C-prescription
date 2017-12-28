@@ -38,6 +38,10 @@
             this.searchButton = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.drugNameColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.drugIDColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.priceColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.CreationColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -56,11 +60,17 @@
             // drugsInfoListView
             // 
             this.drugsInfoListView.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.drugsInfoListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.drugNameColumnHeader,
+            this.drugIDColumnHeader,
+            this.priceColumnHeader,
+            this.CreationColumnHeader});
             this.drugsInfoListView.Location = new System.Drawing.Point(3, 3);
             this.drugsInfoListView.Name = "drugsInfoListView";
             this.drugsInfoListView.Size = new System.Drawing.Size(595, 445);
             this.drugsInfoListView.TabIndex = 0;
             this.drugsInfoListView.UseCompatibleStateImageBehavior = false;
+            this.drugsInfoListView.View = System.Windows.Forms.View.Details;
             // 
             // drugNameTextBox
             // 
@@ -148,6 +158,22 @@
             this.panel3.Size = new System.Drawing.Size(270, 304);
             this.panel3.TabIndex = 8;
             // 
+            // drugNameColumnHeader
+            // 
+            this.drugNameColumnHeader.Text = "DrugName";
+            // 
+            // drugIDColumnHeader
+            // 
+            this.drugIDColumnHeader.Text = "DrugID";
+            // 
+            // priceColumnHeader
+            // 
+            this.priceColumnHeader.Text = "Price";
+            // 
+            // CreationColumnHeader
+            // 
+            this.CreationColumnHeader.Text = "CreationDate";
+            // 
             // DrugSearchForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -179,5 +205,9 @@
         private System.Windows.Forms.Button searchButton;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.ColumnHeader drugNameColumnHeader;
+        private System.Windows.Forms.ColumnHeader drugIDColumnHeader;
+        private System.Windows.Forms.ColumnHeader priceColumnHeader;
+        private System.Windows.Forms.ColumnHeader CreationColumnHeader;
     }
 }

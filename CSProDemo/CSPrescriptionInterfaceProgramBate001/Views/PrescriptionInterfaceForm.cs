@@ -18,10 +18,22 @@ namespace CSPrescriptionInterfaceProgramBate001.Views
         private string lastDrugNameTextBoxText = null;
         private string lastDrugNameTextBoxCellValue = null;
         private DataGridViewButtonCell selectedDrugNameCell = null;
+        private string NowLanguage = "Korean";
         public Models.DoctorClass DoctorInfomation
         {
             set;
             get;
+        }
+        private void SetLanguage()
+        {
+            if (NowLanguage == "Chinese")
+            {
+
+            }
+            else
+            {
+
+            }
         }
         public PrescriptionInterfaceForm()
         {
@@ -358,7 +370,7 @@ namespace CSPrescriptionInterfaceProgramBate001.Views
             
             int col = e.ColumnIndex;
             int row = e.RowIndex;
-            if (this.drugInfoDataGridView.Rows[row].Cells[col].ReadOnly)
+            if (this.drugInfoDataGridView.Rows.Count == 0||this.drugInfoDataGridView.Rows[row].Cells[col].ReadOnly)
                 return;
             
             switch (col)
@@ -430,6 +442,10 @@ namespace CSPrescriptionInterfaceProgramBate001.Views
                 MessageBox.Show("처방 약품을 가입 하십시오","Saving Form");
                 return;
             }
+            if (MessageBox.Show("저장 하시곘습니까?", "Saving", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.No)
+            {
+                return;
+            }
             Models.PrescriptionClass prescriptionObj = new Models.PrescriptionClass();
             prescriptionObj.PrescriptionID = this.prescriptionIDLabel.Text;
             Models.PatientClass patientObj = new Models.PatientClass();
@@ -466,8 +482,18 @@ namespace CSPrescriptionInterfaceProgramBate001.Views
                 drugList.Add(drugObj);
             }
             prescriptionObj.Drugs = drugList;
-            Controllers.SavePrescriptionInfoAsXMLFile saveXmlFile = new Controllers.SavePrescriptionInfoAsXMLFile();
-            saveXmlFile.SaveAsXMLFile(prescriptionObj);
+            DAO.SavePrescriptionInfoAsXMLFile saveXmlFile = new DAO.SavePrescriptionInfoAsXMLFile();
+            string fileName = patientObj.PatientID + "_" + prescriptionObj.PrescriptionID + @".xml";
+            string filePath = @".\" +fileName;
+            IEnumerable<string> queryFileResults = 
+                from file in System.IO.Directory.GetFiles(@".\")
+                where file == filePath
+                select file;
+            if (queryFileResults.Count<string>() > 0)
+            {
+                MessageBox.Show("error", "saving..", MessageBoxButtons.YesNo);
+            }
+            saveXmlFile.SaveAsXMLFile(prescriptionObj,filePath);
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -523,7 +549,7 @@ namespace CSPrescriptionInterfaceProgramBate001.Views
         {
             if (UpdateDrugNameRepetationCheck(value))
             {
-                string msg = string.Format("{0} 이미 있습니다.\n 하고 있는 수정처리을 취소하겠십니까?", value);
+                string msg = string.Format("{0} 이미 있습니다.\n 하고 있는 수정처리을 취소하시겠니까?", value);
                 if (MessageBox.Show(msg, "Updating Form", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.No)
                 {
                     return false;

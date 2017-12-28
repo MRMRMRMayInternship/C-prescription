@@ -29,8 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.doctorInfoPanel = new System.Windows.Forms.Panel();
             this.depTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.depLabel = new System.Windows.Forms.Label();
@@ -1108,7 +1109,16 @@
             // 
             this.drugInfoDataGridView.AllowUserToAddRows = false;
             this.drugInfoDataGridView.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.drugInfoDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.drugInfoDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.drugInfoDataGridView.ColumnHeadersHeight = 60;
+            this.drugInfoDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.drugInfoDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.UpdateBtnColumn,
             this.DelBtnColumn,
@@ -1125,6 +1135,7 @@
             this.DrugIDColumn});
             this.drugInfoDataGridView.Location = new System.Drawing.Point(3, 3);
             this.drugInfoDataGridView.Name = "drugInfoDataGridView";
+            this.drugInfoDataGridView.RowHeadersWidth = 60;
             this.drugInfoDataGridView.RowTemplate.Height = 23;
             this.drugInfoDataGridView.Size = new System.Drawing.Size(1567, 523);
             this.drugInfoDataGridView.TabIndex = 0;
@@ -1132,9 +1143,9 @@
             // 
             // UpdateBtnColumn
             // 
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.UpdateBtnColumn.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.UpdateBtnColumn.DefaultCellStyle = dataGridViewCellStyle2;
             this.UpdateBtnColumn.HeaderText = "수정";
             this.UpdateBtnColumn.Name = "UpdateBtnColumn";
             this.UpdateBtnColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
@@ -1210,8 +1221,8 @@
             // 
             // DrugIDColumn
             // 
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.DrugIDColumn.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.DrugIDColumn.DefaultCellStyle = dataGridViewCellStyle3;
             this.DrugIDColumn.HeaderText = "약품 ID";
             this.DrugIDColumn.Name = "DrugIDColumn";
             this.DrugIDColumn.ReadOnly = true;
