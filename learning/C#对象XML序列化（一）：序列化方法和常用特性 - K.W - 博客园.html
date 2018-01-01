@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<!-- saved from url=(0065)https://www.cnblogs.com/KeithWang/archive/2012/02/22/2363443.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>C#对象XML序列化（一）：序列化方法和常用特性 - K.W - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./C#对象XML序列化（一）：序列化方法和常用特性 - K.W - 博客园_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./C#对象XML序列化（一）：序列化方法和常用特性 - K.W - 博客园_files/bundle-En_summerGarden.css">
+<link type="text/css" rel="stylesheet" href="./C#对象XML序列化（一）：序列化方法和常用特性 - K.W - 博客园_files/100809.css">
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="./C#对象XML序列化（一）：序列化方法和常用特性 - K.W - 博客园_files/bundle-En_summerGarden-mobile.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/KeithWang/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/KeithWang/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/KeithWang/wlwmanifest.xml">
+<script async="" src="./C#对象XML序列化（一）：序列化方法和常用特性 - K.W - 博客园_files/analytics.js.다운로드"></script><script type="text/javascript" src="./C#对象XML序列化（一）：序列化方法和常用特性 - K.W - 博客园_files/encoder.js.다운로드"></script><script src="./C#对象XML序列化（一）：序列化方法和常用特性 - K.W - 博客园_files/jquery.js.다운로드" type="text/javascript"></script>  
+<script type="text/javascript">var currentBlogApp = 'KeithWang', cb_enable_mathjax=false;var isLogined=false;</script>
+<script src="./C#对象XML序列化（一）：序列化方法和常用特性 - K.W - 博客园_files/blog-common.js.다운로드" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+<!--PageBeginHtml Block Begin-->
+<div id="abc" class="abc"></div>
+<!--PageBeginHtml Block End-->
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="http://www.cnblogs.com/KeithWang/"><img id="blogLogo" src="./C#对象XML序列化（一）：序列化方法和常用特性 - K.W - 博客园_files/logo.gif" alt="Return Home"></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/KeithWang/">K.W - Beyond Expectation</a></h1>
+<h2>最困难的事情，只在我们心中。</h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<!--done-->
+			<ul id="navList">
+				<li><a id="blog_nav_sitehome" class="menu" href="http://www.cnblogs.com/">CnBlogs</a></li>
+				<li><a id="blog_nav_myhome" class="menu" href="http://www.cnblogs.com/KeithWang/">Home</a></li>
+				<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">New Post</a></li>
+				<li><a id="blog_nav_contact" accesskey="9" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/K.W">Contact</a></li>
+				<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">Admin</a></li>
+				<li><a id="blog_nav_rss" class="menu" href="http://www.cnblogs.com/KeithWang/rss">Rss</a>
+				<a id="blog_nav_rss_image" class="aHeaderXML" href="http://www.cnblogs.com/KeithWang/rss"><img src="./C#对象XML序列化（一）：序列化方法和常用特性 - K.W - 博客园_files/xml.gif" alt="Rss"></a></li>
+			</ul>
+
+
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<!--done-->
+Posts - 32&nbsp;
+Articles - 27&nbsp;
+Comments - 43&nbsp;
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class="post">
+		<h1 class="postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/KeithWang/archive/2012/02/22/2363443.html">C#对象XML序列化（一）：序列化方法和常用特性</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body" class="blogpost-body"><p>.Net Framework提供了对应的System.Xml.Seriazliation.XmlSerializer负责把对象序列化到XML，和从XML中反序列化为对象。Serializer的使用比较直观，需要多注意的是XML序列化相关的Attribute，怎么把这些attribute应用到我们的对象，以及对象公共属性上面去，生成满足预期格式的XML。<br>本文列出了最常用的方法和特性，涵盖日常大部分的转换工作，希望大家在工作中快速上手。为了给大家直观的印象，这里给出具体的使用代码，为了节省篇幅，代码异常处理没有添加，各位同学使用的时候酌情添加。</p>
+<p><strong>1. Serializer方法</strong></p>
+<p>下面的方法封装了XmlSerializer的调用，这里列出了参数最全的一个版本，具体使用的时候需适当添加重载：</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./C#对象XML序列化（一）：序列化方法和常用特性 - K.W - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre>    <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">static</span> <span style="color: #0000ff;">class</span> XmlSerializer<br>    {<br>        <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">static</span> <span style="color: #0000ff;">void</span> SaveToXml(<span style="color: #0000ff;">string</span> filePath, <span style="color: #0000ff;">object</span> sourceObj, Type type, <span style="color: #0000ff;">string</span> xmlRootName)<br>        {<br>            <span style="color: #0000ff;">if</span> (!<span style="color: #0000ff;">string</span>.IsNullOrWhiteSpace(filePath) &amp;&amp; sourceObj != <span style="color: #0000ff;">null</span>)<br>            {<br>                type = type != <span style="color: #0000ff;">null</span> ? type : sourceObj.GetType();<br><br>                <span style="color: #0000ff;">using</span> (StreamWriter writer = <span style="color: #0000ff;">new</span> StreamWriter(filePath))<br>                {<br>                    System.Xml.Serialization.XmlSerializer xmlSerializer = <span style="color: #0000ff;">string</span>.IsNullOrWhiteSpace(xmlRootName) ?<br>                        <span style="color: #0000ff;">new</span> System.Xml.Serialization.XmlSerializer(type) :<br>                        <span style="color: #0000ff;">new</span> System.Xml.Serialization.XmlSerializer(type, <span style="color: #0000ff;">new</span> XmlRootAttribute(xmlRootName));<br>                    xmlSerializer.Serialize(writer, sourceObj);<br>                }<br>            }<br>        }<br><br>        <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">static</span> <span style="color: #0000ff;">object</span> LoadFromXml(<span style="color: #0000ff;">string</span> filePath, Type type)<br>        {<br>            <span style="color: #0000ff;">object</span> result = <span style="color: #0000ff;">null</span>;<br><br>            <span style="color: #0000ff;">if</span> (File.Exists(filePath))<br>            {<br>                <span style="color: #0000ff;">using</span> (StreamReader reader = <span style="color: #0000ff;">new</span> StreamReader(filePath))<br>                {<br>                    System.Xml.Serialization.XmlSerializer xmlSerializer = <span style="color: #0000ff;">new</span> System.Xml.Serialization.XmlSerializer(type);<br>                    result = xmlSerializer.Deserialize(reader);<br>                }<br>            }<br><br>            <span style="color: #0000ff;">return</span> result;<br>        }<br>    }</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./C#对象XML序列化（一）：序列化方法和常用特性 - K.W - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p><br><strong>2. 序列化常用Attribute讲解说明</strong>：</p>
+<p>[XmlRootAttribute("MyCity", Namespace="abc.abc", IsNullable=false)]&nbsp;&nbsp;&nbsp;&nbsp; // 当该类为Xml根节点时，以此为根节点名称。<br>public class City</p>
+<p>[XmlAttribute("AreaName")]&nbsp;&nbsp;&nbsp; // 表现为Xml节点属性。&lt;... AreaName="..."/&gt;<br>public string Name</p>
+<p>[XmlElementAttribute("AreaId", IsNullable = false)]&nbsp;&nbsp;&nbsp; // 表现为Xml节点。&lt;AreaId&gt;...&lt;/AreaId&gt;<br>public string Id</p>
+<p>[XmlArrayAttribute("Areas")]&nbsp;&nbsp;&nbsp; // 表现为Xml层次结构，根为Areas，其所属的每个该集合节点元素名为类名。&lt;Areas&gt;&lt;Area ... /&gt;&lt;Area ... /&gt;&lt;/Areas&gt;<br>public Area[] Areas</p>
+<p>[XmlElementAttribute("Area", IsNullable = false)]&nbsp;&nbsp;&nbsp; // 表现为水平结构的Xml节点。&lt;Area ... /&gt;&lt;Area ... /&gt;...<br>public Area[] Areas</p>
+<p>[XmlIgnoreAttribute]&nbsp;&nbsp;&nbsp; // 忽略该元素的序列化。</p>
+<p>&nbsp;</p>
+<p><strong>3. 详细举例说明</strong></p>
+<p>这里用简单的城市，区域和街区作为例子，具体示范一下上面的规则。</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./C#对象XML序列化（一）：序列化方法和常用特性 - K.W - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre>    [XmlRootAttribute(<span style="color: #800000;">"</span><span style="color: #800000;">MyCity</span><span style="color: #800000;">"</span>, Namespace = <span style="color: #800000;">"</span><span style="color: #800000;">abc.abc</span><span style="color: #800000;">"</span>, IsNullable = <span style="color: #0000ff;">false</span>)]<br>    <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">class</span> City<br>    {<br>        [XmlAttribute(<span style="color: #800000;">"</span><span style="color: #800000;">CityName</span><span style="color: #800000;">"</span>)] <br>        <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">string</span> Name<br>        {<br>            <span style="color: #0000ff;">get</span>;<br>            <span style="color: #0000ff;">set</span>;<br>        }<br><br>        [XmlAttribute(<span style="color: #800000;">"</span><span style="color: #800000;">CityId</span><span style="color: #800000;">"</span>)] <br>        <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">string</span> Id<br>        {<br>            <span style="color: #0000ff;">get</span>;<br>            <span style="color: #0000ff;">set</span>;<br>        }<br><br>        [XmlArrayAttribute(<span style="color: #800000;">"</span><span style="color: #800000;">Areas</span><span style="color: #800000;">"</span>)]<br>        <span style="color: #0000ff;">public</span> Area[] Areas<br>        {<br>            <span style="color: #0000ff;">get</span>;<br>            <span style="color: #0000ff;">set</span>;<br>        }<br>    }<br><br>    [XmlRootAttribute(<span style="color: #800000;">"</span><span style="color: #800000;">MyArea</span><span style="color: #800000;">"</span>)]<br>    <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">class</span> Area<br>    {<br>        [XmlAttribute(<span style="color: #800000;">"</span><span style="color: #800000;">AreaName</span><span style="color: #800000;">"</span>)] <br>        <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">string</span> Name<br>        {<br>            <span style="color: #0000ff;">get</span>;<br>            <span style="color: #0000ff;">set</span>;<br>        }<br><br>        [XmlElementAttribute(<span style="color: #800000;">"</span><span style="color: #800000;">AreaId</span><span style="color: #800000;">"</span>, IsNullable = <span style="color: #0000ff;">false</span>)]<br>        <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">string</span> Id<br>        {<br>            <span style="color: #0000ff;">get</span>;<br>            <span style="color: #0000ff;">set</span>;<br>        }<br><br>        [XmlElementAttribute(<span style="color: #800000;">"</span><span style="color: #800000;">Street</span><span style="color: #800000;">"</span>, IsNullable = <span style="color: #0000ff;">false</span>)]<br>        <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">string</span>[] Streets<br>        {<br>            <span style="color: #0000ff;">get</span>;<br>            <span style="color: #0000ff;">set</span>;<br>        }<br>    }</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./C#对象XML序列化（一）：序列化方法和常用特性 - K.W - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>根据以上类型，我们mock一些数据，然后用步骤1给出的Util方法输出：</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./C#对象XML序列化（一）：序列化方法和常用特性 - K.W - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre>    <span style="color: #0000ff;">static</span> <span style="color: #0000ff;">void</span> Main(<span style="color: #0000ff;">string</span>[] args)<br>    {<br>        Area area1 = <span style="color: #0000ff;">new</span> Area();<br>        area1.Name = <span style="color: #800000;">"</span><span style="color: #800000;">Pudong</span><span style="color: #800000;">"</span>;<br>        area1.Id = <span style="color: #800000;">"</span><span style="color: #800000;">PD001</span><span style="color: #800000;">"</span>;<br>        area1.Streets = <span style="color: #0000ff;">new</span> <span style="color: #0000ff;">string</span> [] { <span style="color: #800000;">"</span><span style="color: #800000;">street 001</span><span style="color: #800000;">"</span>, <span style="color: #800000;">"</span><span style="color: #800000;">street 002</span><span style="color: #800000;">"</span> };<br>        Area area2 = <span style="color: #0000ff;">new</span> Area();<br>        area2.Name = <span style="color: #800000;">"</span><span style="color: #800000;">Xuhui</span><span style="color: #800000;">"</span>;<br>        area2.Id = <span style="color: #800000;">"</span><span style="color: #800000;">XH002</span><span style="color: #800000;">"</span>;<br>        area2.Streets = <span style="color: #0000ff;">new</span> <span style="color: #0000ff;">string</span> [] { <span style="color: #800000;">"</span><span style="color: #800000;">street 003</span><span style="color: #800000;">"</span>, <span style="color: #800000;">"</span><span style="color: #800000;">street 004</span><span style="color: #800000;">"</span> };<br><br>        City city1 = <span style="color: #0000ff;">new</span> City();<br>        city1.Name = <span style="color: #800000;">"</span><span style="color: #800000;">Shanghai</span><span style="color: #800000;">"</span>;<br>        city1.Id = <span style="color: #800000;">"</span><span style="color: #800000;">SH001</span><span style="color: #800000;">"</span>;<br>        city1.Areas = <span style="color: #0000ff;">new</span> Area[] { area1, area2 };<br><br>        XmlSerializer.SaveToXml(<span style="color: #800000;">@"</span><span style="color: #800000;">C:\temp\XML\output003.xml</span><span style="color: #800000;">"</span>, city1);<br>    }</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./C#对象XML序列化（一）：序列化方法和常用特性 - K.W - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>最终输出的XML为：</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./C#对象XML序列化（一）：序列化方法和常用特性 - K.W - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">&lt;?</span><span style="color: #ff00ff;">xml version="1.0" encoding="utf-8"</span><span style="color: #0000ff;">?&gt;</span><br><span style="color: #0000ff;">&lt;</span><span style="color: #800000;">MyCity </span><span style="color: #ff0000;">xmlns:xsi</span><span style="color: #0000ff;">="http://www.w3.org/2001/XMLSchema-instance"</span><span style="color: #ff0000;"><br>        xmlns:xsd</span><span style="color: #0000ff;">="http://www.w3.org/2001/XMLSchema"</span><span style="color: #ff0000;"><br>        CityName</span><span style="color: #0000ff;">="Shanghai"</span><span style="color: #ff0000;"> CityId</span><span style="color: #0000ff;">="SH001"</span><span style="color: #ff0000;"> xmlns</span><span style="color: #0000ff;">="abc.abc"</span><span style="color: #0000ff;">&gt;</span><br>  <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">Areas</span><span style="color: #0000ff;">&gt;</span><br>    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">Area </span><span style="color: #ff0000;">AreaName</span><span style="color: #0000ff;">="Pudong"</span><span style="color: #0000ff;">&gt;</span><br>      <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">AreaId</span><span style="color: #0000ff;">&gt;</span>PD001<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">AreaId</span><span style="color: #0000ff;">&gt;</span><br>      <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">Street</span><span style="color: #0000ff;">&gt;</span>street 001<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">Street</span><span style="color: #0000ff;">&gt;</span><br>      <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">Street</span><span style="color: #0000ff;">&gt;</span>street 002<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">Street</span><span style="color: #0000ff;">&gt;</span><br>    <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">Area</span><span style="color: #0000ff;">&gt;</span><br>    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">Area </span><span style="color: #ff0000;">AreaName</span><span style="color: #0000ff;">="Xuhui"</span><span style="color: #0000ff;">&gt;</span><br>      <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">AreaId</span><span style="color: #0000ff;">&gt;</span>XH002<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">AreaId</span><span style="color: #0000ff;">&gt;</span><br>      <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">Street</span><span style="color: #0000ff;">&gt;</span>street 003<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">Street</span><span style="color: #0000ff;">&gt;</span><br>      <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">Street</span><span style="color: #0000ff;">&gt;</span>street 004<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">Street</span><span style="color: #0000ff;">&gt;</span><br>    <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">Area</span><span style="color: #0000ff;">&gt;</span><br>  <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">Areas</span><span style="color: #0000ff;">&gt;</span><br><span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">MyCity</span><span style="color: #0000ff;">&gt;</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./C#对象XML序列化（一）：序列化方法和常用特性 - K.W - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>下面我们开始具体分析结果，其中包含一些很有用的结论和注意事项：<br><strong>1.</strong> xml的版本，编码，以及命名空间xmlns:xsi，xmlns:xsd为Framework自动添加。</p>
+<p><strong>2.</strong> 因为我们用City对象作为根节点，所以根节点名称为我们定义的"MyCity"。<br>&nbsp;&nbsp;&nbsp; 但是，注意！这里指的是用City自身直接做根节点，如果是City集合比如City[]，此时，该名称失效，系统会自动生成名称ArrayOfCity作为根节点名称(ArrayOf+类名)，或者我们手动指定名称，这个就是在给大家的SaveToXml（）方法中，参数xmlRootName的作用。</p>
+<p><strong>3.</strong> 如果以City为根节点并在XmlRootAttribute特性中给定名称，同时也手动指定了xmlRootName，系统会以手动指定的名称为准。</p>
+<p><strong>4.</strong> AreaName，AreaId，同为Area类的公共属性，一个被解释成属性，一个被解释成子节点。<br>&nbsp;&nbsp;&nbsp; Areas集合被解释成了层次结构，Streets集合被解释成了水平结构。<br>&nbsp;&nbsp;&nbsp; 这两组区别最能体现不同序列化Attribute的用法。</p>
+<p><br><strong>4. 结语</strong><br>这里用例子说明了Xml Serializer的用法，C#类和Xml之间的结构映射，希望足够同学们对付日常工作。更深入的讨论会在后续的文章跟进。</p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory">分类: <a href="http://www.cnblogs.com/KeithWang/category/332264.html" target="_blank">.Net Framework</a></div>
+<div id="EntryTag">标签: <a href="http://www.cnblogs.com/KeithWang/tag/.Net/">.Net</a></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(2363443,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <a id="green_channel_follow" onclick="follow(&#39;a65a1b52-5f05-e111-b7b9-842b2b196315&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./C#对象XML序列化（一）：序列化方法和常用特性 - K.W - 博客园_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./C#对象XML序列化（一）：序列化方法和常用特性 - K.W - 博客园_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/KeithWang/" target="_blank"><img src="./C#对象XML序列化（一）：序列化方法和常用特性 - K.W - 博客园_files/sample_face.gif" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/KeithWang/">K.W</a><br>
+            <a href="http://home.cnblogs.com/u/KeithWang/followees">关注 - 0</a><br>
+            <a href="http://home.cnblogs.com/u/KeithWang/followers">粉丝 - 33</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;a65a1b52-5f05-e111-b7b9-842b2b196315&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(2363443,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">10</span>
+    </div>
+    <div class="buryit" onclick="votePost(2363443,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/KeithWang/archive/2012/02/14/2351826.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/KeithWang/archive/2012/02/14/2351826.html" title="发布于2012-02-14 22:26">WCF实现RESTFul Web Service</a><br><a href="http://www.cnblogs.com/KeithWang/archive/2012/03/23/2413773.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/KeithWang/archive/2012/03/23/2413773.html" title="发布于2012-03-23 15:39">WPF Knowledge Points - ControlTemplate和DataTemplate的区别</a><br></div>
+</div>
+
+
+		</div>
+		<div class="postDesc">posted @ <span id="post-date">2012-02-22 17:06</span> <a href="http://www.cnblogs.com/KeithWang/">K.W</a> Views(<span id="post_view_count">43789</span>) Comments(<span id="post_comment_count">7</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=2363443" rel="nofollow">Edit</a> <a href="https://www.cnblogs.com/KeithWang/archive/2012/02/22/2363443.html#" onclick="AddToWz(2363443);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=100809,cb_entryId=2363443,cb_blogApp=currentBlogApp,cb_blogUserGuid='a65a1b52-5f05-e111-b7b9-842b2b196315',cb_entryCreatedDate='2012/2/22 17:06:00';loadViewCount(cb_entryId);var cb_postType=1;</script>
+	
+</div>
+</div><a name="!comments"></a><div id="blog-comments-placeholder"><div id="comments_pager_top"></div>
+<!--done-->
+<br>
+<div class="feedback_area_title">
+    Post Comment</div>
+<div class="feedbackNoItems">
+    </div>
+
+        <div class="feedbackItem">
+            <div class="feedbackListSubtitle">
+                <div class="feedbackManage">
+                    &nbsp;&nbsp;<span class="comment_actions"></span>
+                </div>
+                <a href="https://www.cnblogs.com/KeithWang/archive/2012/02/22/2363443.html#2314619" class="layer">#1楼</a><a name="2314619" id="comment_anchor_2314619"></a> <span class="comment_date">2012-02-22 18:03</span>
+                |
+                <a id="a_comment_author_2314619" href="http://www.cnblogs.com/superstar/" target="_blank">superstar</a> <a href="http://msg.cnblogs.com/send/superstar" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+            </div>
+            <div class="feedbackCon">
+                <div id="comment_body_2314619" class="blog_comment_body">只有序列化不有反序列化呀</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2314619,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2314619,&#39;Bury&#39;,this)">反对(0)</a></div><br>
+            </div>
+        </div>
+    
+        <div class="feedbackItem">
+            <div class="feedbackListSubtitle">
+                <div class="feedbackManage">
+                    &nbsp;&nbsp;<span class="comment_actions"></span>
+                </div>
+                <a href="https://www.cnblogs.com/KeithWang/archive/2012/02/22/2363443.html#2314662" class="layer">#2楼</a><a name="2314662" id="comment_anchor_2314662"></a>[<span class="louzhu">楼主</span>] <span class="comment_date">2012-02-22 19:27</span>
+                |
+                <a id="a_comment_author_2314662" href="http://www.cnblogs.com/KeithWang/" target="_blank">K.W</a> <a href="http://msg.cnblogs.com/send/K.W" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+            </div>
+            <div class="feedbackCon">
+                <div id="comment_body_2314662" class="blog_comment_body"><a href="https://www.cnblogs.com/KeithWang/archive/2012/02/22/2363443.html#2314619" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,2314619);">@</a>
+superstar<br>有的，仔细看我定义的Serializer，里面有2个方法，分别是用来序列化和反序列化的。因为对象和XML的结构映射是比较重要的，需要花篇幅着重讲解。<br>在练习和理解了序列化使用的基础上，反序列化就简单了：以需要反序列化的对象类型，和序列化生成的XML文件作为输入参数，调用LoadFromXml就可以得到反序列化好的实例了。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2314662,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2314662,&#39;Bury&#39;,this)">反对(0)</a></div><br>
+            </div>
+        </div>
+    
+        <div class="feedbackItem">
+            <div class="feedbackListSubtitle">
+                <div class="feedbackManage">
+                    &nbsp;&nbsp;<span class="comment_actions"></span>
+                </div>
+                <a href="https://www.cnblogs.com/KeithWang/archive/2012/02/22/2363443.html#2365317" class="layer">#3楼</a><a name="2365317" id="comment_anchor_2365317"></a> <span class="comment_date">2012-04-27 14:38</span>
+                |
+                <a id="a_comment_author_2365317" href="http://home.cnblogs.com/u/138850/" target="_blank">谢军</a> <a href="http://msg.cnblogs.com/send/%E8%B0%A2%E5%86%9B" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+            </div>
+            <div class="feedbackCon">
+                <div id="comment_body_2365317" class="blog_comment_body">mark</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2365317,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2365317,&#39;Bury&#39;,this)">反对(0)</a></div><br>
+            </div>
+        </div>
+    
+        <div class="feedbackItem">
+            <div class="feedbackListSubtitle">
+                <div class="feedbackManage">
+                    &nbsp;&nbsp;<span class="comment_actions"></span>
+                </div>
+                <a href="https://www.cnblogs.com/KeithWang/archive/2012/02/22/2363443.html#2753760" class="layer">#4楼</a><a name="2753760" id="comment_anchor_2753760"></a> <span class="comment_date">2013-08-17 16:59</span>
+                |
+                <a id="a_comment_author_2753760" href="http://www.cnblogs.com/yuanjiedao/" target="_blank">鸢孑刀</a> <a href="http://msg.cnblogs.com/send/%E9%B8%A2%E5%AD%91%E5%88%80" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+            </div>
+            <div class="feedbackCon">
+                <div id="comment_body_2753760" class="blog_comment_body">我想问一个问题：通过序列化能够实现xml节点追加功能吗，比如同一个类的实例，第一次完成了序列化，生成了一个XML文件，这个时候再序列化相同类的实例，序列化的结果可以实现两次序列化的节点追加吗？</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2753760,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2753760,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_2753760_avatar" style="display:none;">http://pic.cnblogs.com/face/495573/20130221185646.png</span><br>
+            </div>
+        </div>
+    
+        <div class="feedbackItem">
+            <div class="feedbackListSubtitle">
+                <div class="feedbackManage">
+                    &nbsp;&nbsp;<span class="comment_actions"></span>
+                </div>
+                <a href="https://www.cnblogs.com/KeithWang/archive/2012/02/22/2363443.html#2754187" class="layer">#5楼</a><a name="2754187" id="comment_anchor_2754187"></a>[<span class="louzhu">楼主</span>] <span class="comment_date">2013-08-18 13:54</span>
+                |
+                <a id="a_comment_author_2754187" href="http://www.cnblogs.com/KeithWang/" target="_blank">K.W</a> <a href="http://msg.cnblogs.com/send/K.W" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+            </div>
+            <div class="feedbackCon">
+                <div id="comment_body_2754187" class="blog_comment_body"><a href="https://www.cnblogs.com/KeithWang/archive/2012/02/22/2363443.html#2753760" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,2753760);">@</a>
+鸢孑刀<br><fieldset class="comment_quote"><legend><a href="https://www.cnblogs.com/KeithWang/archive/2012/02/22/2363443.html#2753760" title="查看引用原文">引用</a></legend>我想问一个问题：通过序列化能够实现xml节点追加功能吗，比如同一个类的实例，第一次完成了序列化，生成了一个XML文件，这个时候再序列化相同类的实例，序列化的结果可以实现两次序列化的节点追加吗？</fieldset><br>我理解你的意思是说：有个ClassA的实例，生成了序列化文件Target.xml，然后我再次序列化ClassA实例，想让Target.xml文件的内容追加一次ClassA的序列化结果。<br>1. 如果是我上面描述的流程，是做不到的，因为这个xml序列化是ClassA的自身的一个直接反应，直接序列化并没有追加（或者叫append）的行为。<br>2. 一般来说，我们需要Append节点可以有以下两个做法：<br>  2.1 声明一个类，包含ClassA的集合字段，比如Collection&lt;ClassA&gt;，序列化该字段，通过这样的途径来在序列化结果中反应Collection&lt;ClassA&gt;的添加和删除。<br>  2.2 如果不想定义这样一个集合类，仅仅想通过每一次“操作”多添加一个该类的结构到xml文件中，建议使用.Net的xml的库进行直接的xml的操作（其实这个操作更强大，我也更喜欢，里面有append，remove之类的操作）。但是要注意由于这个xml不是序列化得出的，这个一定程度会“损伤”对于反序列化的需求。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2754187,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2754187,&#39;Bury&#39;,this)">反对(0)</a></div><br>
+            </div>
+        </div>
+    
+        <div class="feedbackItem">
+            <div class="feedbackListSubtitle">
+                <div class="feedbackManage">
+                    &nbsp;&nbsp;<span class="comment_actions"></span>
+                </div>
+                <a href="https://www.cnblogs.com/KeithWang/archive/2012/02/22/2363443.html#3442407" class="layer">#6楼</a><a name="3442407" id="comment_anchor_3442407"></a> <span class="comment_date">2016-05-30 23:41</span>
+                |
+                <a id="a_comment_author_3442407" href="http://home.cnblogs.com/u/663665/" target="_blank">hzwxslqq</a> <a href="http://msg.cnblogs.com/send/hzwxslqq" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+            </div>
+            <div class="feedbackCon">
+                <div id="comment_body_3442407" class="blog_comment_body">不错，“2. 因为我们用City对象作为根节点，所以根节点名称为我们定义的"MyCity"。<br>    但是，注意！这里指的是用City自身直接做根节点，如果是City集合比如City[]，此时，该名称失效，系统会自动生成名称ArrayOfCity作为根节点名称(ArrayOf+类名)，或者我们手动指定名称，这个就是在给大家的SaveToXml（）方法中，参数xmlRootName的作用。”这句话点醒了我，不然我序列化后一直是array+类名的根节点</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3442407,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3442407,&#39;Bury&#39;,this)">反对(0)</a></div><br>
+            </div>
+        </div>
+    
+        <div class="feedbackItem">
+            <div class="feedbackListSubtitle">
+                <div class="feedbackManage">
+                    &nbsp;&nbsp;<span class="comment_actions"></span>
+                </div>
+                <a href="https://www.cnblogs.com/KeithWang/archive/2012/02/22/2363443.html#3477987" class="layer">#7楼</a><a name="3477987" id="comment_anchor_3477987"></a><span id="comment-maxId" style="display:none;">3477987</span><span id="comment-maxDate" style="display:none;">2016/7/27 23:48:55</span> <span class="comment_date">2016-07-27 23:48</span>
+                |
+                <a id="a_comment_author_3477987" href="http://home.cnblogs.com/u/801312/" target="_blank">390620652</a> <a href="http://msg.cnblogs.com/send/390620652" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+            </div>
+            <div class="feedbackCon">
+                <div id="comment_body_3477987" class="blog_comment_body">xml文件里少了 &lt;Areas&gt;这个节点的话要怎么解决？</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3477987,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3477987,&#39;Bury&#39;,this)">反对(0)</a></div><br>
+            </div>
+        </div>
+    
+<div id="comments_pager_bottom"></div></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="https://www.cnblogs.com/KeithWang/archive/2012/02/22/2363443.html#" onclick="return RefreshPage();">刷新页面</a><a href="https://www.cnblogs.com/KeithWang/archive/2012/02/22/2363443.html#top">返回顶部</a></div>
+<div id="comment_form_container"><div class="login_tips">注册用户登录后才能发表评论，请 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login(&#39;commentform&#39;);">登录</a> 或 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，<a href="http://www.cnblogs.com/">访问</a>网站首页。</div></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"><a href="https://group.cnblogs.com/topic/78343.html" target="_blank">【福利】限时领取，H3 BPM给你发年终奖</a><br></div>
+<div id="opt_under_post"></div>
+<div id="cnblogs_c1" class="c_ad_block"><a href="http://www.gcpowertools.com.cn/products/activereports_overview.htm?utm_source=cnblogs&amp;utm_medium=blogpage&amp;utm_term=bottom&amp;utm_content=AR&amp;utm_campaign=community" target="_blank"><img width="300" height="250" src="./C#对象XML序列化（一）：序列化方法和常用特性 - K.W - 博客园_files/24442-20171206093739878-889349568.png" alt="AR_1206"></a></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="https://news.cnblogs.com/n/586174/" target="_blank">NVIDIA禁止GeForce在数据中心运行？这回真的被“冤枉”了</a><br> ·  <a href="https://news.cnblogs.com/n/586167/" target="_blank">京东X无人超市首家社会门店开业：刷脸进、微信自动结算</a><br> ·  <a href="https://news.cnblogs.com/n/586161/" target="_blank">《绝地求生》新计划：加入更多地图 支持地图自定义</a><br> ·  <a href="https://news.cnblogs.com/n/586169/" target="_blank">请把2017年赚到的钱存好，这里有份「2018 年苹果新品发布」清单</a><br> ·  <a href="https://news.cnblogs.com/n/586172/" target="_blank">Geoffrey HintonAndrew Moore、吴恩达等总结2017 AI大事件</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="cnblogs_c2" class="c_ad_block"><a href="http://click.aliyun.com/m/34770/" target="_blank"><img width="468" height="60" src="./C#对象XML序列化（一）：序列化方法和常用特性 - K.W - 博客园_files/24442-20171208101900738-116140477.jpg" alt="阿里云C2-1208"></a></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/585502/" target="_blank">步入云计算</a><br> ·  <a href="http://kb.cnblogs.com/page/531409/" target="_blank">以操作系统的角度述说线程与进程</a><br> ·  <a href="http://kb.cnblogs.com/page/141729/" target="_blank">软件测试转型之路</a><br> ·  <a href="http://kb.cnblogs.com/page/177402/" target="_blank">门内门外看招聘</a><br> ·  <a href="http://kb.cnblogs.com/page/112506/" target="_blank">大道至简，职场上做人做事做管理</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"><div id="profile_block">昵称：<a href="https://home.cnblogs.com/u/KeithWang/">K.W</a><br>园龄：<a href="https://home.cnblogs.com/u/KeithWang/" title="入园时间：2011-11-02">6年1个月</a><br>粉丝：<a href="https://home.cnblogs.com/u/KeithWang/followers/">33</a><br>关注：<a href="https://home.cnblogs.com/u/KeithWang/followees/">0</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="follow(&#39;a65a1b52-5f05-e111-b7b9-842b2b196315&#39;)">+加关注</a></div></div></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="calendar"></div>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block">
+<div class="mySearch">
+<h3 class="catListTitle">Search</h3>
+<div id="widget_my_zzk" class="div_my_zzk"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="ZZK" id="btnZzk" class="btn_my_zzk"></div>
+<div id="widget_my_google" class="div_my_zzk"><input type="text" name="google_q" id="google_q" onkeydown="return google_go_enter(event)" class="input_my_zzk">&nbsp;<input onclick="google_go()" type="button" value="Google" class="btn_my_zzk"></div>
+</div></div><div id="sidebar_shortcut" class="sidebar-block">
+<!--
+<div class="catListLink">
+<h3 class ="catListTitle">常用链接</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/KeithWang/p/" title="我的博客的随笔列表">我的随笔</a></li><li><a href="http://www.cnblogs.com/KeithWang/MyComments.html" title="我发表过的评论列表">我的评论</a></li><li><a href="http://www.cnblogs.com/KeithWang/OtherPosts.html" title="我评论过的随笔列表">我的参与</a></li><li><a href="http://www.cnblogs.com/KeithWang/RecentComments.html" title="我的博客的评论列表">最新评论</a></li><li><a href="http://www.cnblogs.com/KeithWang/tag/" title="我的博客的标签列表">我的标签</a></li>
+<li><a id="itemListLink" onclick="this.blur();WarpClass('itemListLink', 'itemListLin_con');return false;" href="#">更多链接</a></li>
+</ul>
+<div id="itemListLin_con" style="display:none;">
+<ul>
+
+</ul>
+</div>
+</div>
+--></div><div id="sidebar_toptags" class="sidebar-block">
+<div class="catListTag">
+<h3 class="catListTitle">My Tags</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/KeithWang/tag/WPF/">WPF</a>(13)</li><li><a href="http://www.cnblogs.com/KeithWang/tag/Web/">Web</a>(6)</li><li><a href="http://www.cnblogs.com/KeithWang/tag/WCF/">WCF</a>(4)</li><li><a href="http://www.cnblogs.com/KeithWang/tag/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a>(4)</li><li><a href="http://www.cnblogs.com/KeithWang/tag/.Net/">.Net</a>(3)</li><li><a href="http://www.cnblogs.com/KeithWang/tag/%E5%85%B6%E4%BB%96%E6%8A%80%E6%9C%AF/">其他技术</a>(2)</li><li><a href="http://www.cnblogs.com/KeithWang/tag/PHP/">PHP</a>(1)</li>
+</ul>
+</div></div><div id="sidebar_categories">
+<div class="catListPostCategory">
+<h3 class="catListTitle">Post Categories</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_0_Link_0" href="http://www.cnblogs.com/KeithWang/category/332264.html">.Net Framework(4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_1" href="http://www.cnblogs.com/KeithWang/category/432514.html">PHP, Web and VM(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_2" href="http://www.cnblogs.com/KeithWang/category/353092.html">WCF(4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_3" href="http://www.cnblogs.com/KeithWang/category/332263.html">WPF(13)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_4" href="http://www.cnblogs.com/KeithWang/category/334110.html">编程工具(4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_5" href="http://www.cnblogs.com/KeithWang/category/353087.html">其他技术(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_6" href="http://www.cnblogs.com/KeithWang/category/332261.html">杂感随笔(1)</a> </li>
+
+</ul>
+
+</div>
+
+<div class="catListPostArchive">
+<h3 class="catListTitle">Post Archives</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_1_Link_0" href="http://www.cnblogs.com/KeithWang/archive/2013/10.html">2013/10 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_1" href="http://www.cnblogs.com/KeithWang/archive/2013/07.html">2013/7 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_2" href="http://www.cnblogs.com/KeithWang/archive/2013/06.html">2013/6 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_3" href="http://www.cnblogs.com/KeithWang/archive/2013/05.html">2013/5 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_4" href="http://www.cnblogs.com/KeithWang/archive/2012/11.html">2012/11 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_5" href="http://www.cnblogs.com/KeithWang/archive/2012/04.html">2012/4 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_6" href="http://www.cnblogs.com/KeithWang/archive/2012/03.html">2012/3 (7)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_7" href="http://www.cnblogs.com/KeithWang/archive/2012/02.html">2012/2 (7)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_8" href="http://www.cnblogs.com/KeithWang/archive/2012/01.html">2012/1 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_9" href="http://www.cnblogs.com/KeithWang/archive/2011/12.html">2011/12 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_10" href="http://www.cnblogs.com/KeithWang/archive/2011/11.html">2011/11 (3)</a> </li>
+
+</ul>
+
+</div>
+
+</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap">
+<div class="catListComment">
+<h3 class="catListTitle">Recent Comments</h3>
+
+	<div id="RecentCommentsBlock"><ul>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/KeithWang/p/3139517.html#3863138">1. Re:block，inline和inline-block概念和区别</a></li>
+        <li class="recent_comment_body">@tusi多试几个浏览器看看...</li>
+        <li class="recent_comment_author">--碌云</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/KeithWang/p/3139517.html#3785203">2. Re:block，inline和inline-block概念和区别</a></li>
+        <li class="recent_comment_body">亲自试验过,inline元素的padding以及margin上下左右都是可以设置的。</li>
+        <li class="recent_comment_author">--tusi</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/KeithWang/p/3139517.html#3768198">3. Re:block，inline和inline-block概念和区别</a></li>
+        <li class="recent_comment_body">学习了</li>
+        <li class="recent_comment_author">--sherlock-merlin</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/KeithWang/p/3139517.html#3644176">4. Re:block，inline和inline-block概念和区别</a></li>
+        <li class="recent_comment_body">写的很好</li>
+        <li class="recent_comment_author">--SpringLife</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/KeithWang/p/3139517.html#3623789">5. Re:block，inline和inline-block概念和区别</a></li>
+        <li class="recent_comment_body">介绍的不错</li>
+        <li class="recent_comment_author">--老衲钦此</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/KeithWang/p/3139517.html#3614861">6. Re:block，inline和inline-block概念和区别</a></li>
+        <li class="recent_comment_body">楼主写的不错</li>
+        <li class="recent_comment_author">--公羊天纵</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/KeithWang/p/3139517.html#3587567">7. Re:block，inline和inline-block概念和区别</a></li>
+        <li class="recent_comment_body">不错</li>
+        <li class="recent_comment_author">--我就是我0214</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/KeithWang/archive/2012/02/22/2363443.html#3477987">8. Re:C#对象XML序列化（一）：序列化方法和常用特性</a></li>
+        <li class="recent_comment_body">xml文件里少了 &lt;Areas&gt;这个节点的话要怎么解决？</li>
+        <li class="recent_comment_author">--390620652</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/KeithWang/p/3139517.html#3475517">9. Re:block，inline和inline-block概念和区别</a></li>
+        <li class="recent_comment_body">@web_code部分的行内元素是具有height以及width的设定的，比如input，比如img，还有诸如video等一些标签...</li>
+        <li class="recent_comment_author">--奕军</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/KeithWang/p/3139517.html#3474629">10. Re:block，inline和inline-block概念和区别</a></li>
+        <li class="recent_comment_body">有一点小小的建议，inline标签的padding应该是都可以设置，margin只能设置水平方向的。</li>
+        <li class="recent_comment_author">--瓦蕾瓦蕾</li>
+</ul>
+</div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">Top Posts</h3>
+	<div id="TopViewPostsBlock"><ul><li><a href="http://www.cnblogs.com/KeithWang/p/3139517.html">1. block，inline和inline-block概念和区别(144683)</a></li><li><a href="http://www.cnblogs.com/KeithWang/archive/2012/02/22/2363443.html">2. C#对象XML序列化（一）：序列化方法和常用特性(43789)</a></li><li><a href="http://www.cnblogs.com/KeithWang/archive/2011/12/02/2271970.html">3. Outlook无法更改邮件内容字体颜色详解(10759)</a></li><li><a href="http://www.cnblogs.com/KeithWang/archive/2012/02/14/2351826.html">4. WCF实现RESTFul Web Service(10530)</a></li><li><a href="http://www.cnblogs.com/KeithWang/archive/2012/03/30/2425588.html">5. WPF Knowledge Points - 控件状态利器：VisualStateManager详解(7105)</a></li><li><a href="http://www.cnblogs.com/KeithWang/archive/2012/03/29/2423005.html">6. WPF Knowledge Points - TemplateBinding和Binding的区别(5975)</a></li><li><a href="http://www.cnblogs.com/KeithWang/archive/2011/12/22/2297766.html">7. C#属性简写的原理分析(4734)</a></li><li><a href="http://www.cnblogs.com/KeithWang/archive/2012/01/05/2313470.html">8. Web Service, SOAP和WSDL的关系(3478)</a></li><li><a href="http://www.cnblogs.com/KeithWang/archive/2012/04/12/2444133.html">9. WPF Knowledge Points - ContentControl和ContentPresenter的区别(2907)</a></li><li><a href="http://www.cnblogs.com/KeithWang/archive/2012/03/29/2423037.html">10. WPF Control Hints - ComboBox : WPF中如何定义ComboBox的TextChanged事件？(2805)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap" style="display: none;">
+<!--
+<div class="catListFeedback">
+<h3 class="catListTitle">评论排行榜</h3>
+	<div id="TopFeedbackPostsBlock"></div>
+</div>
+-->
+</div></div><div id="sidebar_topdiggedposts" class="sidebar-block"><div id="topdigg_posts_wrap">
+<h3 class="catListTitle">推荐排行榜</h3>
+<div class="RecentComment">
+	<div id="TopDiggPostsBlock"><ul><li><a href="http://www.cnblogs.com/KeithWang/p/3139517.html">1. block，inline和inline-block概念和区别(43)</a></li><li><a href="http://www.cnblogs.com/KeithWang/archive/2012/02/22/2363443.html">2. C#对象XML序列化（一）：序列化方法和常用特性(10)</a></li><li><a href="http://www.cnblogs.com/KeithWang/archive/2012/03/30/2425588.html">3. WPF Knowledge Points - 控件状态利器：VisualStateManager详解(5)</a></li><li><a href="http://www.cnblogs.com/KeithWang/archive/2011/12/16/2289913.html">4. 用非Office库发送和编辑Meeting Request到Outlook(3)</a></li><li><a href="http://www.cnblogs.com/KeithWang/archive/2012/03/29/2423005.html">5. WPF Knowledge Points - TemplateBinding和Binding的区别(2)</a></li><li><a href="http://www.cnblogs.com/KeithWang/archive/2011/11/24/2259282.html">6. WPF Knowledge Points - 默认视图(DefaultView)，CollectionSourceView，CollectionView的区别(2)</a></li><li><a href="http://www.cnblogs.com/KeithWang/archive/2011/12/22/2297766.html">7. C#属性简写的原理分析(1)</a></li><li><a href="http://www.cnblogs.com/KeithWang/archive/2011/12/16/2290471.html">8. WPF Control Hints - Button : 除了自定义Templet，怎么方便实现无边框的Button(1)</a></li><li><a href="http://www.cnblogs.com/KeithWang/archive/2012/03/29/2423037.html">9. WPF Control Hints - ComboBox : WPF中如何定义ComboBox的TextChanged事件？(1)</a></li><li><a href="http://www.cnblogs.com/KeithWang/archive/2012/02/14/2351269.html">10. 程序员的MS Office经验２：Excel隔行使用相同背景色(1)</a></li></ul></div>
+</div></div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright ©2018 K.W
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+
+</body></html>

@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<!-- saved from url=(0047)https://www.cnblogs.com/feiyuhuo/p/5243967.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>C# 读写App.config配置文件的方法 - _非与或 - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./C# 读写App.config配置文件的方法 - _非与或 - 博客园_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./C# 读写App.config配置文件的方法 - _非与或 - 博客园_files/bundle-CodingLife.css">
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="./C# 读写App.config配置文件的方法 - _非与或 - 博客园_files/bundle-CodingLife-mobile.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/feiyuhuo/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/feiyuhuo/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/feiyuhuo/wlwmanifest.xml">
+<script async="" src="./C# 读写App.config配置文件的方法 - _非与或 - 博客园_files/analytics.js.다운로드"></script><script type="text/javascript" src="./C# 读写App.config配置文件的方法 - _非与或 - 博客园_files/encoder.js.다운로드"></script><script src="./C# 读写App.config配置文件的方法 - _非与或 - 博客园_files/jquery.js.다운로드" type="text/javascript"></script>  
+<script type="text/javascript">var currentBlogApp = 'feiyuhuo', cb_enable_mathjax=false;var isLogined=false;</script>
+<script src="./C# 读写App.config配置文件的方法 - _非与或 - 博客园_files/blog-common.js.다운로드" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="http://www.cnblogs.com/feiyuhuo/"><img id="blogLogo" src="./C# 读写App.config配置文件的方法 - _非与或 - 博客园_files/logo.gif" alt="返回主页"></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/feiyuhuo/">非与或 Blog</a></h1>
+<h2></h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="blog_nav_sitehome" class="menu" href="http://www.cnblogs.com/">博客园</a></li>
+<li><a id="blog_nav_myhome" class="menu" href="http://www.cnblogs.com/feiyuhuo/">首页</a></li>
+<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li><a id="blog_nav_contact" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/_%E9%9D%9E%E4%B8%8E%E6%88%96">联系</a></li>
+<li><a id="blog_nav_rss" class="menu" href="http://www.cnblogs.com/feiyuhuo/rss">订阅</a>
+<!--<a id="blog_nav_rss_image" class="aHeaderXML" href="http://www.cnblogs.com/feiyuhuo/rss"><img src="//www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></li>
+<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<span id="stats_post_count">随笔 - 70&nbsp; </span>
+<span id="stats_article_count">文章 - 3&nbsp; </span>
+<span id="stats-comment_count">评论 - 3</span>
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class="post">
+		<h1 class="postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/feiyuhuo/p/5243967.html">C# 读写App.config配置文件的方法</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body" class="blogpost-body"><h2>一、配置文件概述：</h2>
+<p>应用程序配置文件是标准的 XML 文件，XML 标记和属性是区分大小写的。它是可以按需要更改的，开发人员可以使用配置文件来更改设置，而不必重编译应用程序。配置文件的根节点是configuration。我们经常访问的是appSettings，它是由.Net预定义的配置节。我们经常使用的配置文件的架构是客诉下面的形式。先大概有个印象，通过后面的实例会有一个比较清楚的认识。下面的“配置节”可以理解为进行配置一个XML的节点。</p>
+<p>常见配置文件模式：</p>
+<p>&lt;configuration&gt;<br>&lt;configSections&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//配置节声明区域，包含配置节和命名空间声明<br>&lt;section&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//配置节声明<br>&lt;sectionGroup&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//定义配置节组<br>&lt;section&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//配置节组中的配置节声明<br>&lt;appSettings&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//预定义配置节<br>&lt;Custom element for configuration section&gt;&nbsp;&nbsp;&nbsp;//配置节设置区域</p>
+<p>下面是一个最常见的应用程序配置文件的例子，只有appSettings节：</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./C# 读写App.config配置文件的方法 - _非与或 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">&lt;?</span><span style="color: #ff00ff;">xml version="1.0" encoding="utf-8"</span><span style="color: #0000ff;">?&gt;</span>
+<span style="color: #0000ff;">&lt;</span><span style="color: #800000;">configuration</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">appSettings</span><span style="color: #0000ff;">&gt;</span>
+        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">add </span><span style="color: #ff0000;">key</span><span style="color: #0000ff;">="connectionstring"</span><span style="color: #ff0000;"> value</span><span style="color: #0000ff;">="User Source=.;Password=;Initial Catalog=test;Provider=SQLOLEDB.1;"</span> <span style="color: #0000ff;">/&gt;</span>
+        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">add </span><span style="color: #ff0000;">key</span><span style="color: #0000ff;">="TemplatePATH"</span><span style="color: #ff0000;"> value</span><span style="color: #0000ff;">="Template"</span> <span style="color: #0000ff;">/&gt;</span>
+    <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">appSettings</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">configuration</span><span style="color: #0000ff;">&gt;</span>    </pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./C# 读写App.config配置文件的方法 - _非与或 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>在预定义的 appSettings 节（注意大小写），有很多的元素，这些元素名称都是“add”，有两个属性分别是“key”和“value”。</p>
+<p>.NET 提供了对appSettings节的访问方法。在 .NET 1.0 和 1.1 版本中，可以使用 System.Configuration.ConfigurationSettings.AppSettings["Key"] 来对 key = "Key" 的&lt;add&gt;元素的 value属性 进行访问。</p>
+<p><strong>注意</strong>：现在.Net FrameWork 2.0中已经明确表示此ConfigurationSettings属性已经废弃，建议改为 ConfigurationManager 或&nbsp;WebConfigurationManager。</p>
+<p>使用 System.Configuration.ConfigurationManager，需要在工程里添加对 system.configuration.dll 程序集的引用。（在解决方案管理器中右键点击工程名称，在右键菜单中选择添加引用，在.NET选项卡下即可找到。）</p>
+<p>添加引用后，就可以用 ConfigurationManager.AppSettings["Key"] 来读取对应的值了.</p>
+<p>但是，ConfigurationManager.AppSettings 属性是<strong>只读</strong>的，并不支持修改属性值。这是因为据说微软不太建议我们动态写入app.config文件，而是建议手工配置后，在程序运行时只做静态访问。</p>
+<p>如果实在需要在程序中进行修改，也即写入App.Config，请往下看。</p>
+<p>&nbsp;</p>
+<h2>二、appSettings配置节的读写操作</h2>
+<p>读取App.config文件的appSettings节的方法比较简单，可以通过上文中&nbsp;System.Configuration.ConfigurationManager.AppSettings["Key"]的方法进行访问，但前面也已经说了，该方法不提供写入。</p>
+<p>如果希望写入配置文件，可以使用ConfigurationManager对象执行打开配置文件的操作后，将会返回一个Configuration的对象，利用该对象进行操作（增删改查都可以哦）。</p>
+<p>下面给出实现的代码（增加引用using System.Configuration名称空间）</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./C# 读写App.config配置文件的方法 - _非与或 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">private</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> AccessAppSettings()
+{
+    </span><span style="color: #008000;">//</span><span style="color: #008000;">获取Configuration对象</span>
+    Configuration config =<span style="color: #000000;"> System.Configuration.ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+    </span><span style="color: #008000;">//</span><span style="color: #008000;">根据Key读取&lt;add&gt;元素的Value</span>
+    <span style="color: #0000ff;">string</span> name = config.AppSettings.Settings[<span style="color: #800000;">"</span><span style="color: #800000;">name</span><span style="color: #800000;">"</span><span style="color: #000000;">].Value;
+    </span><span style="color: #008000;">//</span><span style="color: #008000;">写入&lt;add&gt;元素的Value</span>
+    config.AppSettings.Settings[<span style="color: #800000;">"</span><span style="color: #800000;">name</span><span style="color: #800000;">"</span>].Value = <span style="color: #800000;">"</span><span style="color: #800000;">fx163</span><span style="color: #800000;">"</span><span style="color: #000000;">;
+    </span><span style="color: #008000;">//</span><span style="color: #008000;">增加&lt;add&gt;元素</span>
+    config.AppSettings.Settings.Add(<span style="color: #800000;">"</span><span style="color: #800000;">url</span><span style="color: #800000;">"</span>, <span style="color: #800000;">"</span><span style="color: #800000;">http://www.fx163.net</span><span style="color: #800000;">"</span><span style="color: #000000;">);
+    </span><span style="color: #008000;">//</span><span style="color: #008000;">删除&lt;add&gt;元素</span>
+    config.AppSettings.Settings.Remove(<span style="color: #800000;">"</span><span style="color: #800000;">name</span><span style="color: #800000;">"</span><span style="color: #000000;">);
+    </span><span style="color: #008000;">//</span><span style="color: #008000;">一定要记得保存，写不带参数的config.Save()也可以</span>
+<span style="color: #000000;">    config.Save(ConfigurationSaveMode.Modified);
+    </span><span style="color: #008000;">//</span><span style="color: #008000;">刷新，否则程序读取的还是之前的值（可能已装入内存）</span>
+    System.Configuration.ConfigurationManager.RefreshSection(<span style="color: #800000;">"</span><span style="color: #800000;">appSettings</span><span style="color: #800000;">"</span><span style="color: #000000;">);
+}</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./C# 读写App.config配置文件的方法 - _非与或 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>需要注意的是：</p>
+<p>1、根据并不存在的Key值访问&lt;add&gt;元素，甚至使用remove()方法删除不存在的元素，都不会导致异常，前者会返回null。</p>
+<p>2、add已经存在的&lt;add&gt;元素也不会导致异常，而是concat了已有的Value和新的Value，用","分隔，例如："olldvalue,newvalue"。</p>
+<p>3、在项目进行编译后，在运行目录bin\Debuge文件下，将出现两个配置文件，一个名为“ProjectName.exe.config”，另一个名为“ProjectName.vshost.exe.config”。第一个文件为项目实际使用的配置文件，在程序运行中所做的更改都将被保存于此；第二个文件其实为原代码中“App.config”的同步文件，在程序运行中不会发生更改。</p>
+<p>4、特别注意大小写（XML文件是区分大小写的），例如appSettings配置节。</p>
+<p>5、可能有读者会想到，既然app.config是标准XML，当然也可以用操纵一般XML文件的方法来读写。这当然是可以的！只不过我认为这样就失去了VS提供app.config文件的意义了，还不如自己定义一个配置文件方便。</p>
+<p>&nbsp;</p>
+<p>本文只是粗略地讲了app.config文件中appSettings配置节的访问方法，connectionStrings配置节的操作基本是类似的，也可以自定义配置节。这些高级的用法可以自己体会，VS对app.config这个配置文件的管理还是很强大的，例如WinForm应用程序的Settings设置（可以在IDE中或者通过代码访问）其实也是利用了app.config文件。</p>
+<p><img style="display: block; margin-left: auto; margin-right: auto;" src="./C# 读写App.config配置文件的方法 - _非与或 - 博客园_files/820134-20160305004113987-1682392002.jpg" alt=""></p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory">分类: <a href="http://www.cnblogs.com/feiyuhuo/category/755077.html" target="_blank">【WinForm开发】</a></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(5243967,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <a id="green_channel_follow" onclick="follow(&#39;cdfa6409-4e6e-e511-9fc1-ac853d9f53cc&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./C# 读写App.config配置文件的方法 - _非与或 - 博客园_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./C# 读写App.config配置文件的方法 - _非与或 - 博客园_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/feiyuhuo/" target="_blank"><img src="./C# 读写App.config配置文件的方法 - _非与或 - 博客园_files/20151009143101.png" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/feiyuhuo/">_非与或</a><br>
+            <a href="http://home.cnblogs.com/u/feiyuhuo/followees">关注 - 0</a><br>
+            <a href="http://home.cnblogs.com/u/feiyuhuo/followers">粉丝 - 7</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;cdfa6409-4e6e-e511-9fc1-ac853d9f53cc&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(5243967,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">0</span>
+    </div>
+    <div class="buryit" onclick="votePost(5243967,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/feiyuhuo/p/5235663.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/feiyuhuo/p/5235663.html" title="发布于2016-03-02 17:03">C# 退出应用程序办法</a><br><a href="http://www.cnblogs.com/feiyuhuo/p/5272937.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/feiyuhuo/p/5272937.html" title="发布于2016-03-13 20:01">C# winform多线程的小例子</a><br></div>
+</div>
+
+
+		</div>
+		<div class="postDesc">posted @ <span id="post-date">2016-03-05 00:42</span> <a href="http://www.cnblogs.com/feiyuhuo/">_非与或</a> 阅读(<span id="post_view_count">26287</span>) 评论(<span id="post_comment_count">0</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=5243967" rel="nofollow">编辑</a> <a href="https://www.cnblogs.com/feiyuhuo/p/5243967.html#" onclick="AddToWz(5243967);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=248202,cb_entryId=5243967,cb_blogApp=currentBlogApp,cb_blogUserGuid='cdfa6409-4e6e-e511-9fc1-ac853d9f53cc',cb_entryCreatedDate='2016/3/5 0:42:00';loadViewCount(cb_entryId);var cb_postType=1;</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="https://www.cnblogs.com/feiyuhuo/p/5243967.html#" onclick="return RefreshPage();">刷新页面</a><a href="https://www.cnblogs.com/feiyuhuo/p/5243967.html#top">返回顶部</a></div>
+<div id="comment_form_container"><div class="login_tips">注册用户登录后才能发表评论，请 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login(&#39;commentform&#39;);">登录</a> 或 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，<a href="http://www.cnblogs.com/">访问</a>网站首页。</div></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"><a href="https://group.cnblogs.com/topic/78343.html" target="_blank">【福利】限时领取，H3 BPM给你发年终奖</a><br></div>
+<div id="opt_under_post"></div>
+<div id="cnblogs_c1" class="c_ad_block"><a href="http://www.gcpowertools.com.cn/products/activereports_overview.htm?utm_source=cnblogs&amp;utm_medium=blogpage&amp;utm_term=bottom&amp;utm_content=AR&amp;utm_campaign=community" target="_blank"><img width="300" height="250" src="./C# 读写App.config配置文件的方法 - _非与或 - 博客园_files/24442-20171206093739878-889349568.png" alt="AR_1206"></a></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="https://news.cnblogs.com/n/586174/" target="_blank">NVIDIA禁止GeForce在数据中心运行？这回真的被“冤枉”了</a><br> ·  <a href="https://news.cnblogs.com/n/586167/" target="_blank">京东X无人超市首家社会门店开业：刷脸进、微信自动结算</a><br> ·  <a href="https://news.cnblogs.com/n/586161/" target="_blank">《绝地求生》新计划：加入更多地图 支持地图自定义</a><br> ·  <a href="https://news.cnblogs.com/n/586169/" target="_blank">请把2017年赚到的钱存好，这里有份「2018 年苹果新品发布」清单</a><br> ·  <a href="https://news.cnblogs.com/n/586172/" target="_blank">Geoffrey HintonAndrew Moore、吴恩达等总结2017 AI大事件</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="cnblogs_c2" class="c_ad_block"><a href="http://click.aliyun.com/m/34770/" target="_blank"><img width="468" height="60" src="./C# 读写App.config配置文件的方法 - _非与或 - 博客园_files/24442-20171208101900738-116140477.jpg" alt="阿里云C2-1208"></a></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/585502/" target="_blank">步入云计算</a><br> ·  <a href="http://kb.cnblogs.com/page/531409/" target="_blank">以操作系统的角度述说线程与进程</a><br> ·  <a href="http://kb.cnblogs.com/page/141729/" target="_blank">软件测试转型之路</a><br> ·  <a href="http://kb.cnblogs.com/page/177402/" target="_blank">门内门外看招聘</a><br> ·  <a href="http://kb.cnblogs.com/page/112506/" target="_blank">大道至简，职场上做人做事做管理</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"><div id="profile_block">昵称：<a href="https://home.cnblogs.com/u/feiyuhuo/">_非与或</a><br>园龄：<a href="https://home.cnblogs.com/u/feiyuhuo/" title="入园时间：2015-10-09">2年2个月</a><br>粉丝：<a href="https://home.cnblogs.com/u/feiyuhuo/followers/">7</a><br>关注：<a href="https://home.cnblogs.com/u/feiyuhuo/followees/">0</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="follow(&#39;cdfa6409-4e6e-e511-9fc1-ac853d9f53cc&#39;)">+加关注</a></div></div></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="blog-calendar" style=""><table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="Calendar">
+	<tbody><tr><td colspan="7"><table class="CalTitle" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2017/12/01&#39;);return false;">&lt;</a></td><td align="center">2018年1月</td><td class="CalNextPrev" align="right"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2018/02/01&#39;);return false;">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" align="center" abbr="日" scope="col">日</th><th class="CalDayHeader" align="center" abbr="一" scope="col">一</th><th class="CalDayHeader" align="center" abbr="二" scope="col">二</th><th class="CalDayHeader" align="center" abbr="三" scope="col">三</th><th class="CalDayHeader" align="center" abbr="四" scope="col">四</th><th class="CalDayHeader" align="center" abbr="五" scope="col">五</th><th class="CalDayHeader" align="center" abbr="六" scope="col">六</th></tr><tr><td class="CalOtherMonthDay" align="center">31</td><td class="CalTodayDay" align="center">1</td><td align="center">2</td><td align="center">3</td><td align="center">4</td><td align="center">5</td><td class="CalWeekendDay" align="center">6</td></tr><tr><td class="CalWeekendDay" align="center">7</td><td align="center">8</td><td align="center">9</td><td align="center">10</td><td align="center">11</td><td align="center">12</td><td class="CalWeekendDay" align="center">13</td></tr><tr><td class="CalWeekendDay" align="center">14</td><td align="center">15</td><td align="center">16</td><td align="center">17</td><td align="center">18</td><td align="center">19</td><td class="CalWeekendDay" align="center">20</td></tr><tr><td class="CalWeekendDay" align="center">21</td><td align="center">22</td><td align="center">23</td><td align="center">24</td><td align="center">25</td><td align="center">26</td><td class="CalWeekendDay" align="center">27</td></tr><tr><td class="CalWeekendDay" align="center">28</td><td align="center">29</td><td align="center">30</td><td align="center">31</td><td class="CalOtherMonthDay" align="center">1</td><td class="CalOtherMonthDay" align="center">2</td><td class="CalOtherMonthDay" align="center">3</td></tr><tr><td class="CalOtherMonthDay" align="center">4</td><td class="CalOtherMonthDay" align="center">5</td><td class="CalOtherMonthDay" align="center">6</td><td class="CalOtherMonthDay" align="center">7</td><td class="CalOtherMonthDay" align="center">8</td><td class="CalOtherMonthDay" align="center">9</td><td class="CalOtherMonthDay" align="center">10</td></tr>
+</tbody></table></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block">
+<div id="sidebar_search" class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="sidebar_search_box">
+<div id="widget_my_zzk" class="div_my_zzk"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk"></div>
+<div id="widget_my_google" class="div_my_zzk"><input type="text" name="google_q" id="google_q" onkeydown="return google_go_enter(event)" class="input_my_zzk">&nbsp;<input onclick="google_go()" type="button" value="谷歌搜索" class="btn_my_zzk"></div>
+</div>
+</div>
+
+</div><div id="sidebar_shortcut" class="sidebar-block">
+<div class="catListLink">
+<h3 class="catListTitle">常用链接</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/feiyuhuo/p/" title="我的博客的随笔列表">我的随笔</a></li><li><a href="http://www.cnblogs.com/feiyuhuo/MyComments.html" title="我发表过的评论列表">我的评论</a></li><li><a href="http://www.cnblogs.com/feiyuhuo/OtherPosts.html" title="我评论过的随笔列表">我的参与</a></li><li><a href="http://www.cnblogs.com/feiyuhuo/RecentComments.html" title="我的博客的评论列表">最新评论</a></li><li><a href="http://www.cnblogs.com/feiyuhuo/tag/" title="我的博客的标签列表">我的标签</a></li>
+</ul>
+<div id="itemListLin_con" style="display:none;">
+<ul>
+
+</ul>
+</div>
+</div></div><div id="sidebar_toptags" class="sidebar-block"></div><div id="sidebar_categories">
+<div id="sidebar_postcategory" class="catListPostCategory sidebar-block">
+<h3 class="catListTitle">随笔分类<span style="font-size:11px;font-weight:normal">(87)</span></h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_0_Link_0" href="http://www.cnblogs.com/feiyuhuo/category/765635.html">【ASP.NET MVC开发】(11)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_1" href="http://www.cnblogs.com/feiyuhuo/category/769074.html">【CSS】(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_2" href="http://www.cnblogs.com/feiyuhuo/category/769077.html">【HTML】(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_3" href="http://www.cnblogs.com/feiyuhuo/category/769075.html">【Javascript】(3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_4" href="http://www.cnblogs.com/feiyuhuo/category/769076.html">【jQuery】(3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_5" href="http://www.cnblogs.com/feiyuhuo/category/811534.html">【JS/jQuery插件】(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_6" href="http://www.cnblogs.com/feiyuhuo/category/769082.html">【MSSQL】(10)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_7" href="http://www.cnblogs.com/feiyuhuo/category/755077.html">【WinForm开发】(29)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_8" href="http://www.cnblogs.com/feiyuhuo/category/811535.html">【常用框架】(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_9" href="http://www.cnblogs.com/feiyuhuo/category/814338.html">【服务器维护】(4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_10" href="http://www.cnblogs.com/feiyuhuo/category/816459.html">【技巧】(8)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_11" href="http://www.cnblogs.com/feiyuhuo/category/763757.html">【经验总结】(8)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_12" href="http://www.cnblogs.com/feiyuhuo/category/839291.html">【其它】(3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_13" href="http://www.cnblogs.com/feiyuhuo/category/914487.html">【算法】(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_14" href="http://www.cnblogs.com/feiyuhuo/category/770990.html">【网站SEO】(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_15" href="http://www.cnblogs.com/feiyuhuo/category/742321.html">【网站优化】(2)</a> </li>
+
+</ul>
+
+</div>
+
+<div id="sidebar_postarchive" class="catListPostArchive sidebar-block">
+<h3 class="catListTitle">随笔档案<span style="font-size:11px;font-weight:normal">(70)</span></h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_1_Link_0" href="http://www.cnblogs.com/feiyuhuo/archive/2016/12.html">2016年12月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_1" href="http://www.cnblogs.com/feiyuhuo/archive/2016/11.html">2016年11月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_2" href="http://www.cnblogs.com/feiyuhuo/archive/2016/10.html">2016年10月 (8)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_3" href="http://www.cnblogs.com/feiyuhuo/archive/2016/09.html">2016年9月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_4" href="http://www.cnblogs.com/feiyuhuo/archive/2016/08.html">2016年8月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_5" href="http://www.cnblogs.com/feiyuhuo/archive/2016/06.html">2016年6月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_6" href="http://www.cnblogs.com/feiyuhuo/archive/2016/05.html">2016年5月 (5)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_7" href="http://www.cnblogs.com/feiyuhuo/archive/2016/04.html">2016年4月 (15)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_8" href="http://www.cnblogs.com/feiyuhuo/archive/2016/03.html">2016年3月 (7)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_9" href="http://www.cnblogs.com/feiyuhuo/archive/2016/02.html">2016年2月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_10" href="http://www.cnblogs.com/feiyuhuo/archive/2016/01.html">2016年1月 (7)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_11" href="http://www.cnblogs.com/feiyuhuo/archive/2015/12.html">2015年12月 (11)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_12" href="http://www.cnblogs.com/feiyuhuo/archive/2015/11.html">2015年11月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_13" href="http://www.cnblogs.com/feiyuhuo/archive/2015/10.html">2015年10月 (1)</a> </li>
+
+</ul>
+
+</div>
+
+<div id="sidebar_articlecategory" class="catListArticleCategory sidebar-block">
+<h3 class="catListTitle">文章分类</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_2_Link_0" href="http://www.cnblogs.com/feiyuhuo/category/914486.html">【算法】</a> </li>
+
+</ul>
+
+</div>
+
+</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap">
+<div class="catListComment">
+<h3 class="catListTitle">最新评论</h3>
+
+	<div id="RecentCommentsBlock"><ul>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/feiyuhuo/p/6102579.html#3785260">1. Re:C#实现Levenshtein distance最小编辑距离算法</a></li>
+        <li class="recent_comment_body">代码有错 matrix[i + 1, j + 1] = Math.Min(Math.Min(matrix[i, j] + sign, matrix[i + 1......</li>
+        <li class="recent_comment_author">--guhill</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/feiyuhuo/p/4960357.html#3750547">2. Re:C#WebBrowser控件使用教程与技巧收集</a></li>
+        <li class="recent_comment_body">不错，收藏了</li>
+        <li class="recent_comment_author">--killf</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/feiyuhuo/p/4960357.html#3305454">3. Re:C#WebBrowser控件使用教程与技巧收集</a></li>
+        <li class="recent_comment_body">很全面~感谢分享</li>
+        <li class="recent_comment_author">--j0urn3y</li>
+</ul>
+</div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">阅读排行榜</h3>
+	<div id="TopViewPostsBlock"><ul><li><a href="http://www.cnblogs.com/feiyuhuo/p/5097385.html">1. JS 页面加载触发事件 document.ready和window.onload的区别(43424)</a></li><li><a href="http://www.cnblogs.com/feiyuhuo/p/5243967.html">2. C# 读写App.config配置文件的方法(26287)</a></li><li><a href="http://www.cnblogs.com/feiyuhuo/p/5793606.html">3. C# 利用反射根据类名创建类的实例对象(18081)</a></li><li><a href="http://www.cnblogs.com/feiyuhuo/p/5474790.html">4. WinForm程序执行JS代码的多种方法以及使用WebBrowser与JS交互(11068)</a></li><li><a href="http://www.cnblogs.com/feiyuhuo/p/5981628.html">5. SQL Server 中使用数据类型表示小数(5292)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap">
+<div class="catListFeedback">
+<h3 class="catListTitle">评论排行榜</h3>
+	<div id="TopFeedbackPostsBlock"><ul><li><a href="http://www.cnblogs.com/feiyuhuo/p/4960357.html">1. C#WebBrowser控件使用教程与技巧收集(2)</a></li><li><a href="http://www.cnblogs.com/feiyuhuo/p/6102579.html">2. C#实现Levenshtein distance最小编辑距离算法(1)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topdiggedposts" class="sidebar-block"><div id="topdigg_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">推荐排行榜</h3>
+<div id="TopDiggPostsBlock"><ul><li><a href="http://www.cnblogs.com/feiyuhuo/p/5906406.html">1. 在VS中用正则表达式查找或替换(2)</a></li><li><a href="http://www.cnblogs.com/feiyuhuo/p/5793606.html">2. C# 利用反射根据类名创建类的实例对象(2)</a></li><li><a href="http://www.cnblogs.com/feiyuhuo/p/5514344.html">3. 出现“System.Data.SqlClient.SqlError: 尚未备份数据库的日志尾部”错误的解决方案(1)</a></li><li><a href="http://www.cnblogs.com/feiyuhuo/p/5097385.html">4. JS 页面加载触发事件 document.ready和window.onload的区别(1)</a></li><li><a href="http://www.cnblogs.com/feiyuhuo/p/5382800.html">5. 如何限制虚拟主机可使用的CPU资源(1)</a></li></ul></div>
+</div></div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright ©2018 _非与或
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+
+</body></html>

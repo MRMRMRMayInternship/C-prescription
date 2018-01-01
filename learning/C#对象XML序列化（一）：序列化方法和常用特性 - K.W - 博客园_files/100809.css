@@ -1,0 +1,88 @@
+DIV#topics .postTitle2
+{
+    font-size: 16pt;
+    font-weight: bold;
+    color:#5C62A6;
+}
+.postBody 
+{
+    font-size:13px;
+}
+.postBody {
+    background: #F9FDF4;
+    border-color: #BBBBBB;
+    border-radius: 8px 8px 8px 8px;
+    border-style: solid;
+    border-width: 1px;
+    line-height: 1.5;
+    padding: 5px 2px 5px 5px;
+}
+.postBody h1
+{    
+    padding-bottom: 5px;
+    background-color: #D7E0EF;
+    padding: 2px 0 3px 10px;
+    color: black;
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 6px 90px 90px 6px;
+    width: 600px;
+}
+.postBody img
+{
+    margin-bottom: 20px;
+}
+.postBody a
+{
+    color: #3366FF;
+    text-decoration: none;
+}
+.postBody a img
+{
+    border-bottom:0px;
+}
+.postBody a:hover
+{    
+    color: #A0589A;
+}
+DIV#cnblogs_post_body a
+{
+    border-bottom: 1px dashed #3366FF;
+    color: #3366FF;
+    text-decoration: none;
+}
+DIV#cnblogs_post_body a:hover
+{    
+    color: #A0589A;
+}
+div.day
+{
+  border-color: #BBBBBB;
+  border-style: solid;
+  border-width: 1px 1px 1px 1px;
+  border-radius:8px;
+  padding-left: 25px;
+  padding-right:25px;
+  box-shadow: 0 0 30px #BBBBBB;
+}
+div.dayTitle
+{
+  background: no-repeat url(//images.cnblogs.com/cnblogs_com/KeithWang/386309/o_img_date_edit_32_32.png);
+  background-size:35px;
+  padding-left: 38px;
+  text-align: left;
+  margin-top: 5px;
+  margin-bottom: 3px;
+  height: 35px;
+}
+div.dayTitle a
+{
+  display: inline-block;
+  margin-top: 8px;
+}
+
+#topics .postTitle {
+    margin-bottom: 5px;
+}
