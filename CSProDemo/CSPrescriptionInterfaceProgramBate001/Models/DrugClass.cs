@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace CSPrescriptionInterfaceProgramBate001.Models
 {
+    [Serializable]
     public class DrugClass
     {
         public int Price { get; set; }

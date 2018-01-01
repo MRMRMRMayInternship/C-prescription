@@ -128,6 +128,7 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.drugInfoPanelTitleLabel = new System.Windows.Forms.Label();
             this.patientPanelTitleLabel = new System.Windows.Forms.Label();
+            this.warningMessageLabel = new System.Windows.Forms.Label();
             this.doctorInfoPanel.SuspendLayout();
             this.depTableLayoutPanel.SuspendLayout();
             this.doctorIDTableLayoutPanel.SuspendLayout();
@@ -381,6 +382,7 @@
             // patientInfoPanel
             // 
             this.patientInfoPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.patientInfoPanel.Controls.Add(this.warningMessageLabel);
             this.patientInfoPanel.Controls.Add(this.callNextPatientButton);
             this.patientInfoPanel.Controls.Add(this.symptomDescriptionTableLayoutPanel);
             this.patientInfoPanel.Controls.Add(this.patientAgeTableLayoutPanel);
@@ -1273,6 +1275,15 @@
             this.patientPanelTitleLabel.TabIndex = 6;
             this.patientPanelTitleLabel.Text = "환자 정보";
             // 
+            // warningMessageLabel
+            // 
+            this.warningMessageLabel.AutoSize = true;
+            this.warningMessageLabel.Location = new System.Drawing.Point(119, 790);
+            this.warningMessageLabel.Name = "warningMessageLabel";
+            this.warningMessageLabel.Size = new System.Drawing.Size(38, 12);
+            this.warningMessageLabel.TabIndex = 8;
+            this.warningMessageLabel.Text = "label1";
+            // 
             // PrescriptionInterfaceForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -1301,6 +1312,7 @@
             this.drugIDTableLayoutPanel.ResumeLayout(false);
             this.drugIDTableLayoutPanel.PerformLayout();
             this.patientInfoPanel.ResumeLayout(false);
+            this.patientInfoPanel.PerformLayout();
             this.symptomDescriptionTableLayoutPanel.ResumeLayout(false);
             this.symptomDescriptionTableLayoutPanel.PerformLayout();
             this.patientAgeTableLayoutPanel.ResumeLayout(false);
@@ -1449,5 +1461,6 @@
         private System.Windows.Forms.DataGridViewComboBoxColumn UsageColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn DrugInstructionColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn DrugIDColumn;
+        private System.Windows.Forms.Label warningMessageLabel;
     }
 }

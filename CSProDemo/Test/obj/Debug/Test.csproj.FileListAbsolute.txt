@@ -10,3 +10,9 @@ C:\Users\VMS\Desktop\C-prescription\CSProDemo\Test\bin\Debug\Test.exe
 C:\Users\VMS\Desktop\C-prescription\CSProDemo\Test\bin\Debug\Test.pdb
 C:\Users\VMS\Desktop\C-prescription\CSProDemo\Test\bin\Debug\Newtonsoft.Json.dll
 C:\Users\VMS\Desktop\C-prescription\CSProDemo\Test\obj\Debug\Test.csprojResolveAssemblyReference.cache
+C:\Users\2014105110\Downloads\123\C-prescription\CSProDemo\Test\bin\Debug\Test.exe.config
+C:\Users\2014105110\Downloads\123\C-prescription\CSProDemo\Test\obj\Debug\Test.exe
+C:\Users\2014105110\Downloads\123\C-prescription\CSProDemo\Test\obj\Debug\Test.pdb
+C:\Users\2014105110\Downloads\123\C-prescription\CSProDemo\Test\bin\Debug\Test.exe
+C:\Users\2014105110\Downloads\123\C-prescription\CSProDemo\Test\bin\Debug\Test.pdb
+C:\Users\2014105110\Downloads\123\C-prescription\CSProDemo\Test\obj\Debug\Test.csprojResolveAssemblyReference.cache

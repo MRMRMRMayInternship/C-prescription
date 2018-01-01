@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CSPrescriptionInterfaceProgramBate001.DAO;
+using CSPrescriptionInterfaceProgramBate001.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -35,12 +37,12 @@ namespace CSPrescriptionInterfaceProgramBate001.Views
         }
         private void InitializeDrugsInfoList()
         {
-            Models.DrugsClass list = new Models.DrugsClass();
-            System.IO.FileStream fs = new System.IO.FileStream(@".\drugs.xml",System.IO.FileMode.Open);
             
-            System.Runtime.Serialization.DataContractSerializer rs = new System.Runtime.Serialization.DataContractSerializer(list.GetType());
-            list = (Models.DrugsClass)rs.ReadObject(fs);
-            foreach (Models.DrugClass drug in list.Drugs)
+            System.Configuration.Configuration config = System.Configuration.ConfigurationManager.OpenExeConfiguration(System.Configuration.ConfigurationUserLevel.None);
+            string drugsFilePath = config.AppSettings.Settings[@Models.CommonData.DefaultValuesSet.DrugsFilePathKey].Value;
+
+            List<DrugClass> list = XmlSerializer.LoadFromXml(drugsFilePath, typeof(List<DrugClass>)) as List<DrugClass>;
+            foreach (Models.DrugClass drug in list)
                 this.drugsInfoListView.Items.Add(createListItemByClass(drug));
         }
         private void cancelButton_Click(object sender, EventArgs e)

@@ -1,17 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace DrugManageSystemBate001
 {
-    [System.Runtime.Serialization.DataContract(Name="Drug")]
-    public class DrugsClass
-    {
-        [System.Runtime.Serialization.DataMember(Name="Drugs")]
-        public IList<DrugClass> Drugs { get; set; }
-    }
+   
+    [Serializable]
     public class DrugClass
     {
         public int Price { get; set; }

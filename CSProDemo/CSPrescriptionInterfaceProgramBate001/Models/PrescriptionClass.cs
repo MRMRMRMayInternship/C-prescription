@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CSPrescriptionInterfaceProgramBate001.Models
 {
-    [System.Runtime.Serialization.DataContract(Name="Prescription",Namespace="CSPrescriptionInterfaceProgramBate001.Models")]
+    [Serializable]
     public class PrescriptionClass
     {
         [System.Runtime.Serialization.DataMember]
@@ -19,6 +19,6 @@ namespace CSPrescriptionInterfaceProgramBate001.Models
         [System.Runtime.Serialization.DataMember]
         public DoctorClass Docotr { get; set; }
         [System.Runtime.Serialization.DataMember]
-        public IList<DrugClass> Drugs { get; set; }
+        public List<DrugClass> Drugs { get; set; }
     }
 }

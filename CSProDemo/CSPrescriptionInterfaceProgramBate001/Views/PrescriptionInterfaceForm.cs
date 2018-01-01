@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CSPrescriptionInterfaceProgramBate001.DAO;
+using CSPrescriptionInterfaceProgramBate001.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -70,6 +72,16 @@ namespace CSPrescriptionInterfaceProgramBate001.Views
         {
             this.dosageUnitComboBox.Items.AddRange(new String[] { "ml", "l", "개" });
         }
+        private void LoadingUpdatingDateGridViewRowToInfoBlock()
+        {
+            this.drugNameTextBox.Text = updatingRow.Cells["DrugNameColumn"].Value as string;
+        }
+        /// <summary>
+        /// Create A New DataGridView Row to insert
+        /// </summary>
+        /// <returns>
+        /// A New DataGridView Row
+        /// </returns>
         private DataGridViewRow CreateDateGridViewRow(){
             DataGridViewRow newRow = new DataGridViewRow();
             newRow.Cells.Clear();
@@ -344,21 +356,20 @@ namespace CSPrescriptionInterfaceProgramBate001.Views
                     return;
                 }
                 updatingRow = this.drugInfoDataGridView.Rows[row];
-                for (int i = 2; i < updatingRow.Cells.Count; i++)
-                {
-                    this.drugInfoDataGridView.Rows[row].Cells[i].ReadOnly = false;
-                }
+                //for (int i = 2; i < updatingRow.Cells.Count; i++)
+                //{
+                //    this.drugInfoDataGridView.Rows[row].Cells[i].ReadOnly = false;
+                //}
                 str += "수정 button";
                 MessageBox.Show(str);
                 updatingRow.Cells[0].Value = "확인";
             }
             else
             {
-
-                for (int i = 2; i < updatingRow.Cells.Count; i++)
-                {
-                    this.drugInfoDataGridView.Rows[row].Cells[i].ReadOnly = true;
-                }
+                //for (int i = 2; i < updatingRow.Cells.Count; i++)
+                //{
+                //    this.drugInfoDataGridView.Rows[row].Cells[i].ReadOnly = true;
+                //}
                 str += "확인 button";
                 MessageBox.Show(str);
                 updatingRow.Cells[0].Value = "수정";
@@ -484,7 +495,13 @@ namespace CSPrescriptionInterfaceProgramBate001.Views
             prescriptionObj.Drugs = drugList;
             DAO.SavePrescriptionInfoAsXMLFile saveXmlFile = new DAO.SavePrescriptionInfoAsXMLFile();
             string fileName = patientObj.PatientID + "_" + prescriptionObj.PrescriptionID + @".xml";
-            string filePath = @".\" +fileName;
+            System.Configuration.Configuration config =  System.Configuration.ConfigurationManager.OpenExeConfiguration(System.Configuration.ConfigurationUserLevel.None);
+            string filePath =  config.AppSettings.Settings[Models.CommonData.DefaultValuesSet.prescriptionPathKey].Value;
+            if (!System.IO.Directory.Exists(filePath))
+            {
+                System.IO.Directory.CreateDirectory(filePath);
+            }
+            filePath = filePath + @"\" + fileName;
             IEnumerable<string> queryFileResults = 
                 from file in System.IO.Directory.GetFiles(@".\")
                 where file == filePath
@@ -493,7 +510,8 @@ namespace CSPrescriptionInterfaceProgramBate001.Views
             {
                 MessageBox.Show("error", "saving..", MessageBoxButtons.YesNo);
             }
-            saveXmlFile.SaveAsXMLFile(prescriptionObj,filePath);
+            //saveXmlFile.SaveAsXMLFile(prescriptionObj,filePath);
+            XmlSerializer.SaveToXml(filePath, prescriptionObj, typeof(PrescriptionClass));
         }
 
         private void timer1_Tick(object sender, EventArgs e)

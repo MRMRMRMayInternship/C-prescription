@@ -3,31 +3,37 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Serialization;
 
 namespace DrugManageSystemBate001
 {
     public partial class Form1 : Form
     {
+        [XmlAttribute("Drug")]
+        List<DrugClass> list = null;
+        private const string fileName = @".\drugs.xml";
         private ListViewItem item = null;
         public Form1()
         {
             InitializeComponent();
             if (!System.IO.File.Exists(@".\drugs.xml")) { return; }
-            System.IO.FileStream fs = new System.IO.FileStream(@".\drugs.xml", System.IO.FileMode.Open);
-            DrugsClass drugs = new DrugsClass();
-            System.Runtime.Serialization.DataContractSerializer sr = new System.Runtime.Serialization.DataContractSerializer(drugs.GetType());
-            DrugsClass list = sr.ReadObject(fs) as DrugsClass;
+            list = XmlSerializer.LoadFromXml(fileName,typeof(List<DrugClass>)) as List<DrugClass>;
+            //System.IO.FileStream fs = new System.IO.FileStream(@".\drugs.xml", System.IO.FileMode.Open);
+            //DrugsClass drugs = new DrugsClass();
+            //DrugsClass list = XmlSerializer.LoadFromXml(fileName) as DrugsClass;
             if (list != null)
             {
-                foreach (DrugClass drug in list.Drugs)
+                foreach (DrugClass drug in list)
                 {
                     listView1.Items.Add(createListItemByClass(drug));
                 }
             }
+            
         }
         private ListViewItem createListItemByClass(DrugClass drug)
         {
@@ -57,7 +63,7 @@ namespace DrugManageSystemBate001
 
         private void button3_Click(object sender, EventArgs e)
         {
-            List<DrugClass> list = new List<DrugClass>();
+            list = new List<DrugClass>();
             foreach (ListViewItem item in listView1.Items)
             {
                 DrugClass drugObj = new DrugClass();
@@ -67,12 +73,15 @@ namespace DrugManageSystemBate001
                 drugObj.Creation = item.SubItems[3].Text;
                 list.Add(drugObj);
             }
-            DrugsClass drugs = new DrugsClass();
-            drugs.Drugs = list;
-            System.IO.FileStream fs = new System.IO.FileStream(@".\drugs.xml", System.IO.FileMode.OpenOrCreate);
-            System.Runtime.Serialization.DataContractSerializer sr = new System.Runtime.Serialization.DataContractSerializer(drugs.GetType());
-            sr.WriteObject(fs, drugs);
-            fs.Close();
+            //DrugsClass drugs = new DrugsClass();
+            //drugs.Drugs = list;
+            XmlSerializer.SaveToXml(fileName, list, typeof(List<DrugClass>));
+
+            //System.IO.FileStream fs = new System.IO.FileStream(fileName, System.IO.FileMode.OpenOrCreate);
+
+            //System.Runtime.Serialization.DataContractSerializer sr = new System.Runtime.Serialization.DataContractSerializer(drugs.GetType());
+            //sr.WriteObject(fs, drugs);
+            //fs.Close();
         }
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
