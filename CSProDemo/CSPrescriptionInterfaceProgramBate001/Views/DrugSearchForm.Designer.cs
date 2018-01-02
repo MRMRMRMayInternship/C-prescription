@@ -71,6 +71,7 @@
             this.drugsInfoListView.TabIndex = 0;
             this.drugsInfoListView.UseCompatibleStateImageBehavior = false;
             this.drugsInfoListView.View = System.Windows.Forms.View.Details;
+            this.drugsInfoListView.SelectedIndexChanged += new System.EventHandler(this.drugsInfoListView_SelectedIndexChanged);
             // 
             // drugNameColumnHeader
             // 
@@ -120,7 +121,7 @@
             this.selectButton.TabIndex = 3;
             this.selectButton.Text = "선택";
             this.selectButton.UseVisualStyleBackColor = true;
-            this.selectButton.Click += new System.EventHandler(this.button2_Click);
+            this.selectButton.Click += new System.EventHandler(this.SelectButton_Click);
             // 
             // drugNameLabel
             // 
@@ -156,6 +157,7 @@
             this.searchButton.TabIndex = 6;
             this.searchButton.Text = "검색";
             this.searchButton.UseVisualStyleBackColor = true;
+            this.searchButton.Click += new System.EventHandler(this.SearchButton_Click);
             // 
             // panel2
             // 

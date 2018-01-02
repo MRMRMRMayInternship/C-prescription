@@ -16,8 +16,10 @@ namespace CSPrescriptionInterfaceProgramBate001.Views
      * detail: login form
      * function : login and check
      ***/
+    public delegate void SendDoctorInfoAction(Models.DoctorClass obj);
     public partial class LoginForm : Form
     {
+        public SendDoctorInfoAction SendDoctorInfoEventHandle;
         public LoginForm()
         {
             InitializeComponent();
@@ -61,8 +63,22 @@ namespace CSPrescriptionInterfaceProgramBate001.Views
                 //sw.Flush();
                 //sw.Close();
                 //fs.Close();
-                this.DialogResult = DialogResult.OK;
-                this.Close();
+                System.Configuration.Configuration config = System.Configuration.ConfigurationManager.OpenExeConfiguration(System.Configuration.ConfigurationUserLevel.None);
+                string filePath = config.AppSettings.Settings["accountFilePath"].Value;
+                List<Models.DoctorClass> doctorList = DAO.XmlSerializer.LoadFromXml(filePath,typeof(List<Models.DoctorClass>)) as List<Models.DoctorClass>;
+                IEnumerable<Models.DoctorClass> resultList =
+                    from result in doctorList
+                    where result.ID.Equals(this.textBox1.Text) && result.Password.Equals(this.textBox2.Text)
+                    select result;
+                if(resultList.Count() > 0){
+                    Models.DoctorClass obj = resultList.ToArray().GetValue(0) as Models.DoctorClass;
+                    SendDoctorInfoEventHandle(obj);
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
+                }
+                else{
+                    MessageBox.Show("Error");
+                }
             }
             else
             {

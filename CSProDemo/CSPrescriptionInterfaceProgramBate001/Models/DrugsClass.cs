@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 
 namespace CSPrescriptionInterfaceProgramBate001.Models
 {
-    [System.Runtime.Serialization.DataContract(Name = "DrugList", Namespace = "")]
     class DrugsClass : System.Runtime.Serialization.IExtensibleDataObject
     {
         [System.Runtime.Serialization.DataMember(Name="Drugs")]

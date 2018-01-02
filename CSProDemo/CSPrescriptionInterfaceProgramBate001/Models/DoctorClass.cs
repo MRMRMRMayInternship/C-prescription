@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CSPrescriptionInterfaceProgramBate001.Models
 {
-    
+    [Serializable]
     public class DoctorClass : EmployeeClass
     {
     }

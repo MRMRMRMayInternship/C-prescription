@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<PrescriptionClass xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <PrescriptionID>RX100180102140602</PrescriptionID>
+  <Date>2018-01-02 오후 2:06:12</Date>
+  <Patient>
+    <Name>홍기동</Name>
+    <Age>21</Age>
+    <Sex>M</Sex>
+    <SymptomDescription>123</SymptomDescription>
+    <PatientID>P100171227150211</PatientID>
+  </Patient>
+  <Doctor>
+    <Name>신라</Name>
+    <ID>D100171227173011</ID>
+    <Department>내과</Department>
+  </Doctor>
+  <Drugs>
+    <DrugClass>
+      <Price>0</Price>
+      <DrugName>Claritin-D 24 Hour oral</DrugName>
+      <TimeDuration>1</TimeDuration>
+      <TimesPerDay>1</TimesPerDay>
+      <DosagePerTime_Value>1</DosagePerTime_Value>
+      <DosagePerTime_Unit>l</DosagePerTime_Unit>
+      <Usage>외용</Usage>
+      <Instruction>2</Instruction>
+      <WhenMorning>true</WhenMorning>
+      <WhenAfternoon>false</WhenAfternoon>
+      <WhenEvening>false</WhenEvening>
+    </DrugClass>
+  </Drugs>
+</PrescriptionClass>

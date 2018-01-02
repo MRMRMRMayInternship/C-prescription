@@ -50,6 +50,7 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web.Extensions" />
@@ -63,6 +64,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\KeyPressEvent.cs" />
     <Compile Include="Controllers\MultiLanguage.cs" />
     <Compile Include="DAO\SavePrescriptionInfoAsXMLFile.cs" />
     <Compile Include="DAO\XmlSerializer.cs" />
@@ -90,14 +92,32 @@
     <Compile Include="Views\LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\MyControl\MyPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\MyControl\MyPanel.Designer.cs">
+      <DependentUpon>MyPanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\MyControl\ObjectListView.cs">
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Views\PrescriptionFileListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\PrescriptionFileListForm.Designer.cs">
+      <DependentUpon>PrescriptionFileListForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\PrescriptionInterfaceForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Views\PrescriptionInterfaceForm.Designer.cs">
       <DependentUpon>PrescriptionInterfaceForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UpdatingDrugForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\UpdatingDrugForm.Designer.cs">
+      <DependentUpon>UpdatingDrugForm.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -108,18 +128,26 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Views\DrugSearchForm.en-US.resx" />
     <EmbeddedResource Include="Views\DrugSearchForm.resx">
       <DependentUpon>DrugSearchForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\MyControl\MyPanel.resx">
+      <DependentUpon>MyPanel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\MyControl\ObjectListView.resx">
       <DependentUpon>ObjectListView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\PrescriptionFileListForm.resx">
+      <DependentUpon>PrescriptionFileListForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\PrescriptionInterfaceForm.resx">
       <DependentUpon>PrescriptionInterfaceForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\UpdatingDrugForm.resx">
+      <DependentUpon>UpdatingDrugForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

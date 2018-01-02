@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PrescriptionClass xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <PrescriptionID>RX100180102170448</PrescriptionID>
+  <Date>2018-01-02 오후 5:11:00</Date>
+  <Patient>
+    <Name>홍기동</Name>
+    <Age>21</Age>
+    <Sex>M</Sex>
+    <SymptomDescription>123</SymptomDescription>
+    <PatientID>P100171227150211</PatientID>
+  </Patient>
+  <Doctor>
+    <Name>신라</Name>
+    <ID>D100171227173011</ID>
+    <Department>내과</Department>
+  </Doctor>
+  <Drugs>
+    <DrugClass>
+      <Price>0</Price>
+      <DrugName>Capmist DM oral</DrugName>
+      <DrugID>D001180102080515</DrugID>
+      <TimeDuration>123</TimeDuration>
+      <TimesPerDay>2</TimesPerDay>
+      <DosagePerTime_Value>12</DosagePerTime_Value>
+      <DosagePerTime_Unit>l</DosagePerTime_Unit>
+      <Usage>외용</Usage>
+      <Instruction>123</Instruction>
+      <WhenMorning>true</WhenMorning>
+      <WhenAfternoon>true</WhenAfternoon>
+      <WhenEvening>false</WhenEvening>
+    </DrugClass>
+    <DrugClass>
+      <Price>0</Price>
+      <DrugName>Claritin-D 12 Hour oral	</DrugName>
+      <DrugID>D001180102080502</DrugID>
+      <TimeDuration>2</TimeDuration>
+      <TimesPerDay>1</TimesPerDay>
+      <DosagePerTime_Value>23</DosagePerTime_Value>
+      <DosagePerTime_Unit>ml</DosagePerTime_Unit>
+      <Usage>외용</Usage>
+      <Instruction>2</Instruction>
+      <WhenMorning>false</WhenMorning>
+      <WhenAfternoon>false</WhenAfternoon>
+      <WhenEvening>true</WhenEvening>
+    </DrugClass>
+  </Drugs>
+</PrescriptionClass>

@@ -37,6 +37,11 @@ namespace CSPrescriptionInterfaceProgramBate001
                 }
             }
         }
+        private static Models.DoctorClass doctor;
+        private static void LoginFeedBack(Models.DoctorClass obj)
+        {
+            doctor = obj;
+        }
         private static Models.DoctorClass ValidateLogin(string ID = null, string password = null)
         {
             Models.DoctorClass doctor = new Models.DoctorClass();

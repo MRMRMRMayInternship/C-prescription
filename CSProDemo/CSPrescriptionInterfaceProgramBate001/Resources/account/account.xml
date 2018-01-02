@@ -1,0 +1,33 @@
+﻿<?xml version="1.0"?>
+<ArrayOfDoctorClass xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<DoctorClass>
+	<Department>내과</Department>
+	<ID>D100171227173011</ID>
+	<Password>a12345</Password>
+	<Name>신라</Name>
+</DoctorClass>
+<DoctorClass>
+	<Department>외과</Department>
+	<ID>D100171227171212</ID>
+	<Password>asd123456</Password>
+	<Name>May</Name>
+</DoctorClass>
+<DoctorClass>
+	<Department>치과</Department>
+	<ID>D100171227173010</ID>
+	<Password>Tom2017</Password>
+	<Name>Tom</Name>
+</DoctorClass>
+<DoctorClass>
+	<Department>소아과</Department>
+	<ID>D100171111121212</ID>
+	<Password>11221122</Password>
+	<Name>Anna</Name>
+</DoctorClass>
+<DoctorClass>
+	<Department>test</Department>
+	<ID>root</ID>
+	<Password>root</Password>
+	<Name>root</Name>
+</DoctorClass>
+</ArrayOfDoctorClass>

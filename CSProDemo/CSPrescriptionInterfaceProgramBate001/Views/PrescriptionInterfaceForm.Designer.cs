@@ -1,4 +1,5 @@
-﻿namespace CSPrescriptionInterfaceProgramBate001.Views
+﻿using CSPrescriptionInterfaceProgramBate001.Controllers;
+namespace CSPrescriptionInterfaceProgramBate001.Views
 {
     partial class PrescriptionInterfaceForm
     {
@@ -29,9 +30,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this.doctorInfoPanel = new System.Windows.Forms.Panel();
             this.depTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.depLabel = new System.Windows.Forms.Label();
@@ -51,6 +52,7 @@
             this.drugIDLabel = new System.Windows.Forms.Label();
             this.drugIDTextBox = new System.Windows.Forms.TextBox();
             this.patientInfoPanel = new System.Windows.Forms.Panel();
+            this.warningMessageLabel = new System.Windows.Forms.Label();
             this.callNextPatientButton = new System.Windows.Forms.Button();
             this.symptomDescriptionTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.symptomDescriptionLabel = new System.Windows.Forms.Label();
@@ -112,28 +114,30 @@
             this.drugInfoDataGridView = new System.Windows.Forms.DataGridView();
             this.UpdateBtnColumn = new System.Windows.Forms.DataGridViewButtonColumn();
             this.DelBtnColumn = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.DrugNameColumn = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.DrugIDColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DrugNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TimeDurationColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TimesPerDayColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MorningCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.AfternoonCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.EveningCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.DosagePerDayValueColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DosagePerTimeColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.UsageColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.DosageUnitColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UsageColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DrugInstructionColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DrugIDColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.functionPanel = new System.Windows.Forms.Panel();
+            this.loadButton = new System.Windows.Forms.Button();
             this.saveButton = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.drugInfoPanelTitleLabel = new System.Windows.Forms.Label();
             this.patientPanelTitleLabel = new System.Windows.Forms.Label();
-            this.warningMessageLabel = new System.Windows.Forms.Label();
+            this.exitButton = new System.Windows.Forms.Button();
             this.doctorInfoPanel.SuspendLayout();
             this.depTableLayoutPanel.SuspendLayout();
             this.doctorIDTableLayoutPanel.SuspendLayout();
             this.dateTableLayoutPanel.SuspendLayout();
             this.doctorNametableLayoutPanel.SuspendLayout();
+            this.unknownPanel.SuspendLayout();
             this.drugIDTableLayoutPanel.SuspendLayout();
             this.patientInfoPanel.SuspendLayout();
             this.symptomDescriptionTableLayoutPanel.SuspendLayout();
@@ -173,7 +177,6 @@
             this.doctorInfoPanel.Controls.Add(this.dateTableLayoutPanel);
             this.doctorInfoPanel.Controls.Add(this.doctorNametableLayoutPanel);
             this.doctorInfoPanel.Controls.Add(this.unknownPanel);
-            this.doctorInfoPanel.Controls.Add(this.drugIDTableLayoutPanel);
             this.doctorInfoPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.doctorInfoPanel.Location = new System.Drawing.Point(0, 0);
             this.doctorInfoPanel.Name = "doctorInfoPanel";
@@ -336,6 +339,7 @@
             // unknownPanel
             // 
             this.unknownPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.unknownPanel.Controls.Add(this.exitButton);
             this.unknownPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.unknownPanel.Location = new System.Drawing.Point(0, 0);
             this.unknownPanel.Name = "unknownPanel";
@@ -349,21 +353,20 @@
             this.drugIDTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70.52631F));
             this.drugIDTableLayoutPanel.Controls.Add(this.drugIDLabel, 0, 0);
             this.drugIDTableLayoutPanel.Controls.Add(this.drugIDTextBox, 1, 0);
-            this.drugIDTableLayoutPanel.Location = new System.Drawing.Point(320, 118);
+            this.drugIDTableLayoutPanel.Location = new System.Drawing.Point(4, 66);
             this.drugIDTableLayoutPanel.Name = "drugIDTableLayoutPanel";
             this.drugIDTableLayoutPanel.RowCount = 1;
             this.drugIDTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.drugIDTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
-            this.drugIDTableLayoutPanel.Size = new System.Drawing.Size(285, 33);
+            this.drugIDTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 39F));
+            this.drugIDTableLayoutPanel.Size = new System.Drawing.Size(233, 39);
             this.drugIDTableLayoutPanel.TabIndex = 3;
-            this.drugIDTableLayoutPanel.Visible = false;
             // 
             // drugIDLabel
             // 
             this.drugIDLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.drugIDLabel.AutoSize = true;
             this.drugIDLabel.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.drugIDLabel.Location = new System.Drawing.Point(22, 8);
+            this.drugIDLabel.Location = new System.Drawing.Point(7, 11);
             this.drugIDLabel.Name = "drugIDLabel";
             this.drugIDLabel.Size = new System.Drawing.Size(58, 16);
             this.drugIDLabel.TabIndex = 0;
@@ -374,7 +377,7 @@
             this.drugIDTextBox.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.drugIDTextBox.Enabled = false;
             this.drugIDTextBox.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.drugIDTextBox.Location = new System.Drawing.Point(107, 3);
+            this.drugIDTextBox.Location = new System.Drawing.Point(73, 6);
             this.drugIDTextBox.Name = "drugIDTextBox";
             this.drugIDTextBox.Size = new System.Drawing.Size(154, 26);
             this.drugIDTextBox.TabIndex = 1;
@@ -393,6 +396,17 @@
             this.patientInfoPanel.Name = "patientInfoPanel";
             this.patientInfoPanel.Size = new System.Drawing.Size(321, 813);
             this.patientInfoPanel.TabIndex = 1;
+            // 
+            // warningMessageLabel
+            // 
+            this.warningMessageLabel.AutoSize = true;
+            this.warningMessageLabel.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.warningMessageLabel.ForeColor = System.Drawing.Color.Red;
+            this.warningMessageLabel.Location = new System.Drawing.Point(60, 786);
+            this.warningMessageLabel.Name = "warningMessageLabel";
+            this.warningMessageLabel.Size = new System.Drawing.Size(157, 16);
+            this.warningMessageLabel.TabIndex = 8;
+            this.warningMessageLabel.Text = "Please Click It ---->";
             // 
             // callNextPatientButton
             // 
@@ -590,7 +604,6 @@
             // 
             // drugInfoInputPanel
             // 
-            this.drugInfoInputPanel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.drugInfoInputPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.drugInfoInputPanel.Controls.Add(this.panel2);
             this.drugInfoInputPanel.Controls.Add(this.dosagePerTimeTableLayoutPanel);
@@ -598,6 +611,7 @@
             this.drugInfoInputPanel.Controls.Add(this.instructionTableLayoutPanel);
             this.drugInfoInputPanel.Controls.Add(this.usageTableLayoutPanel);
             this.drugInfoInputPanel.Controls.Add(this.insertButton);
+            this.drugInfoInputPanel.Controls.Add(this.drugIDTableLayoutPanel);
             this.drugInfoInputPanel.Controls.Add(this.timeDurationTableLayoutPanel);
             this.drugInfoInputPanel.Controls.Add(this.drugNameTableLayoutPanel);
             this.drugInfoInputPanel.Location = new System.Drawing.Point(322, 189);
@@ -610,7 +624,7 @@
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Controls.Add(this.timesPerDayTableLayoutPanel);
             this.panel2.Controls.Add(this.panel6);
-            this.panel2.Location = new System.Drawing.Point(786, 63);
+            this.panel2.Location = new System.Drawing.Point(1002, 65);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(274, 162);
             this.panel2.TabIndex = 12;
@@ -832,7 +846,7 @@
             this.dosagePerTimeTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60.32389F));
             this.dosagePerTimeTableLayoutPanel.Controls.Add(this.dosagePerTimeLabel, 0, 0);
             this.dosagePerTimeTableLayoutPanel.Controls.Add(this.panel1, 1, 0);
-            this.dosagePerTimeTableLayoutPanel.Location = new System.Drawing.Point(1066, 63);
+            this.dosagePerTimeTableLayoutPanel.Location = new System.Drawing.Point(1282, 66);
             this.dosagePerTimeTableLayoutPanel.Name = "dosagePerTimeTableLayoutPanel";
             this.dosagePerTimeTableLayoutPanel.RowCount = 1;
             this.dosagePerTimeTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -881,7 +895,6 @@
             this.dosagePerTimeTextBox.Size = new System.Drawing.Size(70, 26);
             this.dosagePerTimeTextBox.TabIndex = 1;
             this.dosagePerTimeTextBox.TextChanged += new System.EventHandler(this.dosagePerTimeTextBox_TextChanged);
-            this.dosagePerTimeTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.KeyPressOnlyNumberEventHandle);
             // 
             // PrescriptionIDtableLayoutPanel
             // 
@@ -964,7 +977,7 @@
             this.usageTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70.52631F));
             this.usageTableLayoutPanel.Controls.Add(this.usageLabel, 0, 0);
             this.usageTableLayoutPanel.Controls.Add(this.usageComboBox, 1, 0);
-            this.usageTableLayoutPanel.Location = new System.Drawing.Point(315, 68);
+            this.usageTableLayoutPanel.Location = new System.Drawing.Point(531, 65);
             this.usageTableLayoutPanel.Name = "usageTableLayoutPanel";
             this.usageTableLayoutPanel.RowCount = 1;
             this.usageTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -1013,7 +1026,7 @@
             this.timeDurationTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 48.75622F));
             this.timeDurationTableLayoutPanel.Controls.Add(this.timeDurationLabel, 0, 0);
             this.timeDurationTableLayoutPanel.Controls.Add(this.timeDurationTextBox, 1, 0);
-            this.timeDurationTableLayoutPanel.Location = new System.Drawing.Point(579, 68);
+            this.timeDurationTableLayoutPanel.Location = new System.Drawing.Point(795, 65);
             this.timeDurationTableLayoutPanel.Name = "timeDurationTableLayoutPanel";
             this.timeDurationTableLayoutPanel.RowCount = 1;
             this.timeDurationTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -1041,7 +1054,6 @@
             this.timeDurationTextBox.Name = "timeDurationTextBox";
             this.timeDurationTextBox.Size = new System.Drawing.Size(92, 26);
             this.timeDurationTextBox.TabIndex = 1;
-            this.timeDurationTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.KeyPressOnlyNumberEventHandle);
             // 
             // drugNameTableLayoutPanel
             // 
@@ -1050,7 +1062,7 @@
             this.drugNameTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70.52631F));
             this.drugNameTableLayoutPanel.Controls.Add(this.drugNameLabel, 0, 0);
             this.drugNameTableLayoutPanel.Controls.Add(this.drugNameDisplayPanel, 1, 0);
-            this.drugNameTableLayoutPanel.Location = new System.Drawing.Point(24, 69);
+            this.drugNameTableLayoutPanel.Location = new System.Drawing.Point(243, 66);
             this.drugNameTableLayoutPanel.Name = "drugNameTableLayoutPanel";
             this.drugNameTableLayoutPanel.RowCount = 1;
             this.drugNameTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -1111,19 +1123,20 @@
             // 
             this.drugInfoDataGridView.AllowUserToAddRows = false;
             this.drugInfoDataGridView.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.drugInfoDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.drugInfoDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.drugInfoDataGridView.ColumnHeadersHeight = 60;
             this.drugInfoDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.drugInfoDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.UpdateBtnColumn,
             this.DelBtnColumn,
+            this.DrugIDColumn,
             this.DrugNameColumn,
             this.TimeDurationColumn,
             this.TimesPerDayColumn,
@@ -1131,10 +1144,9 @@
             this.AfternoonCheckBoxColumn,
             this.EveningCheckBoxColumn,
             this.DosagePerDayValueColumn,
-            this.DosagePerTimeColumn,
+            this.DosageUnitColumn,
             this.UsageColumn,
-            this.DrugInstructionColumn,
-            this.DrugIDColumn});
+            this.DrugInstructionColumn});
             this.drugInfoDataGridView.Location = new System.Drawing.Point(3, 3);
             this.drugInfoDataGridView.Name = "drugInfoDataGridView";
             this.drugInfoDataGridView.RowHeadersWidth = 60;
@@ -1145,9 +1157,9 @@
             // 
             // UpdateBtnColumn
             // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.UpdateBtnColumn.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.UpdateBtnColumn.DefaultCellStyle = dataGridViewCellStyle8;
             this.UpdateBtnColumn.HeaderText = "수정";
             this.UpdateBtnColumn.Name = "UpdateBtnColumn";
             this.UpdateBtnColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
@@ -1157,86 +1169,110 @@
             this.DelBtnColumn.HeaderText = "삭제";
             this.DelBtnColumn.Name = "DelBtnColumn";
             // 
+            // DrugIDColumn
+            // 
+            this.DrugIDColumn.DataPropertyName = "DrugID";
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.DrugIDColumn.DefaultCellStyle = dataGridViewCellStyle9;
+            this.DrugIDColumn.HeaderText = "약품 ID";
+            this.DrugIDColumn.Name = "DrugIDColumn";
+            this.DrugIDColumn.ReadOnly = true;
+            // 
             // DrugNameColumn
             // 
-            this.DrugNameColumn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.DrugNameColumn.DataPropertyName = "DrugName";
             this.DrugNameColumn.HeaderText = "약품 명칭";
             this.DrugNameColumn.Name = "DrugNameColumn";
             this.DrugNameColumn.ReadOnly = true;
             this.DrugNameColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.DrugNameColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // TimeDurationColumn
             // 
+            this.TimeDurationColumn.DataPropertyName = "TimeDuration";
             this.TimeDurationColumn.HeaderText = "총 투약일수";
             this.TimeDurationColumn.Name = "TimeDurationColumn";
             this.TimeDurationColumn.ReadOnly = true;
             // 
             // TimesPerDayColumn
             // 
+            this.TimesPerDayColumn.DataPropertyName = "TimesPerDay";
             this.TimesPerDayColumn.HeaderText = "1일 투약횟수";
             this.TimesPerDayColumn.Name = "TimesPerDayColumn";
             this.TimesPerDayColumn.ReadOnly = true;
             // 
             // MorningCheckBoxColumn
             // 
+            this.MorningCheckBoxColumn.DataPropertyName = "WhenMorning";
             this.MorningCheckBoxColumn.HeaderText = "아침";
             this.MorningCheckBoxColumn.Name = "MorningCheckBoxColumn";
             this.MorningCheckBoxColumn.ReadOnly = true;
             // 
             // AfternoonCheckBoxColumn
             // 
+            this.AfternoonCheckBoxColumn.DataPropertyName = "WhenAfternoon";
             this.AfternoonCheckBoxColumn.HeaderText = "점심";
             this.AfternoonCheckBoxColumn.Name = "AfternoonCheckBoxColumn";
             this.AfternoonCheckBoxColumn.ReadOnly = true;
             // 
             // EveningCheckBoxColumn
             // 
+            this.EveningCheckBoxColumn.DataPropertyName = "WhenEvening";
             this.EveningCheckBoxColumn.HeaderText = "저녁";
             this.EveningCheckBoxColumn.Name = "EveningCheckBoxColumn";
             this.EveningCheckBoxColumn.ReadOnly = true;
             // 
             // DosagePerDayValueColumn
             // 
+            this.DosagePerDayValueColumn.DataPropertyName = "DosagePerTime_Value";
             this.DosagePerDayValueColumn.HeaderText = "1회 투약 량(숫짜)";
             this.DosagePerDayValueColumn.Name = "DosagePerDayValueColumn";
             this.DosagePerDayValueColumn.ReadOnly = true;
             // 
-            // DosagePerTimeColumn
+            // DosageUnitColumn
             // 
-            this.DosagePerTimeColumn.HeaderText = "1회 투약 량(단위)";
-            this.DosagePerTimeColumn.Name = "DosagePerTimeColumn";
-            this.DosagePerTimeColumn.ReadOnly = true;
+            this.DosageUnitColumn.DataPropertyName = "DosagePerTime_Unit";
+            this.DosageUnitColumn.HeaderText = "1회 투약 량(단위)";
+            this.DosageUnitColumn.Name = "DosageUnitColumn";
+            this.DosageUnitColumn.ReadOnly = true;
+            this.DosageUnitColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.DosageUnitColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // UsageColumn
             // 
+            this.UsageColumn.DataPropertyName = "Usage";
             this.UsageColumn.HeaderText = "용법";
             this.UsageColumn.Name = "UsageColumn";
             this.UsageColumn.ReadOnly = true;
+            this.UsageColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.UsageColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // DrugInstructionColumn
             // 
             this.DrugInstructionColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.DrugInstructionColumn.DataPropertyName = "Instruction";
             this.DrugInstructionColumn.HeaderText = "설명";
             this.DrugInstructionColumn.Name = "DrugInstructionColumn";
             this.DrugInstructionColumn.ReadOnly = true;
             // 
-            // DrugIDColumn
-            // 
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.DrugIDColumn.DefaultCellStyle = dataGridViewCellStyle3;
-            this.DrugIDColumn.HeaderText = "약품 ID";
-            this.DrugIDColumn.Name = "DrugIDColumn";
-            this.DrugIDColumn.ReadOnly = true;
-            this.DrugIDColumn.Visible = false;
-            // 
             // functionPanel
             // 
+            this.functionPanel.Controls.Add(this.loadButton);
             this.functionPanel.Controls.Add(this.saveButton);
             this.functionPanel.Location = new System.Drawing.Point(325, 941);
             this.functionPanel.Name = "functionPanel";
             this.functionPanel.Size = new System.Drawing.Size(1577, 61);
             this.functionPanel.TabIndex = 4;
+            // 
+            // loadButton
+            // 
+            this.loadButton.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.loadButton.Location = new System.Drawing.Point(1411, 26);
+            this.loadButton.Name = "loadButton";
+            this.loadButton.Size = new System.Drawing.Size(75, 23);
+            this.loadButton.TabIndex = 10;
+            this.loadButton.Text = "Load";
+            this.loadButton.UseVisualStyleBackColor = true;
+            this.loadButton.Click += new System.EventHandler(this.loadButton_Click);
             // 
             // saveButton
             // 
@@ -1275,14 +1311,15 @@
             this.patientPanelTitleLabel.TabIndex = 6;
             this.patientPanelTitleLabel.Text = "환자 정보";
             // 
-            // warningMessageLabel
+            // exitButton
             // 
-            this.warningMessageLabel.AutoSize = true;
-            this.warningMessageLabel.Location = new System.Drawing.Point(119, 790);
-            this.warningMessageLabel.Name = "warningMessageLabel";
-            this.warningMessageLabel.Size = new System.Drawing.Size(38, 12);
-            this.warningMessageLabel.TabIndex = 8;
-            this.warningMessageLabel.Text = "label1";
+            this.exitButton.Location = new System.Drawing.Point(1802, 10);
+            this.exitButton.Name = "exitButton";
+            this.exitButton.Size = new System.Drawing.Size(75, 23);
+            this.exitButton.TabIndex = 0;
+            this.exitButton.Text = "EXIT";
+            this.exitButton.UseVisualStyleBackColor = true;
+            this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
             // 
             // PrescriptionInterfaceForm
             // 
@@ -1309,6 +1346,7 @@
             this.dateTableLayoutPanel.PerformLayout();
             this.doctorNametableLayoutPanel.ResumeLayout(false);
             this.doctorNametableLayoutPanel.PerformLayout();
+            this.unknownPanel.ResumeLayout(false);
             this.drugIDTableLayoutPanel.ResumeLayout(false);
             this.drugIDTableLayoutPanel.PerformLayout();
             this.patientInfoPanel.ResumeLayout(false);
@@ -1448,19 +1486,21 @@
         private System.Windows.Forms.Panel drugNameDisplayPanel;
         private System.Windows.Forms.Button drugSearchButton;
         private System.Windows.Forms.TextBox drugNameTextBox;
+        private System.Windows.Forms.Label warningMessageLabel;
+        private System.Windows.Forms.Button loadButton;
         private System.Windows.Forms.DataGridViewButtonColumn UpdateBtnColumn;
         private System.Windows.Forms.DataGridViewButtonColumn DelBtnColumn;
-        private System.Windows.Forms.DataGridViewButtonColumn DrugNameColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DrugIDColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DrugNameColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn TimeDurationColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn TimesPerDayColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn MorningCheckBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn AfternoonCheckBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn EveningCheckBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn DosagePerDayValueColumn;
-        private System.Windows.Forms.DataGridViewComboBoxColumn DosagePerTimeColumn;
-        private System.Windows.Forms.DataGridViewComboBoxColumn UsageColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DosageUnitColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UsageColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn DrugInstructionColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DrugIDColumn;
-        private System.Windows.Forms.Label warningMessageLabel;
+        private System.Windows.Forms.Button exitButton;
     }
 }

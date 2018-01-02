@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace CSProDemo.Model.Common
 {
-    class Account
+    public static class Account
     {
-        public string ID { get; set; }
-        public string Password { get; set; }
+        public static string ID { get; set; }
+        public static string Password { get; set; }
     }
 }
