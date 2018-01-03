@@ -16,13 +16,21 @@ namespace CSPrescriptionInterfaceProgramBate001.Views
      * detail: login form
      * function : login and check
      ***/
-    public delegate void SendDoctorInfoAction(Models.DoctorClass obj);
+    public delegate void FeedbackAction(Models.DoctorClass obj);
     public partial class LoginForm : Form
     {
-        public SendDoctorInfoAction SendDoctorInfoEventHandle;
+        public FeedbackAction FeedbackEventHandle;
+        List<Models.DoctorClass> doctorList;
         public LoginForm()
         {
             InitializeComponent();
+            this.textBox2.KeyPress+=Controllers.KeyPressEvent.KeyPressOnlyNumberAndLetterEventHandle;
+            this.textBox2.PasswordChar = '*';
+            this.textBox1.KeyPress += Controllers.KeyPressEvent.KeyPressOnlyNumberAndLetterEventHandle;
+            System.Configuration.Configuration config = System.Configuration.ConfigurationManager.OpenExeConfiguration(System.Configuration.ConfigurationUserLevel.None);
+            string filePath = config.AppSettings.Settings["accountFilePath"].Value;
+            doctorList = DAO.XmlSerializer.LoadFromXml(filePath, typeof(List<Models.DoctorClass>)) as List<Models.DoctorClass>;
+            
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -52,38 +60,22 @@ namespace CSPrescriptionInterfaceProgramBate001.Views
          ***/
         private void button1_Click(object sender, EventArgs e)
         {
-            bool isSuccess = false;
-            if (!isSuccess)
+            IEnumerable<Models.DoctorClass> resultList =
+                from result in doctorList
+                where result.ID.Equals(this.textBox1.Text) && result.Password.Equals(this.textBox2.Text)
+                select result;
+            if (resultList.Count() > 0)
             {
-                //System.IO.FileStream fs = new System.IO.FileStream(@".\account.txt",System.IO.FileMode.OpenOrCreate);
-                //System.IO.StreamWriter sw = new System.IO.StreamWriter(fs, Encoding.UTF8);
-                //DAO.JsonOP jsonOP = new DAO.JsonOP();
-                //var json = jsonOP.GetJson((new Model.Common.Account(){ID = this.textBox1.Text, Password = this.textBox2.Text}));
-                //sw.Write(json.ToString());
-                //sw.Flush();
-                //sw.Close();
-                //fs.Close();
-                System.Configuration.Configuration config = System.Configuration.ConfigurationManager.OpenExeConfiguration(System.Configuration.ConfigurationUserLevel.None);
-                string filePath = config.AppSettings.Settings["accountFilePath"].Value;
-                List<Models.DoctorClass> doctorList = DAO.XmlSerializer.LoadFromXml(filePath,typeof(List<Models.DoctorClass>)) as List<Models.DoctorClass>;
-                IEnumerable<Models.DoctorClass> resultList =
-                    from result in doctorList
-                    where result.ID.Equals(this.textBox1.Text) && result.Password.Equals(this.textBox2.Text)
-                    select result;
-                if(resultList.Count() > 0){
-                    Models.DoctorClass obj = resultList.ToArray().GetValue(0) as Models.DoctorClass;
-                    SendDoctorInfoEventHandle(obj);
-                    this.DialogResult = DialogResult.OK;
-                    this.Close();
-                }
-                else{
-                    MessageBox.Show("Error");
-                }
+                Models.DoctorClass obj = resultList.ToArray().GetValue(0) as Models.DoctorClass;
+                FeedbackEventHandle(obj);
+                this.DialogResult = DialogResult.OK;
+                this.Close();
             }
             else
             {
-                DialogResult r =  MessageBox.Show("The ID or password entried is invalid, please entry angin.","Checking Form",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                DialogResult r = MessageBox.Show("The ID or password entried is invalid, please entry angin.", "Checking Form", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+
         }
     }
 }

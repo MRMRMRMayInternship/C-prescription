@@ -21,11 +21,12 @@ namespace CSPrescriptionInterfaceProgramBate001
             {
                 /******** 1 login form *******/
                 Views.LoginForm loginForm = new Views.LoginForm();
+                loginForm.FeedbackEventHandle = LoginFeedback;
                 loginForm.ShowDialog();
                 if (loginForm.DialogResult == DialogResult.OK)
                 {
                     Views.PrescriptionInterfaceForm prescriptionInterfaceForm = new Views.PrescriptionInterfaceForm();
-                    Models.DoctorClass doctor = ValidateLogin();
+                   
                     prescriptionInterfaceForm.DoctorInfomation = doctor;
                     prescriptionInterfaceForm.InitializeDoctorInformation();
                     //prescriptionInterfaceForm.DoctorInfomation = doctor;
@@ -38,7 +39,7 @@ namespace CSPrescriptionInterfaceProgramBate001
             }
         }
         private static Models.DoctorClass doctor;
-        private static void LoginFeedBack(Models.DoctorClass obj)
+        private static void LoginFeedback(Models.DoctorClass obj)
         {
             doctor = obj;
         }

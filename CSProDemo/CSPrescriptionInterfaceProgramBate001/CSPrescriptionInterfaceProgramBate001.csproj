@@ -66,6 +66,7 @@
   <ItemGroup>
     <Compile Include="Controllers\KeyPressEvent.cs" />
     <Compile Include="Controllers\MultiLanguage.cs" />
+    <Compile Include="DAO\PatientDB.cs" />
     <Compile Include="DAO\SavePrescriptionInfoAsXMLFile.cs" />
     <Compile Include="DAO\XmlSerializer.cs" />
     <Compile Include="Models\AccountClass.cs" />
@@ -149,6 +150,7 @@
     <EmbeddedResource Include="Views\UpdatingDrugForm.resx">
       <DependentUpon>UpdatingDrugForm.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="ClassDiagram1.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

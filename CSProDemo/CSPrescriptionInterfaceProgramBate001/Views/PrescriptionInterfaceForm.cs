@@ -14,6 +14,7 @@ namespace CSPrescriptionInterfaceProgramBate001.Views
     public partial class PrescriptionInterfaceForm : Form
     {
         private bool isFirstWork = true;
+        private bool haveToSave = false;
         private DataGridViewRow updatingRow = null;
         private string lastDrugNameTextBoxText = null;
         private string lastDrugNameTextBoxCellValue = null;
@@ -43,9 +44,8 @@ namespace CSPrescriptionInterfaceProgramBate001.Views
         {
             InitializeComponent();
 
-            this.dosagePerTimeTextBox.KeyPress += Controllers.KeyPressEvent.KeyPressOnlyNumberEventHandle;
+            this.dosagePerTimeTextBox.KeyPress += Controllers.KeyPressEvent.KeyPressOnlyNumberAndPointEventHandle;
             this.timeDurationTextBox.KeyPress += Controllers.KeyPressEvent.KeyPressOnlyNumberEventHandle;
-
             config = System.Configuration.ConfigurationManager.OpenExeConfiguration(System.Configuration.ConfigurationUserLevel.None);
             DrugNameColumnIndex = Convert.ToInt32(config.AppSettings.Settings["DrugNameColumn"].Value);
             DrugIDColumnIndex = Convert.ToInt32(config.AppSettings.Settings["DrugIDColumn"].Value);
@@ -238,7 +238,7 @@ namespace CSPrescriptionInterfaceProgramBate001.Views
          ***/
         private bool IsDoingPrescriptionWork()
         {
-            return this.drugInfoDataGridView.Rows.Count > 0 || this.drugNameTextBox.Text != ""
+            return this.drugNameTextBox.Text != ""
                 || this.timeDurationTextBox.Text != "" || this.dosagePerTimeTextBox.Text != ""
                 || this.moringCheckBox.Checked || this.afternoonCheckBox.Checked || this.eveningCheckBox.Checked
                 || !string.IsNullOrWhiteSpace(this.instructionTextBox.Text) || this.usageComboBox.Text != ""
@@ -249,13 +249,14 @@ namespace CSPrescriptionInterfaceProgramBate001.Views
          ***/
         private void LoadPatientInformation()
         {
-            Models.PatientClass patient = new Models.PatientClass();
-            patient.Name = "홍기동";
-            patient.Age = "" + 21;
-            patient.Birthday = "1996-12-27";
-            patient.PatientID = "P100171227150211";
-            patient.Sex = "M";
+            //Models.PatientClass patient = new Models.PatientClass();
+            //patient.Name = "홍기동";
+            //patient.Age = "" + 21;
+            //patient.Birthday = "1996-12-27";
+            //patient.PatientID = "P100171227150211";
+            //patient.Sex = "M";
             //patient.SymptomDescription = "unknown";
+            Models.PatientClass patient = DAO.PatientDB.RandomGetPatient();
             loadPatientInfo(patient);
             this.prescriptionIDLabel.Text = String.Format("RX100{0:yyMMddHHmmss}", System.DateTime.Now);
         }
@@ -285,13 +286,13 @@ namespace CSPrescriptionInterfaceProgramBate001.Views
             this.drugIDTextBox.Clear();
             this.timeDurationTextBox.Clear();
             this.dosagePerTimeTextBox.Clear();
+            this.dosageUnitComboBox.Text = "";
             this.timesPerDayTextBox.Clear();
             this.moringCheckBox.CheckState = CheckState.Unchecked;
             this.afternoonCheckBox.CheckState = CheckState.Unchecked;
             this.eveningCheckBox.CheckState = CheckState.Unchecked;
             this.instructionTextBox.Clear();
             this.usageComboBox.Text ="";
-            this.symptomDescriptionTextBox.Clear();
         }
         private void ClearVariable()
         {
@@ -303,13 +304,34 @@ namespace CSPrescriptionInterfaceProgramBate001.Views
         private void callNextPatientButton_Click(object sender, EventArgs e)
         {
             SetVariable();
-            if (IsDoingPrescriptionWork())
+            if (haveToSave)
             {
-                
-                DialogResult result = MessageBox.Show("저장되지 않은 처방전이 있습니다.\n저장하지안고 다음 환자를 부르겠십니까?", "Saving Form", MessageBoxButtons.YesNoCancel);
+                DialogResult result = MessageBox.Show("저장되지 않은 처방전이 있습니다.\n저장하고 다음 환자를 부르겠십니까?\n\"예\"는 저장하고 다음 환자를 부르겠습니다.\n\"아니오\"는 저장하지 않고 다음 환자를 부르겠습니다.\n\"Cancel\"는 아무것도 하지 못합니다.", "Calling Form", MessageBoxButtons.YesNoCancel);
+                if (result == System.Windows.Forms.DialogResult.Yes)
+                {
+                    SavePrescriptionToFile();
+                    ClearInputBlock();
+                    this.symptomDescriptionTextBox.Clear();
+                    this.drugInfoDataGridView.Rows.Clear();
+                    ClearVariable();
+                    LoadPatientInformation();
+                }
+                else if(result == System.Windows.Forms.DialogResult.No)
+                {
+                    ClearInputBlock();
+                    this.symptomDescriptionTextBox.Clear();
+                    this.drugInfoDataGridView.Rows.Clear();
+                    ClearVariable();
+                    LoadPatientInformation();
+                }
+            }
+            else if (IsDoingPrescriptionWork())
+            {
+                DialogResult result = MessageBox.Show("처리하고 있는 처방전이 있습니다.\n저장하지 않고 다음 환자를 부르겠십니까?\n\"예\"는 저장하지 안고 다음 환자를 부르겠습니다.\n\"아니오\"와 \"Cancel\"는 아무것도 하지 못합니다", "Calling Form", MessageBoxButtons.YesNoCancel);
                 if (result == System.Windows.Forms.DialogResult.Yes)
                 {
                     ClearInputBlock();
+                    this.symptomDescriptionTextBox.Clear();
                     this.drugInfoDataGridView.Rows.Clear();
                     ClearVariable();
                     LoadPatientInformation();
@@ -364,13 +386,7 @@ namespace CSPrescriptionInterfaceProgramBate001.Views
         private void insertButton_Click(object sender, EventArgs e)
         {
             string msg = null;
-
-            if (string.IsNullOrWhiteSpace(this.symptomDescriptionTextBox.Text))
-            {
-                msg = "진단결과를 입력해주십시오!";
-                this.symptomDescriptionTextBox.Focus();
-            }
-            else if (string.IsNullOrWhiteSpace(this.drugNameTextBox.Text))
+            if (string.IsNullOrWhiteSpace(this.drugNameTextBox.Text))
             {
                 msg = "약품을 선택하십시오!";
                 this.drugSearchButton.Focus();
@@ -387,9 +403,10 @@ namespace CSPrescriptionInterfaceProgramBate001.Views
             }
             else if (string.IsNullOrWhiteSpace(this.dosagePerTimeTextBox.Text))
             {
-                msg = "1일 투약 량을 입력하십시오!";
+                msg = "1회 투약 량을 입력하십시오!";
                 this.dosagePerTimeTextBox.Focus();
             }
+            
             else if (string.IsNullOrWhiteSpace(this.dosageUnitComboBox.Text))
             {
                 msg = "투약 단위을 선택하십시오!";
@@ -409,12 +426,22 @@ namespace CSPrescriptionInterfaceProgramBate001.Views
             {
                 msg = string.Format("약품 {0} 이미 있습니다", this.drugNameTextBox.Text);
             }
+            else if (!string.IsNullOrWhiteSpace(dosagePerTimeTextBox.Text))
+            {
+                var subStr = dosagePerTimeTextBox.Text.Split('.');
+                if (subStr.Count() == 2 && string.IsNullOrWhiteSpace(subStr[1]))
+                {
+                    msg = "입력한 것은 소수이면 소수점 아래 세째 자리끼지만 입력할 수 있습니다.";
+                    this.dosagePerTimeTextBox.Focus();
+                }
+            }
             if (!string.IsNullOrWhiteSpace(msg))
                 MessageBox.Show(msg, "Inserting Form");
             else
             {
                 insertNewRow();
                 ClearInputBlock();
+                haveToSave = true;
             }
         }
         private bool UpdateDrugFormFeedback(string drugName, string drugID, string timeDruation, string timesPerDay, bool morning, bool afternoon, bool evening, string dosagePerTime, string dosageUnit, string usage, string instrucation)
@@ -445,16 +472,19 @@ namespace CSPrescriptionInterfaceProgramBate001.Views
             UpdatingDrugForm updatingDrugForm = new UpdatingDrugForm();
             LoadFromUpdatingDateGridViewRowToForm(updatingDrugForm);
             updatingDrugForm.updateEventHandle += UpdateDrugFormFeedback;
-            updatingDrugForm.ShowDialog();
+            var result = updatingDrugForm.ShowDialog();
+            if (result == System.Windows.Forms.DialogResult.OK && !haveToSave)
+                haveToSave = true;
             updatingRow = null;
-            str += "수정 button";
-            MessageBox.Show(str);
+            //str += "수정 button";
+            //MessageBox.Show(str);
         }
         private void drugInfoDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             
             int col = e.ColumnIndex;
             int row = e.RowIndex;
+            if (row == -1) return;
             if (this.drugInfoDataGridView.Rows.Count == 0||this.drugInfoDataGridView.Rows[row].Cells[col].ReadOnly)
                 return;
             
@@ -467,11 +497,15 @@ namespace CSPrescriptionInterfaceProgramBate001.Views
                     }
                 case 1:
                     {
-                        string str = string.Format("row: {0} 의 ", row + 1);
-                        str += "삭제 button";
-                        MessageBox.Show(str);
+                        //string str = string.Format("row: {0} 의 ", row + 1);
+                        //str += "삭제 button";
+                        //MessageBox.Show(str);
                         if(MessageBox.Show("삭제하시겠습니까?","deleting form",MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
                             this.drugInfoDataGridView.Rows.RemoveAt(row);
+                        if (drugInfoDataGridView.Rows.Count <= 0)
+                        {
+                            haveToSave = false;
+                        }
                         break;
                     }
                 case 3:
@@ -508,15 +542,20 @@ namespace CSPrescriptionInterfaceProgramBate001.Views
 
         private void saveButton_Click(object sender, EventArgs e)
         {
-            if (this.drugInfoDataGridView.Rows.Count == 0) {
-                MessageBox.Show("처방 약품을 가입 하십시오","Saving Form");
-                return;
+            if (this.drugInfoDataGridView.Rows.Count <= 0) {
+                MessageBox.Show("처방 약품을 가입 하십시오", "Saving Form");
             }
-            if (MessageBox.Show("저장 하시곘습니까?", "Saving", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.No)
+            else if (string.IsNullOrWhiteSpace(this.symptomDescriptionTextBox.Text))
             {
-                return;
+                var msg = "진단결과를 입력해주십시오!";
+                MessageBox.Show(msg, "Saving Form");
+                this.symptomDescriptionTextBox.Focus();
             }
-            SavePrescriptionToFile();
+            else if (MessageBox.Show("저장 하시곘습니까?", "Saving", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
+            {
+
+                SavePrescriptionToFile();
+            }
         }
         private void SavePrescriptionToFile()
         {
@@ -545,12 +584,12 @@ namespace CSPrescriptionInterfaceProgramBate001.Views
                 Models.DrugClass drugObj = new Models.DrugClass();
                 drugObj.DrugID = row.Cells[DrugIDColumnIndex].Value.ToString();
                 drugObj.DrugName = row.Cells[DrugNameColumnIndex].Value.ToString();
-                drugObj.TimeDuration = Convert.ToInt32(row.Cells[TimeDurationColumnIndex].Value.ToString());
-                drugObj.TimesPerDay = Convert.ToInt32(row.Cells[TimesPerDayColumnIndex].Value.ToString());
+                drugObj.TimeDuration = row.Cells[TimeDurationColumnIndex].Value.ToString();
+                drugObj.TimesPerDay = row.Cells[TimesPerDayColumnIndex].Value.ToString();
                 drugObj.WhenMorning = Convert.ToBoolean(row.Cells[MorningCheckBoxColumnIndex].FormattedValue.ToString());
                 drugObj.WhenAfternoon = Convert.ToBoolean(row.Cells[AfternoonCheckBoxColumnIndex].FormattedValue.ToString());
                 drugObj.WhenEvening = Convert.ToBoolean(row.Cells[EventnoonCheckBoxColumnIndex].FormattedValue.ToString());
-                drugObj.DosagePerTime_Value = Convert.ToInt32(row.Cells[DosagePerTime_ValueColumnIndex].Value);
+                drugObj.DosagePerTime_Value = row.Cells[DosagePerTime_ValueColumnIndex].Value.ToString();
                 drugObj.DosagePerTime_Unit = row.Cells[DosagePerTime_UnitColumnIndex].Value.ToString();
                 drugObj.Usage = row.Cells[UsageColumnIndex].Value.ToString();
                 drugObj.Instruction = row.Cells[DrugInstructionColumnIndex].Value.ToString();
@@ -566,6 +605,8 @@ namespace CSPrescriptionInterfaceProgramBate001.Views
             }
             filePath = filePath + @"\" + fileName;
             XmlSerializer.SaveToXml(filePath, prescriptionObj, typeof(PrescriptionClass));
+            if (haveToSave)
+                haveToSave = false;
         }
         private void timer1_Tick(object sender, EventArgs e)
         {
@@ -653,6 +694,7 @@ namespace CSPrescriptionInterfaceProgramBate001.Views
 
         private void dosagePerTimeTextBox_TextChanged(object sender, EventArgs e)
         {
+            
             TextBox obj = (TextBox)sender;
             if (string.IsNullOrWhiteSpace(obj.Text))
             {
@@ -691,7 +733,16 @@ namespace CSPrescriptionInterfaceProgramBate001.Views
         }
         private void loadButton_Click(object sender, EventArgs e)
         {
-            if (this.IsDoingPrescriptionWork())
+            if (haveToSave)
+            {
+                DialogResult result = MessageBox.Show("You have a prescription work need to be saved.\n Are you sure to load other prescription?",
+                    "Warning Form", MessageBoxButtons.YesNo);
+                if (result == System.Windows.Forms.DialogResult.No)
+                {
+                    return;
+                }
+            }
+            else if (this.IsDoingPrescriptionWork())
             {
                 DialogResult result = MessageBox.Show("You are doing prescription work.\n Are you sure to load other prescription?",
                     "Warning Form", MessageBoxButtons.YesNo);
@@ -709,8 +760,12 @@ namespace CSPrescriptionInterfaceProgramBate001.Views
             {
                 PrescriptionFileListForm form = new PrescriptionFileListForm();
                 form.LoadPrescriptionEvent += LoadPrescriptionAction;
-                if(form.ShowDialog()== System.Windows.Forms.DialogResult.OK)
+                if (form.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    ClearInputBlock();
+                    ClearVariable();
                     SetVariable();
+                }
             }
         }
 
@@ -719,11 +774,12 @@ namespace CSPrescriptionInterfaceProgramBate001.Views
             if (IsDoingPrescriptionWork())
             {
                 DialogResult result = MessageBox.Show("저장되지 않은 처방전이 있습니다.\n저장하지 않고 EXIT를 하겠십니까?", "Saving Form", MessageBoxButtons.YesNoCancel);
-                if (result == System.Windows.Forms.DialogResult.Yes)
+                if (result != System.Windows.Forms.DialogResult.Yes)
                 {
-                    this.Close();
+                    return;
                 }
             }
+            this.Close();
         }
     }
 }

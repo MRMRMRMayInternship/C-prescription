@@ -15,10 +15,30 @@ namespace CSPrescriptionInterfaceProgramBate001.Controllers
         public static void KeyPressOnlyNumberEventHandle(object sender, KeyPressEventArgs e)
         {
             TextBox txt = (TextBox)sender;
-            string exp = @"[0-9]|[\b]";
+            string exp = @"[\d]|[\b]";
             if (!System.Text.RegularExpressions.Regex.IsMatch("" + e.KeyChar, exp))
             {
                 e.Handled = true;
+            }
+        }
+        
+        public static void KeyPressOnlyNumberAndPointEventHandle(object sender, KeyPressEventArgs e)
+        {
+            TextBox txt = (TextBox)sender;
+            string exp = @"[.]|[\d]|[\b]";
+            if (!System.Text.RegularExpressions.Regex.IsMatch("" + e.KeyChar, exp))
+            {
+                e.Handled = true;
+            }
+            else
+            {
+                if (e.KeyChar == '\b') return;
+                string text = txt.Text + e.KeyChar;
+                var subTextList = text.Split('.');
+                if (subTextList.Count() > 2 || (subTextList.Count() == 2 && subTextList[1].Length > 3))
+                {
+                    e.Handled = true;
+                }
             }
         }
         /***

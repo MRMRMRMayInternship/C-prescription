@@ -1,0 +1,199 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="CSPrescriptionInterfaceProgramBate001.Controllers.KeyPressEvent" Collapsed="true">
+    <Position X="12.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAABIAAAAAAAAAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>Controllers\KeyPressEvent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CSPrescriptionInterfaceProgramBate001.Controllers.MultiLanguage" Collapsed="true">
+    <Position X="7" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAA=</HashCode>
+      <FileName>Controllers\MultiLanguage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CSPrescriptionInterfaceProgramBate001.DAO.PatientDB" Collapsed="true">
+    <Position X="10.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEgAAAAAAA=</HashCode>
+      <FileName>DAO\PatientDB.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CSPrescriptionInterfaceProgramBate001.DAO.SavePrescriptionInfoAsXMLFile" Collapsed="true">
+    <Position X="5.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DAO\SavePrescriptionInfoAsXMLFile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CSPrescriptionInterfaceProgramBate001.DAO.XmlSerializer" Collapsed="true">
+    <Position X="12.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAQA=</HashCode>
+      <FileName>DAO\XmlSerializer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CSPrescriptionInterfaceProgramBate001.Models.AccountClass" Collapsed="true">
+    <Position X="2.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAAAAAAAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Models\AccountClass.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CSPrescriptionInterfaceProgramBate001.Models.DoctorClass" Collapsed="true">
+    <Position X="2.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\DoctorClass.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CSPrescriptionInterfaceProgramBate001.Models.DrugClass" Collapsed="true">
+    <Position X="7" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EgAIAAQCAQAAAAAAEBAAAAAECAAIAAAAQAIAAAAAAAA=</HashCode>
+      <FileName>Models\DrugClass.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CSPrescriptionInterfaceProgramBate001.Models.DrugsClass" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="8.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAA=</HashCode>
+      <FileName>Models\DrugsClass.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CSPrescriptionInterfaceProgramBate001.Models.EmployeeClass" Collapsed="true">
+    <Position X="2.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\EmployeeClass.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CSPrescriptionInterfaceProgramBate001.Models.PatientClass" Collapsed="true">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\PatientClass.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CSPrescriptionInterfaceProgramBate001.Models.PersonClass" Collapsed="true">
+    <Position X="1.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAAEQAAAQAAAAIAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\PersonClass.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CSPrescriptionInterfaceProgramBate001.Models.PrescriptionClass" Collapsed="true">
+    <Position X="5.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAAAAAAAAAAAQAAAQBAAAAAAAACAA=</HashCode>
+      <FileName>Models\PrescriptionClass.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CSPrescriptionInterfaceProgramBate001.Models.CommonData.DefaultValuesSet" Collapsed="true">
+    <Position X="5.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAAACAAAAAAAEAAAAAAAAAAAAAAAAAAEAA=</HashCode>
+      <FileName>Models\CommonData\DefaultValuesSet.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CSPrescriptionInterfaceProgramBate001.Models.CommonData.TranslationClass" Collapsed="true">
+    <Position X="8.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\CommonData\TranslationClass.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CSPrescriptionInterfaceProgramBate001.Program" Collapsed="true">
+    <Position X="10.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAAAAAAAAAAAAAAAQBAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CSPrescriptionInterfaceProgramBate001.Properties.Resources" Collapsed="true">
+    <Position X="12.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABEAAAAQAAAAAAAAAAAAAAAIA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CSPrescriptionInterfaceProgramBate001.Properties.Settings" Collapsed="true">
+    <Position X="7" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAABAAAAAAAAAAABAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CSPrescriptionInterfaceProgramBate001.Views.DrugSearchForm" Collapsed="true">
+    <Position X="10.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAIAgCCiQABAEABAGAAIQGABAAgAAAIAEQAQAAACI=</HashCode>
+      <FileName>Views\DrugSearchForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CSPrescriptionInterfaceProgramBate001.Views.LoginForm" Collapsed="true">
+    <Position X="5.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAQCCAAABAAAAGACAASgAAYAAAAkGAAAQAAACA=</HashCode>
+      <FileName>Views\LoginForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CSPrescriptionInterfaceProgramBate001.Views.PrescriptionFileListForm" Collapsed="true">
+    <Position X="7" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAACQAgBAAAIGAAABCAAQAAAAggQASgACIAAQ=</HashCode>
+      <FileName>Views\PrescriptionFileListForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CSPrescriptionInterfaceProgramBate001.Views.PrescriptionInterfaceForm" Collapsed="true">
+    <Position X="8.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>mSxK5D08GS2SPgSJcBPf7G8GNDYtuBoyMLRmWSh86ac=</HashCode>
+      <FileName>Views\PrescriptionInterfaceForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CSPrescriptionInterfaceProgramBate001.Views.UpdatingDrugForm" Collapsed="true">
+    <Position X="10.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BQ4CBAhYECwQKgAIYAGAhEEGBBgEIAigMCAyGQUIiCA=</HashCode>
+      <FileName>Views\UpdatingDrugForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CSPrescriptionInterfaceProgramBate001.Views.MyControl.MyPanel" Collapsed="true">
+    <Position X="8.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAACAAAACAACAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>Views\MyControl\MyPanel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Delegate Name="CSPrescriptionInterfaceProgramBate001.Views.SendSelectResultDelegate" Collapsed="true">
+    <Position X="8.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\DrugSearchForm.cs</FileName>
+    </TypeIdentifier>
+  </Delegate>
+  <Delegate Name="CSPrescriptionInterfaceProgramBate001.Views.FeedbackAction" Collapsed="true">
+    <Position X="5.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAA=</HashCode>
+      <FileName>Views\LoginForm.cs</FileName>
+    </TypeIdentifier>
+  </Delegate>
+  <Delegate Name="CSPrescriptionInterfaceProgramBate001.Views.LoadPrescriptionAction" Collapsed="true">
+    <Position X="7" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAA=</HashCode>
+      <FileName>Views\PrescriptionFileListForm.cs</FileName>
+    </TypeIdentifier>
+  </Delegate>
+  <Delegate Name="CSPrescriptionInterfaceProgramBate001.Views.UpdateEventHandle" Collapsed="true">
+    <Position X="10.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAgACAABAAAIAAAAAEAAAAAAAAAAAAAAAAQAA=</HashCode>
+      <FileName>Views\UpdatingDrugForm.cs</FileName>
+    </TypeIdentifier>
+  </Delegate>
+  <Font Name="맑은 고딕" Size="9" />
+</ClassDiagram>

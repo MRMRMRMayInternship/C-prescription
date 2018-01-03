@@ -1,0 +1,38 @@
+﻿<?xml version="1.0"?>
+<ArrayOfPatientClass xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<PatientClass>
+	<Birthday>1996-12-27</Birthday>
+	<Age>21</Age>
+	<Name>홍기동</Name>
+	<PatientID>P100171227150211</PatientID>
+	<Sex>M</Sex>
+</PatientClass>
+<PatientClass>
+	<Birthday>2010-06-25</Birthday>
+	<Age>9</Age>
+	<Name>Denys</Name>
+	<PatientID>P100171227151111</PatientID>
+	<Sex>M</Sex>
+</PatientClass>
+<PatientClass>
+	<Birthday>1960-04-16</Birthday>
+	<Age>58</Age>
+	<Name>HAZEL</Name>
+	<PatientID>P100171227151234</PatientID>
+	<Sex>F</Sex>
+</PatientClass>
+<PatientClass>
+	<Birthday>1960-04-16</Birthday>
+	<Age>58</Age>
+	<Name>PIERRE</Name>
+	<PatientID>P100171227151214</PatientID>
+	<Sex>F</Sex>
+</PatientClass>
+<PatientClass>
+	<Birthday>1966-04-16</Birthday>
+	<Age>52</Age>
+	<Name>Ben</Name>
+	<PatientID>P100171227173333</PatientID>
+	<Sex>F</Sex>
+</PatientClass>
+</ArrayOfPatientClass>

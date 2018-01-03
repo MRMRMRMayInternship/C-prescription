@@ -17,6 +17,8 @@ namespace CSPrescriptionInterfaceProgramBate001.Views
         public UpdatingDrugForm()
         {
             InitializeComponent();
+            this.dosagePerTimeTextBox.KeyPress += Controllers.KeyPressEvent.KeyPressOnlyNumberAndPointEventHandle;
+            this.timeDurationTextBox.KeyPress += Controllers.KeyPressEvent.KeyPressOnlyNumberEventHandle;
             this.morningCheckBox.CheckedChanged += checkBoxCheckedChanged;
             this.afternoonCheckBox.CheckedChanged += checkBoxCheckedChanged;
             this.eveningCheckBox.CheckedChanged += checkBoxCheckedChanged;
@@ -117,6 +119,15 @@ namespace CSPrescriptionInterfaceProgramBate001.Views
             {
                 msg = "약품 사용하는 방법을 선택하십시오!";
                 this.usageComboBox.Focus();
+            }
+            else if (!string.IsNullOrWhiteSpace(dosagePerTimeTextBox.Text))
+            {
+                var subStr = dosagePerTimeTextBox.Text.Split('.');
+                if (subStr.Count() == 2 && string.IsNullOrWhiteSpace(subStr[1]))
+                {
+                    msg = "입력한 것은 소수이면 소수점 아래 세째 자리끼지만 입력할 수 있습니다.";
+                    this.dosagePerTimeTextBox.Focus();
+                }
             }
             if (!string.IsNullOrWhiteSpace(msg))
                 MessageBox.Show(msg, "Inserting Form");
