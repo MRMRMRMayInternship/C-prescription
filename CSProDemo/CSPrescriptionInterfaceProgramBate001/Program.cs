@@ -31,6 +31,7 @@ namespace CSPrescriptionInterfaceProgramBate001
                     prescriptionInterfaceForm.InitializeDoctorInformation();
                     //prescriptionInterfaceForm.DoctorInfomation = doctor;
                     Application.Run(prescriptionInterfaceForm);
+                    if (prescriptionInterfaceForm.IsExit) break;
                 }
                 else
                 {

@@ -48,6 +48,7 @@ namespace CSPrescriptionInterfaceProgramBate001.Views
             this.docNamelabel = new System.Windows.Forms.Label();
             this.doctorNameTextBox = new System.Windows.Forms.TextBox();
             this.unknownPanel = new System.Windows.Forms.Panel();
+            this.exitButton = new System.Windows.Forms.Button();
             this.drugIDTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.drugIDLabel = new System.Windows.Forms.Label();
             this.drugIDTextBox = new System.Windows.Forms.TextBox();
@@ -131,7 +132,7 @@ namespace CSPrescriptionInterfaceProgramBate001.Views
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.drugInfoPanelTitleLabel = new System.Windows.Forms.Label();
             this.patientPanelTitleLabel = new System.Windows.Forms.Label();
-            this.exitButton = new System.Windows.Forms.Button();
+            this.logoutButton = new System.Windows.Forms.Button();
             this.doctorInfoPanel.SuspendLayout();
             this.depTableLayoutPanel.SuspendLayout();
             this.doctorIDTableLayoutPanel.SuspendLayout();
@@ -339,12 +340,23 @@ namespace CSPrescriptionInterfaceProgramBate001.Views
             // unknownPanel
             // 
             this.unknownPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.unknownPanel.Controls.Add(this.logoutButton);
             this.unknownPanel.Controls.Add(this.exitButton);
             this.unknownPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.unknownPanel.Location = new System.Drawing.Point(0, 0);
             this.unknownPanel.Name = "unknownPanel";
             this.unknownPanel.Size = new System.Drawing.Size(1900, 52);
             this.unknownPanel.TabIndex = 0;
+            // 
+            // exitButton
+            // 
+            this.exitButton.Location = new System.Drawing.Point(1802, 10);
+            this.exitButton.Name = "exitButton";
+            this.exitButton.Size = new System.Drawing.Size(75, 23);
+            this.exitButton.TabIndex = 0;
+            this.exitButton.Text = "EXIT";
+            this.exitButton.UseVisualStyleBackColor = true;
+            this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
             // 
             // drugIDTableLayoutPanel
             // 
@@ -1311,15 +1323,15 @@ namespace CSPrescriptionInterfaceProgramBate001.Views
             this.patientPanelTitleLabel.TabIndex = 6;
             this.patientPanelTitleLabel.Text = "환자 정보";
             // 
-            // exitButton
+            // logoutButton
             // 
-            this.exitButton.Location = new System.Drawing.Point(1802, 10);
-            this.exitButton.Name = "exitButton";
-            this.exitButton.Size = new System.Drawing.Size(75, 23);
-            this.exitButton.TabIndex = 0;
-            this.exitButton.Text = "EXIT";
-            this.exitButton.UseVisualStyleBackColor = true;
-            this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
+            this.logoutButton.Location = new System.Drawing.Point(1705, 10);
+            this.logoutButton.Name = "logoutButton";
+            this.logoutButton.Size = new System.Drawing.Size(75, 23);
+            this.logoutButton.TabIndex = 1;
+            this.logoutButton.Text = "LOG OUT";
+            this.logoutButton.UseVisualStyleBackColor = true;
+            this.logoutButton.Click += new System.EventHandler(this.logoutButton_Click);
             // 
             // PrescriptionInterfaceForm
             // 
@@ -1502,5 +1514,6 @@ namespace CSPrescriptionInterfaceProgramBate001.Views
         private System.Windows.Forms.DataGridViewTextBoxColumn UsageColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn DrugInstructionColumn;
         private System.Windows.Forms.Button exitButton;
+        private System.Windows.Forms.Button logoutButton;
     }
 }

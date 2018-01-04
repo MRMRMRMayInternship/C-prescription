@@ -66,6 +66,7 @@
   <ItemGroup>
     <Compile Include="Controllers\KeyPressEvent.cs" />
     <Compile Include="Controllers\MultiLanguage.cs" />
+    <Compile Include="DAO\DoctorDB.cs" />
     <Compile Include="DAO\PatientDB.cs" />
     <Compile Include="DAO\SavePrescriptionInfoAsXMLFile.cs" />
     <Compile Include="DAO\XmlSerializer.cs" />

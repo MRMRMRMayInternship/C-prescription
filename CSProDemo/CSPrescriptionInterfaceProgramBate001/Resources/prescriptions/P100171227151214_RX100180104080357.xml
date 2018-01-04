@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PrescriptionClass xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <PrescriptionID>RX100180104080357</PrescriptionID>
+  <Date>2018-01-04 오전 8:14:04</Date>
+  <Patient>
+    <Name>PIERRE</Name>
+    <Age>58</Age>
+    <Sex>F</Sex>
+    <SymptomDescription>감기</SymptomDescription>
+    <PatientID>P100171227151214</PatientID>
+  </Patient>
+  <Doctor>
+    <Name>root</Name>
+    <ID>root</ID>
+    <Department>test</Department>
+  </Doctor>
+  <Drugs>
+    <DrugClass>
+      <DrugName>Virtussin AC oral</DrugName>
+      <DrugID>D001180102080511</DrugID>
+      <TimeDuration>12</TimeDuration>
+      <TimesPerDay>1</TimesPerDay>
+      <DosagePerTime_Value>2</DosagePerTime_Value>
+      <DosagePerTime_Unit>개</DosagePerTime_Unit>
+      <Usage>외용</Usage>
+      <Instruction>식사후 5분 먹음.</Instruction>
+      <WhenMorning>true</WhenMorning>
+      <WhenAfternoon>false</WhenAfternoon>
+      <WhenEvening>false</WhenEvening>
+    </DrugClass>
+  </Drugs>
+</PrescriptionClass>

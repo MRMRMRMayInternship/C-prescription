@@ -31,6 +31,8 @@ namespace CSPrescriptionInterfaceProgramBate001.Views
         private readonly int DosagePerTime_UnitColumnIndex;
         private readonly int UsageColumnIndex;
         private readonly int DrugInstructionColumnIndex;
+        private bool isExit = true;
+        public bool IsExit { get { return isExit; } }
         public Models.DoctorClass DoctorInfomation
         {
             set;
@@ -706,8 +708,6 @@ namespace CSPrescriptionInterfaceProgramBate001.Views
             }
         }
         private void LoadPrescriptionAction(Models.PrescriptionClass obj){
-            this.DoctorIDtextBox.Text = obj.Doctor.ID;
-            this.doctorNameTextBox.Text = obj.Doctor.Name;
             this.patientIDTextBox.Text = obj.Patient.PatientID;
             this.patientNameTextBox.Text = obj.Patient.Name;
             this.patientSexTextBox.Text = obj.Patient.Sex;
@@ -758,7 +758,7 @@ namespace CSPrescriptionInterfaceProgramBate001.Views
             }
             else
             {
-                PrescriptionFileListForm form = new PrescriptionFileListForm();
+                PrescriptionFileListForm form = new PrescriptionFileListForm(this.DoctorInfomation);
                 form.LoadPrescriptionEvent += LoadPrescriptionAction;
                 if (form.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
@@ -779,6 +779,20 @@ namespace CSPrescriptionInterfaceProgramBate001.Views
                     return;
                 }
             }
+            this.Close();
+        }
+
+        private void logoutButton_Click(object sender, EventArgs e)
+        {
+            if (IsDoingPrescriptionWork())
+            {
+                DialogResult result = MessageBox.Show("저장되지 않은 처방전이 있습니다.\n저장하지 않고 Logout 를 하겠십니까?", "Saving Form", MessageBoxButtons.YesNoCancel);
+                if (result != System.Windows.Forms.DialogResult.Yes)
+                {
+                    return;
+                }
+            }
+            isExit = false;
             this.Close();
         }
     }

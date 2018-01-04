@@ -18,13 +18,14 @@ namespace CSPrescriptionInterfaceProgramBate001.Views
         private readonly string dirpath;
         private readonly string[] fileList;
         private List<Models.PrescriptionClass> prescriptionList;
-        
-        public PrescriptionFileListForm()
+        private Models.DoctorClass Doctor { get; set; }
+        public PrescriptionFileListForm(object obj)
         {
             InitializeComponent();
             System.Configuration.Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
             dirpath = config.AppSettings.Settings["prescriptionPath"].Value;
             fileList = System.IO.Directory.GetFiles(dirpath);
+            Doctor = obj as Models.DoctorClass;
             LoadingPrescriptionFiles();
             InitializeFileListView();
         }
@@ -34,16 +35,33 @@ namespace CSPrescriptionInterfaceProgramBate001.Views
             foreach (string file in fileList)
             {
                 Models.PrescriptionClass obj = DAO.XmlSerializer.LoadFromXml(file, typeof(Models.PrescriptionClass)) as Models.PrescriptionClass;
-                prescriptionList.Add(obj);
+                try
+                {
+                    if (obj.Doctor.ID.Equals(Doctor.ID))
+                        prescriptionList.Add(obj);
+                }
+                catch
+                {
+                    MessageBox.Show("LoadingPrescriptionFiles");
+                    break;
+                }
             }
         }
         private ListViewItem CreateViewItemByClass(Models.PrescriptionClass sourceObj)
         {
             ListViewItem newItem = new ListViewItem();
-            newItem.SubItems.Clear();
-            newItem.SubItems[0].Text = sourceObj.PrescriptionID;
-            newItem.SubItems.Add(sourceObj.Patient.Name);
-            newItem.SubItems.Add(sourceObj.Date);
+            try
+            {
+                newItem.SubItems.Clear();
+                newItem.SubItems[0].Text = sourceObj.PrescriptionID;
+                newItem.SubItems.Add(sourceObj.Patient.Name);
+                newItem.SubItems.Add(sourceObj.Date);
+            }
+            catch
+            {
+                MessageBox.Show("CreateViewItemByClass");
+                return null;
+            }
             return newItem;
         }
         private void InitializeFileListView()
@@ -66,8 +84,15 @@ namespace CSPrescriptionInterfaceProgramBate001.Views
 
         private void cancelButton_Click(object sender, EventArgs e)
         {
-            this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.Close();
+            try
+            {
+                this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+                this.Close();
+            }
+            catch
+            {
+                MessageBox.Show("cancelButton_Click");
+            }
         }
     }
 }

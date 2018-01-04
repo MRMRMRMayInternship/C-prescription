@@ -30,7 +30,6 @@ namespace CSPrescriptionInterfaceProgramBate001.Views
             System.Configuration.Configuration config = System.Configuration.ConfigurationManager.OpenExeConfiguration(System.Configuration.ConfigurationUserLevel.None);
             string filePath = config.AppSettings.Settings["accountFilePath"].Value;
             doctorList = DAO.XmlSerializer.LoadFromXml(filePath, typeof(List<Models.DoctorClass>)) as List<Models.DoctorClass>;
-            
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)

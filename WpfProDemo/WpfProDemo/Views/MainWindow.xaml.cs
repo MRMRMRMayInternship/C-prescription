@@ -24,5 +24,10 @@ namespace WpfProDemo
         {
             InitializeComponent();
         }
+
+        private void btnExitApp_Clicked(object sender, RoutedEventArgs e) {
+            MessageBox.Show("Test");
+        }
+
     }
 }
