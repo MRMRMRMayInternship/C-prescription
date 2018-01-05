@@ -5,11 +5,11 @@
     <Grid>
         <DockPanel HorizontalAlignment="Left" Height="29" LastChildFill="True" Margin="114,109,0,0" VerticalAlignment="Top" Width="218">
             <Label Content="ID" Height="Auto" VerticalAlignment="Center" Width="67"/>
-            <TextBox Height="23" Margin="0,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" DockPanel.Dock="Right" Width="Auto"/> 
+            <TextBox Name="idTextBox" Height="23" Margin="0,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" DockPanel.Dock="Right" Width="Auto"/> 
         </DockPanel>
         <DockPanel HorizontalAlignment="Left" Height="29" LastChildFill="True" Margin="114,154,0,0" VerticalAlignment="Top" Width="218">
             <Label Content="Password" Height="Auto" VerticalAlignment="Center" Width="67"/>
-            <PasswordBox Height="23" Margin="0,0,0,0"  VerticalAlignment="Center" DockPanel.Dock="Right" Width="Auto"/>
+            <PasswordBox Name="pwTextBox" Height="23" Margin="0,0,0,0"  VerticalAlignment="Center" DockPanel.Dock="Right" Width="Auto"/>
         </DockPanel>
         <Button Content="Login" HorizontalAlignment="Left" Margin="114,269,0,0" VerticalAlignment="Top" Click="BtnLogin_Clicked" Width="75"/>
         <Button Content="Exit" HorizontalAlignment="Left" Margin="257,269,0,0" VerticalAlignment="Top" Click="BtnExit_Clicked"  Width="75"/>
