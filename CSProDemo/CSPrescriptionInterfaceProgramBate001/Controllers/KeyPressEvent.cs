@@ -15,6 +15,7 @@ namespace CSPrescriptionInterfaceProgramBate001.Controllers
         public static void KeyPressOnlyNumberEventHandle(object sender, KeyPressEventArgs e)
         {
             TextBox txt = (TextBox)sender;
+            //[ㄱ-힣] Only korean
             string exp = @"[\d]|[\b]";
             if (!System.Text.RegularExpressions.Regex.IsMatch("" + e.KeyChar, exp))
             {
@@ -62,7 +63,7 @@ namespace CSPrescriptionInterfaceProgramBate001.Controllers
         public static void KeyPressOnlyLetterEventHandle(object sender, KeyPressEventArgs e)
         {
             TextBox txt = (TextBox)sender;
-            string exp = @"[a-zA-Z]|[\b]";
+            string exp = @"[a-zA-Z]|[\b]"; 
             if (!System.Text.RegularExpressions.Regex.IsMatch("" + e.KeyChar, exp))
             {
                 e.Handled = true;
