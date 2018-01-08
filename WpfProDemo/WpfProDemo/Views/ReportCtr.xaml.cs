@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.Reporting.WinForms;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,24 +28,20 @@ namespace WpfProDemo.Views
             this.Loaded += ReportCtr_Loaded;
             this._reportViewer.RenderingComplete += this.PrescriptionReportViewer_RenderingComplete;
         }
+        
         private void ReportCtr_Loaded(object sender, RoutedEventArgs e)
         {
             maskLayer.Visibility = Visibility.Visible;
             //1. Query Data object
             System.Data.DataTable dt = new System.Data.DataTable();
-            dt.Columns.Add("Id", typeof(int));
-            dt.Columns.Add("AccountId", typeof(string));
-            dt.Columns.Add("AccountPw", typeof(string));
-
-            System.Data.DataRow dr = dt.NewRow();
-            dr["Id"] = 123123123;
-            dr["AccountId"] = "Jon Skeet";
-            dr["AccountPw"] = "72.0m";
-
-            dt.Rows.Add(dr);
+            using (PIPusingWPFModel.PIPEntities conn = new PIPusingWPFModel.PIPEntities())
+            {
+                var result = conn.Drugs.Where(a => a.PrescriptionId.Equals("1")).ToList();
+                dt = DAO.ToDataTable.ToDataTableMethod(result);
+            }
             //2. Load Data into report
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource = new Microsoft.Reporting.WinForms.ReportDataSource();
-            reportDataSource.Name = "AccountDataSet";
+            reportDataSource.Name = "DrugDataSet";
             reportDataSource.Value = dt;
             System.Configuration.Configuration config = System.Configuration.ConfigurationManager.OpenExeConfiguration(System.Configuration.ConfigurationUserLevel.None);
             _reportViewer.LocalReport.ReportPath = config.AppSettings.Settings["reportPath"].Value;

@@ -49,12 +49,23 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\PIPusingWPFModel\bin\Debug\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\PIPusingWPFModel\bin\Debug\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Reflection.Context" />
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -81,7 +92,33 @@
     </Compile>
     <Compile Include="DAO\DatabaseConnection.cs" />
     <Compile Include="DAO\DatabaseConnectionPool.cs" />
+    <Compile Include="DAO\DoctorsDB.cs" />
     <Compile Include="DAO\LoginEventHandle.cs" />
+    <Compile Include="DAO\ToDataTable.cs" />
+    <Compile Include="Models\AccountClass.cs" />
+    <Compile Include="Models\backup\Account.cs" />
+    <Compile Include="Models\backup\Doctor.cs" />
+    <Compile Include="Models\backup\Drug.cs" />
+    <Compile Include="Models\backup\Employee.cs" />
+    <Compile Include="Models\backup\Patient.cs" />
+    <Compile Include="Models\backup\Person.cs" />
+    <Compile Include="Models\backup\Prescription.cs" />
+    <Compile Include="Models\DoctorClass.cs" />
+    <Compile Include="Models\DrugClass.cs" />
+    <Compile Include="Models\DrugsClass.cs" />
+    <Compile Include="Models\EmployeeClass.cs" />
+    <Compile Include="Models\PatientClass.cs" />
+    <Compile Include="Models\PersonClass.cs" />
+    <Compile Include="Models\PrescriptionClass.cs" />
+    <Compile Include="Models\ViewModels\Command.cs" />
+    <Compile Include="PIPDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PIPDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LoginPage.xaml.cs">
+      <DependentUpon>LoginPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
@@ -91,12 +128,19 @@
     <Compile Include="Views\MenuPage.xaml.cs">
       <DependentUpon>MenuPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\PrescriptionManagementPage.xaml.cs">
+      <DependentUpon>PrescriptionManagementPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ReportCtr.xaml.cs">
       <DependentUpon>ReportCtr.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ReportWindow.xaml.cs">
       <DependentUpon>ReportWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="Views\LoginPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -123,6 +167,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\PrescriptionManagementPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ReportCtr.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -133,15 +181,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\AccountClass.cs" />
     <Compile Include="Models\CommonData\TranslationClass.cs" />
-    <Compile Include="Models\DoctorClass.cs" />
-    <Compile Include="Models\DrugClass.cs" />
-    <Compile Include="Models\DrugsClass.cs" />
-    <Compile Include="Models\EmployeeClass.cs" />
-    <Compile Include="Models\PatientClass.cs" />
-    <Compile Include="Models\PersonClass.cs" />
-    <Compile Include="Models\PrescriptionClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -171,6 +211,18 @@
     <None Include="AccountDataSet.xss">
       <DependentUpon>AccountDataSet.xsd</DependentUpon>
     </None>
+    <None Include="packages.config" />
+    <None Include="PIPDataSet.xsc">
+      <DependentUpon>PIPDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="PIPDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>PIPDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="PIPDataSet.xss">
+      <DependentUpon>PIPDataSet.xsd</DependentUpon>
+    </None>
     <None Include="Properties\DataSources\WpfProDemo.Models.PrescriptionClass.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -198,7 +250,18 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PIPusingWPFModel\PIPusingWPFModel.csproj">
+      <Project>{7a538372-9a0a-49fb-9fa5-02be28c284ab}</Project>
+      <Name>PIPusingWPFModel</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

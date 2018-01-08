@@ -1,61 +1,11 @@
-﻿<Window xmlns:Views="clr-namespace:WpfProDemo.Views"  x:Class="WpfProDemo.MainWindow"
+﻿<Window xmlns:Views="clr-namespace:WpfProDemo.Views"  x:Class="WpfProDemo.Views.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Width="1527" Height="735" ResizeMode="CanMinimize">
     <Window.Resources>
         
     </Window.Resources>
-    <DockPanel x:Name="MainLayout" LastChildFill="True" Margin="0,0,0,10"  Width="auto" Height="auto" RenderTransformOrigin="0.38,0.816">
-        <Menu Height="28" VerticalAlignment="Top" Width="auto" DockPanel.Dock="Top">
-            <MenuItem Header="_File" >
-                <Separator/>
-                <MenuItem Header= "_Exit" MouseEnter="MouseEnterExitArea" MouseLeave="MouseLeaveArea" />
-            </MenuItem>
-            <MenuItem Header="_Edit">
-                <MenuItem Command="ApplicationCommands.Copy"/>
-            </MenuItem>
-        </Menu>
-        <Grid Height="120" Width="Auto" DockPanel.Dock="Top" VerticalAlignment="Top" Background="DarkGray">
-            <DockPanel HorizontalAlignment="Left" Height="44" LastChildFill="True" Margin="38,36,0,0" VerticalAlignment="Top" Width="248">
-                <Label Content="Label" Height="44" VerticalAlignment="Top" Width="92"/>
-                <Label Content="Label" Height="44" VerticalAlignment="Top"/>
-            </DockPanel>
-            <DockPanel HorizontalAlignment="Left" Height="44" LastChildFill="True" Margin="347,36,0,0" VerticalAlignment="Top" Width="248">
-                <Label Content="Label" Height="44" VerticalAlignment="Top" Width="92"/>
-                <Label Content="Label" Height="44" VerticalAlignment="Top"/>
-            </DockPanel>
-            <DockPanel HorizontalAlignment="Left" Height="44" LastChildFill="True" Margin="668,36,0,0" VerticalAlignment="Top" Width="248">
-                <Label Content="Label" Height="44" VerticalAlignment="Top" Width="92"/>
-                <Label Content="Label" Height="44" VerticalAlignment="Top"/>
-            </DockPanel>
-            <DockPanel HorizontalAlignment="Left" Height="44" LastChildFill="True" Margin="982,36,0,0" VerticalAlignment="Top" Width="248">
-                <Label Content="Label" Height="44" VerticalAlignment="Top" Width="92"/>
-                <Label Content="Label" Height="44" VerticalAlignment="Top"/>
-            </DockPanel>
-
-        </Grid>
-        <StackPanel Height="auto" Width="200" Background="gray">
-            <Button Content="Load" Margin="10,10,10,0" Click="btnLoad_Clicked"/>
-            <Button x:Name="btnSpinner" MouseEnter="btnSpinner_MouseEnter"  Content="Button" Margin="10,10,10,0"/>
-            <Button Content="Button" Margin="10,10,10,0"/>
-            <StatusBar Height="100" Margin="10,50,0,0">
-                <StatusBarItem>
-                    <TextBlock Name="StatBarText" Text="Ready" />
-                </StatusBarItem>
-            </StatusBar>
-        </StackPanel>
-        <DockPanel Height="auto" LastChildFill="False" DockPanel.Dock="Left" Width="400"/>
-        <DockPanel Height="auto" LastChildFill="True" DockPanel.Dock="Right" Width="auto">
-            <Grid Height="200" Width="Auto" DockPanel.Dock="Top"/>
-            <Grid Height="Auto" Width="232" DockPanel.Dock="Left">
-                <DataGrid HorizontalAlignment="Left" Margin="45,92,0,0" VerticalAlignment="Top"/>
-            </Grid>
-            <Grid Height="347" Width="Auto" DockPanel.Dock="Right" VerticalAlignment="Top">
-                <DataGrid HorizontalAlignment="Left" Margin="328,176,0,0" VerticalAlignment="Top"/>
-            </Grid>
-            
-        </DockPanel>
-
-
-    </DockPanel>
+    <Frame Name="myFrame">
+        
+    </Frame>
 </Window>

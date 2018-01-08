@@ -19,43 +19,12 @@ namespace WpfProDemo.Views
     /// </summary>
     public partial class LoginWindow : Window
     {
-        private DAO.LoginEventHandle loginEventHandle = new DAO.LoginEventHandle();
+        
         public LoginWindow()
         {
             InitializeComponent();
         }
 
-        private void BtnExit_Clicked(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
-        private bool CheckIdAndPassword()
-        {
-            bool isValid = false;
-            var id = idTextBox.Text;
-            var pw = pwTextBox.Password;
-            if (!string.IsNullOrWhiteSpace(id) && !string.IsNullOrWhiteSpace(pw))
-                isValid = loginEventHandle.IsValid(id, pw);
-            return isValid; 
-        }
-        private void BtnLogin_Clicked(object sender, RoutedEventArgs e)
-        {
-            if (CheckIdAndPassword())
-            {
-                //MainWindow mainWindow = new MainWindow();
-                //mainWindow.Owner = this;
-                Window mainWindow = new Window();
-                
-                this.Hide();
-                var isLogout = mainWindow.ShowDialog();
-                this.idTextBox.Clear();
-                this.pwTextBox.Clear();
-                this.Show();
-            }
-            else
-            {
-                System.Windows.MessageBox.Show("login error");
-            }
-        }
+
     }
 }

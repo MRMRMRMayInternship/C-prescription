@@ -279,9 +279,7 @@ namespace WpfProDemo {
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class AccountDataTable : global::System.Data.TypedTableBase<AccountRow> {
             
-            private global::System.Data.DataColumn columnId;
-            
-            private global::System.Data.DataColumn columnAccountId;
+            private global::System.Data.DataColumn columnDid;
             
             private global::System.Data.DataColumn columnAccountPw;
             
@@ -320,17 +318,9 @@ namespace WpfProDemo {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn IdColumn {
+            public global::System.Data.DataColumn DidColumn {
                 get {
-                    return this.columnId;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn AccountIdColumn {
-                get {
-                    return this.columnAccountId;
+                    return this.columnDid;
                 }
             }
             
@@ -379,11 +369,10 @@ namespace WpfProDemo {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public AccountRow AddAccountRow(string AccountId, string AccountPw) {
+            public AccountRow AddAccountRow(string Did, string AccountPw) {
                 AccountRow rowAccountRow = ((AccountRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        null,
-                        AccountId,
+                        Did,
                         AccountPw};
                 rowAccountRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowAccountRow);
@@ -392,9 +381,9 @@ namespace WpfProDemo {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public AccountRow FindById(int Id) {
+            public AccountRow FindByDid(string Did) {
                 return ((AccountRow)(this.Rows.Find(new object[] {
-                            Id})));
+                            Did})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -414,30 +403,22 @@ namespace WpfProDemo {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
-                this.columnId = base.Columns["Id"];
-                this.columnAccountId = base.Columns["AccountId"];
+                this.columnDid = base.Columns["Did"];
                 this.columnAccountPw = base.Columns["AccountPw"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             private void InitClass() {
-                this.columnId = new global::System.Data.DataColumn("Id", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnId);
-                this.columnAccountId = new global::System.Data.DataColumn("AccountId", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnAccountId);
+                this.columnDid = new global::System.Data.DataColumn("Did", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDid);
                 this.columnAccountPw = new global::System.Data.DataColumn("AccountPw", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnAccountPw);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnId}, true));
-                this.columnId.AutoIncrement = true;
-                this.columnId.AutoIncrementSeed = -1;
-                this.columnId.AutoIncrementStep = -1;
-                this.columnId.AllowDBNull = false;
-                this.columnId.ReadOnly = true;
-                this.columnId.Unique = true;
-                this.columnAccountId.AllowDBNull = false;
-                this.columnAccountId.MaxLength = 50;
+                                this.columnDid}, true));
+                this.columnDid.AllowDBNull = false;
+                this.columnDid.Unique = true;
+                this.columnDid.MaxLength = 20;
                 this.columnAccountPw.AllowDBNull = false;
                 this.columnAccountPw.MaxLength = 50;
             }
@@ -582,23 +563,12 @@ namespace WpfProDemo {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int Id {
+            public string Did {
                 get {
-                    return ((int)(this[this.tableAccount.IdColumn]));
+                    return ((string)(this[this.tableAccount.DidColumn]));
                 }
                 set {
-                    this[this.tableAccount.IdColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string AccountId {
-                get {
-                    return ((string)(this[this.tableAccount.AccountIdColumn]));
-                }
-                set {
-                    this[this.tableAccount.AccountIdColumn] = value;
+                    this[this.tableAccount.DidColumn] = value;
                 }
             }
             
@@ -773,39 +743,33 @@ namespace WpfProDemo.AccountDataSetTableAdapters {
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "Account";
-            tableMapping.ColumnMappings.Add("Id", "Id");
-            tableMapping.ColumnMappings.Add("AccountId", "AccountId");
+            tableMapping.ColumnMappings.Add("Did", "Did");
             tableMapping.ColumnMappings.Add("AccountPw", "AccountPw");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[Account] WHERE (([Id] = @Original_Id) AND ([AccountId] = @Orig" +
-                "inal_AccountId) AND ([AccountPw] = @Original_AccountPw))";
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[Account] WHERE (([Did] = @Original_Did) AND ([AccountPw] = @Or" +
+                "iginal_AccountPw))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_AccountId", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AccountId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Did", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Did", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_AccountPw", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AccountPw", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[Account] ([AccountId], [AccountPw]) VALUES (@AccountId, @Accou" +
-                "ntPw);\r\nSELECT Id, AccountId, AccountPw FROM Account WHERE (Id = SCOPE_IDENTITY(" +
-                "))";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[Account] ([Did], [AccountPw]) VALUES (@Did, @AccountPw);\r\nSELE" +
+                "CT Did, AccountPw FROM Account WHERE (Did = @Did)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@AccountId", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AccountId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Did", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Did", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@AccountPw", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AccountPw", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = "UPDATE [dbo].[Account] SET [AccountId] = @AccountId, [AccountPw] = @AccountPw WHE" +
-                "RE (([Id] = @Original_Id) AND ([AccountId] = @Original_AccountId) AND ([AccountP" +
-                "w] = @Original_AccountPw));\r\nSELECT Id, AccountId, AccountPw FROM Account WHERE " +
-                "(Id = @Id)";
+            this._adapter.UpdateCommand.CommandText = "UPDATE [dbo].[Account] SET [Did] = @Did, [AccountPw] = @AccountPw WHERE (([Did] =" +
+                " @Original_Did) AND ([AccountPw] = @Original_AccountPw));\r\nSELECT Did, AccountPw" +
+                " FROM Account WHERE (Did = @Did)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@AccountId", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AccountId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Did", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Did", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@AccountPw", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AccountPw", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_AccountId", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AccountId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Did", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Did", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_AccountPw", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AccountPw", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -821,7 +785,7 @@ namespace WpfProDemo.AccountDataSetTableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT Id, AccountId, AccountPw FROM dbo.Account";
+            this._commandCollection[0].CommandText = "SELECT Did, AccountPw FROM dbo.Account";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -882,19 +846,18 @@ namespace WpfProDemo.AccountDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_Id, string Original_AccountId, string Original_AccountPw) {
-            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_Id));
-            if ((Original_AccountId == null)) {
-                throw new global::System.ArgumentNullException("Original_AccountId");
+        public virtual int Delete(string Original_Did, string Original_AccountPw) {
+            if ((Original_Did == null)) {
+                throw new global::System.ArgumentNullException("Original_Did");
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[1].Value = ((string)(Original_AccountId));
+                this.Adapter.DeleteCommand.Parameters[0].Value = ((string)(Original_Did));
             }
             if ((Original_AccountPw == null)) {
                 throw new global::System.ArgumentNullException("Original_AccountPw");
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[2].Value = ((string)(Original_AccountPw));
+                this.Adapter.DeleteCommand.Parameters[1].Value = ((string)(Original_AccountPw));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -916,12 +879,12 @@ namespace WpfProDemo.AccountDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string AccountId, string AccountPw) {
-            if ((AccountId == null)) {
-                throw new global::System.ArgumentNullException("AccountId");
+        public virtual int Insert(string Did, string AccountPw) {
+            if ((Did == null)) {
+                throw new global::System.ArgumentNullException("Did");
             }
             else {
-                this.Adapter.InsertCommand.Parameters[0].Value = ((string)(AccountId));
+                this.Adapter.InsertCommand.Parameters[0].Value = ((string)(Did));
             }
             if ((AccountPw == null)) {
                 throw new global::System.ArgumentNullException("AccountPw");
@@ -949,12 +912,12 @@ namespace WpfProDemo.AccountDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string AccountId, string AccountPw, int Original_Id, string Original_AccountId, string Original_AccountPw, int Id) {
-            if ((AccountId == null)) {
-                throw new global::System.ArgumentNullException("AccountId");
+        public virtual int Update(string Did, string AccountPw, string Original_Did, string Original_AccountPw) {
+            if ((Did == null)) {
+                throw new global::System.ArgumentNullException("Did");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(AccountId));
+                this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(Did));
             }
             if ((AccountPw == null)) {
                 throw new global::System.ArgumentNullException("AccountPw");
@@ -962,20 +925,18 @@ namespace WpfProDemo.AccountDataSetTableAdapters {
             else {
                 this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(AccountPw));
             }
-            this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(Original_Id));
-            if ((Original_AccountId == null)) {
-                throw new global::System.ArgumentNullException("Original_AccountId");
+            if ((Original_Did == null)) {
+                throw new global::System.ArgumentNullException("Original_Did");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(Original_AccountId));
+                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(Original_Did));
             }
             if ((Original_AccountPw == null)) {
                 throw new global::System.ArgumentNullException("Original_AccountPw");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(Original_AccountPw));
+                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(Original_AccountPw));
             }
-            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(Id));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -996,8 +957,8 @@ namespace WpfProDemo.AccountDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string AccountId, string AccountPw, int Original_Id, string Original_AccountId, string Original_AccountPw) {
-            return this.Update(AccountId, AccountPw, Original_Id, Original_AccountId, Original_AccountPw, Original_Id);
+        public virtual int Update(string AccountPw, string Original_Did, string Original_AccountPw) {
+            return this.Update(Original_Did, AccountPw, Original_Did, Original_AccountPw);
         }
     }
     

@@ -4,13 +4,25 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" 
-      d:DesignHeight="300" d:DesignWidth="300"
+      d:DesignHeight="300" d:DesignWidth="300" Width="1527" Height="735"
 	Title="MenuPage">
-
+    <Page.Resources>
+        <Style TargetType="Button" x:Key="MenuBtnStyle">
+            <Setter Property="FontSize" Value="35"></Setter>
+            <Setter Property="Margin" Value="20"></Setter>
+            <Setter Property="Content" Value="Option"></Setter>
+            <Setter Property="Background" Value="BlueViolet"></Setter>
+        </Style>
+        
+    </Page.Resources>
     <Grid>
-        <UniformGrid Rows="2" Columns="2">
-        <Button Grid.Column="0" Grid.Row="0"></Button>
-        <Button Grid.Row="0" Grid.Column="1"></Button>
+        <UniformGrid Rows="2" Columns="3">
+            <Button Grid.Row="0" Grid.Column="0" Style="{StaticResource MenuBtnStyle}" Content="Prescription Managemeng" Click="PrescriptionManagementBtn_Clicked"></Button>
+            <Button Grid.Row="0" Grid.Column="1" Style="{StaticResource MenuBtnStyle}" Content="option"></Button>
+            <Button Grid.Row="0" Grid.Column="2" Style="{StaticResource MenuBtnStyle}" Content="option"></Button>
+            <Button Grid.Row="1" Grid.Column="0" Style="{StaticResource MenuBtnStyle}" Content="option"></Button>
+            <Button Grid.Row="1" Grid.Column="1" Style="{StaticResource MenuBtnStyle}" Content="option"></Button>
+            <Button Grid.Row="1" Grid.Column="2" Style="{StaticResource MenuBtnStyle}" Content="Exit"></Button>
         </UniformGrid>
     </Grid>
 </Page>

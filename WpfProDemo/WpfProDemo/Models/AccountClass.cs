@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
-namespace WpfProDemo.Models
+namespace CSPrescriptionInterfaceProgramBate001.Models
 {
     public class AccountClass:PersonClass
     {

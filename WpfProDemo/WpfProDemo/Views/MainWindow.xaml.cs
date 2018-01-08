@@ -14,78 +14,45 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Media.Animation;
-namespace WpfProDemo
+namespace WpfProDemo.Views
 {
     /// <summary>
     /// MainWindow.xaml에 대한 상호 작용 논리
     /// </summary>
     public partial class MainWindow : Window
     {
+        private LoginPage loginpage;
+        private PrescriptionManagementPage pmPage;
+        private MenuPage menuPage;
         public MainWindow()
         {
             InitializeComponent();
+            InitializePages();
+            this.Loaded += MainWindow_Loaded;
         }
-        private void btnExitApp_Clicked(object sender, RoutedEventArgs e) {
-            try
-            {
-                Uri uri = new System.Uri("LoginWindow.xaml", System.UriKind.Relative);
-                MessageBox.Show("Test:" + uri.LocalPath);
-            }
-            catch (Exception ex) {
-                MessageBox.Show("btnExit:" + ex.Message);
-            }
-            this.Close();
-            this.Owner.Show();
+        private void InitializePages(){
+            loginpage = new LoginPage();
+            loginpage.ParentWindow = this;
+            pmPage = new PrescriptionManagementPage();
+            pmPage.ParentWindow = this;
+            menuPage = new MenuPage();
+            menuPage.ParentWindow = this;
         }
-        private void PrescriptionReportViewer_RenderingComplete(object sender, Microsoft.Reporting.WinForms.RenderingCompleteEventArgs e)
+        private void MainWindow_Loaded(object sender, RoutedEventArgs e){
+            myFrame.NavigationUIVisibility = NavigationUIVisibility.Hidden;
+            this.myFrame.Content = loginpage;
+        }
+        public void CallLoginPage()
         {
+            this.myFrame.Content = loginpage;
         }
-        private void btnLoad_Clicked(object sender, RoutedEventArgs e)
+        public void CallPrescriptionManagementPage()
         {
-            try
-            {
-                Views.ReportWindow reportWin = new Views.ReportWindow();
-                reportWin.Owner = this;
-                var i = reportWin.ShowDialog();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("btnLoad: " + ex.Message);
-            }
+            this.myFrame.Content = pmPage;
         }
-        private void MouseEnterExitArea(object sender, RoutedEventArgs args)
+        public void CallMenuPage()
         {
-            StatBarText.Text = "Exit the Application";
-        }
-        private void MouseEnterToolsHintsArea(object sender, RoutedEventArgs args)
-        {
-            StatBarText.Text = "Show Spelling Suggestions";
-        }
-        private void MouseLeaveArea(object sender, RoutedEventArgs args)
-        {
-            StatBarText.Text = "Ready";
-        }
-        private bool isSpinning = false;
-        private void btnSpinner_MouseEnter(object sender, MouseEventArgs e)
-        {
-            if (!isSpinning)
-            {
-                isSpinning = true;
-                DoubleAnimation dblAnim = new DoubleAnimation();
-                dblAnim.Completed += (o, s) => { isSpinning = false; };
-                dblAnim.From = 0;
-                dblAnim.To = 360;
-                RotateTransform rt = new RotateTransform();
-                btnSpinner.RenderTransform = rt;
-                rt.BeginAnimation(RotateTransform.AngleProperty, dblAnim);
-            }
-        }
-        private void btnSpinner_Click(object sender, RoutedEventArgs e)
-        {
-            DoubleAnimation dblAnim = new DoubleAnimation();
-            dblAnim.From = 1.0;
-            dblAnim.To = 0.0;
-            btnSpinner.BeginAnimation(Button.OpacityMaskProperty,dblAnim);
+            this.myFrame.Content = menuPage;
         }
     }
 }

@@ -5,10 +5,17 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WpfProDemo.Models
+namespace CSPrescriptionInterfaceProgramBate001.Models
 {
-    class DrugsClass
+    class DrugsClass : System.Runtime.Serialization.IExtensibleDataObject
     {
+        [System.Runtime.Serialization.DataMember(Name="Drugs")]
         public IList<DrugClass> Drugs { get; set; }
+
+        public ExtensionDataObject ExtensionData
+        {
+            get;
+            set;
+        }
     }
 }

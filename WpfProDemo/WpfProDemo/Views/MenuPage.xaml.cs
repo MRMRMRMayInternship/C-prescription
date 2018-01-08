@@ -20,9 +20,25 @@ namespace WpfProDemo.Views
     /// </summary>
     public partial class MenuPage : Page
     {
+        private MainWindow parentWindow = null;
+        public MainWindow ParentWindow
+        {
+            get
+            {
+                return this.parentWindow;
+            }
+            set
+            {
+                this.parentWindow = value;
+            }
+        }
         public MenuPage()
         {
             InitializeComponent();
+        }
+        private void PrescriptionManagementBtn_Clicked(object sender, RoutedEventArgs e)
+        {
+            this.ParentWindow.CallPrescriptionManagementPage();
         }
     }
 }

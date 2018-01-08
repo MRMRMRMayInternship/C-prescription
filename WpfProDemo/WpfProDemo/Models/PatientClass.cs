@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WpfProDemo.Models
+namespace CSPrescriptionInterfaceProgramBate001.Models
 {
     public class PatientClass:PersonClass
     {
