@@ -1,11 +1,16 @@
 ﻿<Window xmlns:Views="clr-namespace:WpfProDemo.Views"  x:Class="WpfProDemo.Views.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Width="1527" Height="735" ResizeMode="CanMinimize">
+        Title="MainWindow" Width="1550" Height="900" ResizeMode="CanMinimize" WindowStyle="None" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         
     </Window.Resources>
-    <Frame Name="myFrame">
+    <WrapPanel Orientation="Vertical">
+        <Grid Width="Auto" Height="90">
+            <Button Content="Exit" Click="ExitBtn_Clicked" Margin="1430,10,10,20" FontSize="14"></Button>
+        </Grid>
+    <Frame Name="myFrame" Width="1530" Height="735" VerticalAlignment="Top" Margin="10">
         
     </Frame>
+    </WrapPanel>
 </Window>

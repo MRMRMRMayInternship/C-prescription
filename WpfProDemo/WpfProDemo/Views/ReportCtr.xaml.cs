@@ -22,16 +22,32 @@ namespace WpfProDemo.Views
     /// </summary>
     public partial class ReportCtr : UserControl
     {
+        BackgroundWorker work = new BackgroundWorker();
         public ReportCtr()
         {
             InitializeComponent();
+            work.WorkerReportsProgress = true;
+            work.WorkerSupportsCancellation = true;
+            work.DoWork += DoWork_handle;
+            work.ProgressChanged += ProgressChanged_Handler;
+            work.RunWorkerCompleted += RunWorkerCompleted_Handler;
             this.Loaded += ReportCtr_Loaded;
             this._reportViewer.RenderingComplete += this.PrescriptionReportViewer_RenderingComplete;
         }
-        
-        private void ReportCtr_Loaded(object sender, RoutedEventArgs e)
+
+        private void RunWorkerCompleted_Handler(object sender, RunWorkerCompletedEventArgs e)
         {
-            maskLayer.Visibility = Visibility.Visible;
+            maskLayer.Visibility = Visibility.Collapsed;
+        }
+
+        private void ProgressChanged_Handler(object sender, ProgressChangedEventArgs e)
+        {
+            //注意在Dowork函数中要使用 backgroundworker对象.ReportProgress(进度数值)
+            //set prograss bar value = e.ProgressPercentage;
+        }
+
+        private void DoWork_handle(object sender, DoWorkEventArgs e)
+        {
             //1. Query Data object
             System.Data.DataTable dt = new System.Data.DataTable();
             using (PIPusingWPFModel.PIPEntities conn = new PIPusingWPFModel.PIPEntities())
@@ -49,9 +65,16 @@ namespace WpfProDemo.Views
             _reportViewer.RefreshReport();
             //3. show report
         }
+        
+        private void ReportCtr_Loaded(object sender, RoutedEventArgs e)
+        {
+            maskLayer.Visibility = Visibility.Visible;
+            if (!work.IsBusy)
+                work.RunWorkerAsync();//run the work
+        }
         private void PrescriptionReportViewer_RenderingComplete(object sender, Microsoft.Reporting.WinForms.RenderingCompleteEventArgs e)
         {
-            maskLayer.Visibility = Visibility.Collapsed;
+            //maskLayer.Visibility = Visibility.Collapsed;
         }
     }
 }

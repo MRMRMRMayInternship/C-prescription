@@ -111,10 +111,14 @@
     <Compile Include="Models\PersonClass.cs" />
     <Compile Include="Models\PrescriptionClass.cs" />
     <Compile Include="Models\ViewModels\Command.cs" />
+    <Compile Include="Models\ViewModels\pListLoadingProgressView\LoadingProgressValue.cs" />
     <Compile Include="PIPDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>PIPDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LoadingProgressMaskLayer.xaml.cs">
+      <DependentUpon>LoadingProgressMaskLayer.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
@@ -128,8 +132,17 @@
     <Compile Include="Views\MenuPage.xaml.cs">
       <DependentUpon>MenuPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\PrescriptionFileListBox.xaml.cs">
+      <DependentUpon>PrescriptionFileListBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PrescriptionListItem.xaml.cs">
+      <DependentUpon>PrescriptionListItem.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\PrescriptionManagementPage.xaml.cs">
       <DependentUpon>PrescriptionManagementPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PrescriptionListBoxMaskLayer.xaml.cs">
+      <DependentUpon>PrescriptionListBoxMaskLayer.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ReportCtr.xaml.cs">
       <DependentUpon>ReportCtr.xaml</DependentUpon>
@@ -137,6 +150,10 @@
     <Compile Include="Views\ReportWindow.xaml.cs">
       <DependentUpon>ReportWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="Views\LoadingProgressMaskLayer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\LoginPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -167,7 +184,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\PrescriptionFileListBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PrescriptionListItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\PrescriptionManagementPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PrescriptionListBoxMaskLayer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

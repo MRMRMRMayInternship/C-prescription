@@ -54,5 +54,10 @@ namespace WpfProDemo.Views
         {
             this.myFrame.Content = menuPage;
         }
+
+        private void ExitBtn_Clicked(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

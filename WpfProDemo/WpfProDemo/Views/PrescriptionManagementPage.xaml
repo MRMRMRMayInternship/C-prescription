@@ -3,6 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfProDemo.Views"
       mc:Ignorable="d" 
       d:DesignHeight="735" d:DesignWidth="1527" 
 	Title="PrescriptionManagementPage">
@@ -15,8 +16,10 @@
             </Grid>
         </DataTemplate>
     </Page.Resources>
-    <DockPanel x:Name="MainLayout" LastChildFill="True" Margin="0,0,0,10"  Width="auto" Height="auto" RenderTransformOrigin="0.38,0.816">
-        <Menu Height="28" VerticalAlignment="Top" Width="auto" DockPanel.Dock="Top">
+    <Grid Width="auto" Height="auto">
+        
+        <DockPanel x:Name="MainLayout" LastChildFill="True" Margin="0,0,0,0"  Width="auto" Height="auto" RenderTransformOrigin="0,0">
+            <Menu Height="28" VerticalAlignment="Top" Width="auto" DockPanel.Dock="Top">
             <MenuItem Header="_File" >
                 <Separator/>
                 <MenuItem Header= "_Exit" MouseEnter="MouseEnterExitArea" MouseLeave="MouseLeaveArea" />
@@ -45,7 +48,7 @@
 
         </Grid>
         <StackPanel Height="auto" Width="200" Background="gray">
-            <Button Content="Load" Margin="10,10,10,0" Click="btnLoad_Clicked"/>
+            <Button x:Name="btnLoader" Content="Load" Margin="10,10,10,0" Click="btnLoad_Clicked"/>
             <Button x:Name="btnSpinner"  Content="Button" Margin="10,10,10,0" Command="{Binding AddNewCommand}"/>
             <Button Content="Button" Margin="10,10,10,0"/>
             <StatusBar Height="100" Margin="10,50,0,0">
@@ -54,33 +57,27 @@
                 </StatusBarItem>
             </StatusBar>
         </StackPanel>
-        <WrapPanel Name="prescriptionFileListPanel"  Height="auto" DockPanel.Dock="Left" Width="400" Background="Black" Orientation="Horizontal">
-            <ItemsControl ItemsSource="{Binding Commands}">
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <WrapPanel Orientation="Vertical" IsItemsHost="True">
-
-                        </WrapPanel>
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <Button Content="123" Command="{Binding}" Margin="2"></Button>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-        </WrapPanel>
-        <DockPanel Height="auto" LastChildFill="True" DockPanel.Dock="Right" Width="auto">
-            <Grid Height="200" Width="Auto" DockPanel.Dock="Top"/>
-            <Grid Height="Auto" Width="232" DockPanel.Dock="Left">
-                <DataGrid HorizontalAlignment="Left" Margin="45,92,0,0" VerticalAlignment="Top"/>
+            <Grid Height="auto">
+                <local:PrescriptionFileListBox x:Name="PrescriptionListBox" Height="auto"></local:PrescriptionFileListBox>
+                <local:PrescriptionListBoxMaskLayer x:Name="pListBoxMask" Width="auto" Height="auto"  Visibility="Visible"></local:PrescriptionListBoxMaskLayer>
             </Grid>
-            <Grid Height="347" Width="Auto" DockPanel.Dock="Right" VerticalAlignment="Top">
-                <DataGrid HorizontalAlignment="Left" Margin="328,176,0,0" VerticalAlignment="Top"/>
-            </Grid>
+            <DockPanel Height="auto" LastChildFill="True" DockPanel.Dock="Right" Width="auto">
+                <Grid Height="200" Width="Auto" DockPanel.Dock="Top"/>
+                <Grid Height="Auto" Width="232" DockPanel.Dock="Left">
+                    <DataGrid HorizontalAlignment="Left" Margin="45,92,0,0" VerticalAlignment="Top"/>
+                </Grid>
+                <DockPanel LastChildFill="True" Height="auto" Width="auto">
+                    <Grid DockPanel.Dock="Top" Height="347" Width="Auto"  VerticalAlignment="Top">
+                        <DataGrid HorizontalAlignment="Left" Margin="328,176,0,0" VerticalAlignment="Top"/>
+                    </Grid>
+                    <Grid DockPanel.Dock="Bottom" Height="auto" Width="auto">
+                        <Button Content="Report" FontSize="14" FontWeight="Bold"  Margin="506,0,92,10" Click="btnReportCreation_Clicked">
 
+                        </Button>
+                    </Grid>
+                </DockPanel>
+            </DockPanel>
         </DockPanel>
-
-
-    </DockPanel>
+        <local:LoadingProgressMaskLayer x:Name="PrescriptionFileListLoadingProgressMaskLayer" Visibility="Collapsed"></local:LoadingProgressMaskLayer>
+    </Grid>
 </Page>

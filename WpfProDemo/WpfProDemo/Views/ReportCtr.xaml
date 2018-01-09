@@ -4,13 +4,19 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WpfProDemo.Views"
+             xmlns:wfi="clr-namespace:System.Windows.Forms.Integration;assembly=WindowsFormsIntegration"
              xmlns:rv="clr-namespace:Microsoft.Reporting.WinForms;assembly=Microsoft.ReportViewer.WinForms"
              mc:Ignorable="d" 
              d:DesignHeight="1024" d:DesignWidth="1024" Height="1024" Width="1024">
     <Grid>
+        
         <WindowsFormsHost>
             <rv:ReportViewer x:Name="_reportViewer"></rv:ReportViewer>
         </WindowsFormsHost>
-        <local:MaskLayer x:Name="maskLayer" Visibility="Collapsed"/>
+        <wfi:WindowsFormsHost x:Name="maskLayer" Visibility="Collapsed">
+            <wfi:ElementHost>
+                <local:MaskLayer/>
+            </wfi:ElementHost>
+        </wfi:WindowsFormsHost>
     </Grid>
 </UserControl>
