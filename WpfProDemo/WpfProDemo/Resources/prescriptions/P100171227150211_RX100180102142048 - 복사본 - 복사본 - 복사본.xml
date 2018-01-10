@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<PrescriptionClass xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <PrescriptionID>RX100180102142048</PrescriptionID>
+  <Date>2018-01-02 오후 2:22:09</Date>
+  <Patient>
+    <Name>홍기동</Name>
+    <Age>21</Age>
+    <Sex>M</Sex>
+    <SymptomDescription />
+    <PatientID>P100171227150211</PatientID>
+  </Patient>
+  <Doctor>
+    <Name>신라</Name>
+    <ID>D100171227173011</ID>
+    <Department>내과</Department>
+  </Doctor>
+  <Drugs>
+    <DrugClass>
+      <Price>0</Price>
+      <DrugName>promethazine-DM oral</DrugName>
+      <TimeDuration>12</TimeDuration>
+      <TimesPerDay>1</TimesPerDay>
+      <DosagePerTime_Value>1</DosagePerTime_Value>
+      <DosagePerTime_Unit>ml</DosagePerTime_Unit>
+      <Usage>외용</Usage>
+      <Instruction>123</Instruction>
+      <WhenMorning>true</WhenMorning>
+      <WhenAfternoon>false</WhenAfternoon>
+      <WhenEvening>false</WhenEvening>
+    </DrugClass>
+  </Drugs>
+</PrescriptionClass>

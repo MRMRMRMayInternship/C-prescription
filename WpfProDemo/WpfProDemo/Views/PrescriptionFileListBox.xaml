@@ -6,10 +6,13 @@
              xmlns:local="clr-namespace:WpfProDemo.Views"
              mc:Ignorable="d" 
              d:DesignHeight="577" d:DesignWidth="300" Width="400" Height="Auto">
-    
-    <Grid>
-        <ListBox x:Name="PrescriptionListBox" ScrollViewer.HorizontalScrollBarVisibility="Disabled" >
+    <UserControl.Resources>
+        <Style TargetType="ListBox" x:Key="PrescriptionListBoxStyle">
             
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <ListBox x:Name="PrescriptionListBox" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
             <ListBox.ItemTemplate>
                 <DataTemplate >
                     <local:PrescriptionListItem></local:PrescriptionListItem>
@@ -20,7 +23,6 @@
                     <WrapPanel IsItemsHost="True" Orientation="Horizontal" ></WrapPanel>
                 </ItemsPanelTemplate>
             </ListBox.ItemsPanel>
-            
         </ListBox>
         <!--<WrapPanel Name="prescriptionFileListPanel"  Height="auto" DockPanel.Dock="Left" Width="400" Background="Black" Orientation="Horizontal">
             <ItemsControl ItemsSource="{Binding Commands}">

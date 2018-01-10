@@ -117,14 +117,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>PIPDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="StaticMethod\ConfigManagement.cs" />
+    <Compile Include="StaticMethod\PrescriptionListManagement.cs" />
+    <Compile Include="Views\DoctorInfoBlock.xaml.cs">
+      <DependentUpon>DoctorInfoBlock.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\LoadingProgressMaskLayer.xaml.cs">
       <DependentUpon>LoadingProgressMaskLayer.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\LoginWindow.xaml.cs">
-      <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MaskLayer.xaml.cs">
       <DependentUpon>MaskLayer.xaml</DependentUpon>
@@ -150,6 +152,13 @@
     <Compile Include="Views\ReportWindow.xaml.cs">
       <DependentUpon>ReportWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\TitleBar.xaml.cs">
+      <DependentUpon>TitleBar.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Views\DoctorInfoBlock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\LoadingProgressMaskLayer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -172,10 +181,6 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Views\LoginWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\MaskLayer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -205,6 +210,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ReportWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TitleBar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -290,6 +299,28 @@
       <Project>{7a538372-9a0a-49fb-9fa5-02be28c284ab}</Project>
       <Name>PIPusingWPFModel</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons\poweroff.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons\poweroff_press.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="StaticValue\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\prescriptions\P100171227150211_RX100180102140602.xml" />
+    <Resource Include="Resources\prescriptions\P100171227150211_RX100180102142048 - 복사본 - 복사본 - 복사본.xml" />
+    <Resource Include="Resources\prescriptions\P100171227150211_RX100180102154223.xml" />
+    <Resource Include="Resources\prescriptions\P100171227150211_RX100180102155031.xml" />
+    <Resource Include="Resources\prescriptions\P100171227150211_RX100180102155415.xml" />
+    <Resource Include="Resources\prescriptions\P100171227150211_RX100180102165632.xml" />
+    <Resource Include="Resources\prescriptions\P100171227150211_RX100180102170448.xml" />
+    <Resource Include="Resources\prescriptions\P100171227150211_RX100180103101356.xml" />
+    <Resource Include="Resources\prescriptions\P100171227151111_RX100180105175243.xml" />
+    <Resource Include="Resources\prescriptions\P100171227151214_RX100180103151759.xml" />
+    <Resource Include="Resources\prescriptions\P100171227151214_RX100180104080357.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

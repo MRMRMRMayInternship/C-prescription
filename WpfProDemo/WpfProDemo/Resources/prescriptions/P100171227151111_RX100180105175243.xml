@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PrescriptionClass xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <PrescriptionID>RX100180105175243</PrescriptionID>
+  <Date>2018-01-05 오후 5:53:55</Date>
+  <Patient>
+    <Name>Denys</Name>
+    <Age>9</Age>
+    <Sex>M</Sex>
+    <SymptomDescription>123</SymptomDescription>
+    <PatientID>P100171227151111</PatientID>
+  </Patient>
+  <Doctor>
+    <Name>root</Name>
+    <ID>root</ID>
+    <Department>test</Department>
+  </Doctor>
+  <Drugs>
+    <DrugClass>
+      <DrugName>Mucinex D Maximum Strength oral</DrugName>
+      <DrugID>D001180102080443</DrugID>
+      <TimeDuration>1</TimeDuration>
+      <TimesPerDay>1</TimesPerDay>
+      <DosagePerTime_Value>1</DosagePerTime_Value>
+      <DosagePerTime_Unit>ml</DosagePerTime_Unit>
+      <Usage>외용</Usage>
+      <Instruction>123</Instruction>
+      <WhenMorning>true</WhenMorning>
+      <WhenAfternoon>false</WhenAfternoon>
+      <WhenEvening>false</WhenEvening>
+    </DrugClass>
+  </Drugs>
+</PrescriptionClass>

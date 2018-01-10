@@ -4,11 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
-namespace CSPrescriptionInterfaceProgramBate001.Models
+namespace WpfProDemo.Models
 {
     public class AccountClass:PersonClass
     {
+        protected string _ID;
         public string ID { get; set; }
+        protected string _Password;
         public string Password { get; set; }
     }
 }

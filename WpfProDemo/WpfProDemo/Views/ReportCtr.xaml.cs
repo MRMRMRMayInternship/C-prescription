@@ -23,6 +23,23 @@ namespace WpfProDemo.Views
     public partial class ReportCtr : UserControl
     {
         BackgroundWorker work = new BackgroundWorker();
+        private string _PrescriptionID;
+
+        private System.Data.DataTable drugTable = new System.Data.DataTable();
+        private System.Data.DataTable patientTable = new System.Data.DataTable();
+        private System.Data.DataTable prescriptionTable = new System.Data.DataTable();
+        private System.Data.DataTable doctorTable = new System.Data.DataTable();
+        public string PrescriptionID
+        {
+            get
+            {
+                return _PrescriptionID;
+            }
+            set
+            {
+                _PrescriptionID = value;
+            }
+        }
         public ReportCtr()
         {
             InitializeComponent();
@@ -31,6 +48,7 @@ namespace WpfProDemo.Views
             work.DoWork += DoWork_handle;
             work.ProgressChanged += ProgressChanged_Handler;
             work.RunWorkerCompleted += RunWorkerCompleted_Handler;
+
             this.Loaded += ReportCtr_Loaded;
             this._reportViewer.RenderingComplete += this.PrescriptionReportViewer_RenderingComplete;
         }
@@ -38,6 +56,7 @@ namespace WpfProDemo.Views
         private void RunWorkerCompleted_Handler(object sender, RunWorkerCompletedEventArgs e)
         {
             maskLayer.Visibility = Visibility.Collapsed;
+
         }
 
         private void ProgressChanged_Handler(object sender, ProgressChangedEventArgs e)
@@ -49,18 +68,34 @@ namespace WpfProDemo.Views
         private void DoWork_handle(object sender, DoWorkEventArgs e)
         {
             //1. Query Data object
-            System.Data.DataTable dt = new System.Data.DataTable();
+            
             using (PIPusingWPFModel.PIPEntities conn = new PIPusingWPFModel.PIPEntities())
             {
-                var result = conn.Drugs.Where(a => a.PrescriptionId.Equals("1")).ToList();
-                dt = DAO.ToDataTable.ToDataTableMethod(result);
+                var prescriptionResult = conn.Prescriptions.Where(a => a.PrescriptionId.Equals(PrescriptionID)).First();
+                prescriptionTable = DAO.ToDataTable.ToDataTableMethod(prescriptionResult);
+                var patientResult = conn.Patients.Where(a => a.PatientId.Equals(prescriptionResult.PatientId)).First();
+                patientTable = DAO.ToDataTable.ToDataTableMethod(patientResult);
+                var doctorResult = conn.Doctors.Where(a => a.Did.Equals(prescriptionResult.Did)).First();
+                doctorTable = DAO.ToDataTable.ToDataTableMethod(doctorResult);
+                var result = conn.Drugs.Where(a => a.PrescriptionId.Equals(PrescriptionID)).ToList();
+                drugTable = DAO.ToDataTable.ToDataTableMethod(result);
             }
-            //2. Load Data into report
+            
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource = new Microsoft.Reporting.WinForms.ReportDataSource();
             reportDataSource.Name = "DrugDataSet";
-            reportDataSource.Value = dt;
+            reportDataSource.Value = drugTable;
+            
+            //2. Load Data into report
             System.Configuration.Configuration config = System.Configuration.ConfigurationManager.OpenExeConfiguration(System.Configuration.ConfigurationUserLevel.None);
             _reportViewer.LocalReport.ReportPath = config.AppSettings.Settings["reportPath"].Value;
+            
+            //增加资源
+            _reportViewer.LocalReport.DataSources.Add(new Microsoft.Reporting.WinForms.ReportDataSource() { Name = "PatientDataSet", Value = patientTable });
+
+            _reportViewer.LocalReport.DataSources.Add(new Microsoft.Reporting.WinForms.ReportDataSource() { Name = "DoctorDataSet", Value = doctorTable });
+
+            _reportViewer.LocalReport.DataSources.Add(new Microsoft.Reporting.WinForms.ReportDataSource() { Name = "PrescriptionDataSet", Value = prescriptionTable });
+
             _reportViewer.LocalReport.DataSources.Add(reportDataSource);
             _reportViewer.RefreshReport();
             //3. show report

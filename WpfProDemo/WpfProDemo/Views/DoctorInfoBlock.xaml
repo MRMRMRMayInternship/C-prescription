@@ -1,0 +1,34 @@
+﻿<UserControl x:Class="WpfProDemo.Views.DoctorInfoBlock"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="1520">
+    <UserControl.Resources>
+        <Style TargetType="Label">
+            <Setter Property="FontSize" Value="20">
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <Grid >
+        <Label Content="----Docotor Infomation----"/>
+        <DockPanel HorizontalAlignment="Left" Height="44" LastChildFill="True" Margin="38,36,0,0" VerticalAlignment="Top" Width="248">
+            <Label Content="Name:" Height="44" VerticalAlignment="Top" Width="72"/>
+            <Label Name="DoctorName" Height="44" VerticalAlignment="Top"/>
+        </DockPanel>
+        <DockPanel HorizontalAlignment="Left" Height="44" LastChildFill="True" Margin="347,36,0,0" VerticalAlignment="Top" Width="248">
+            <Label Content="ID:" Height="44" VerticalAlignment="Top" Width="43"/>
+            <Label Name="DoctorID" Height="44" VerticalAlignment="Top"/>
+        </DockPanel>
+        <DockPanel HorizontalAlignment="Left" Height="44" LastChildFill="True" Margin="668,36,0,0" VerticalAlignment="Top" Width="248">
+            <Label Content="Date:" Height="44" VerticalAlignment="Top" Width="92"/>
+            <Label Name="NowDate" Height="44" VerticalAlignment="Top"/>
+        </DockPanel>
+        <DockPanel HorizontalAlignment="Left" Height="44" LastChildFill="True" Margin="982,36,0,0" VerticalAlignment="Top" Width="248">
+            <Label Content="Department:" Height="44" VerticalAlignment="Top" Width="128"/>
+            <Label Name="Department" Height="44" VerticalAlignment="Top" Width="130"/>
+        </DockPanel>
+
+    </Grid>
+</UserControl>

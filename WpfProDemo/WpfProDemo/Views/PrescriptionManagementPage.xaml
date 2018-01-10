@@ -15,47 +15,18 @@
                 </StackPanel>
             </Grid>
         </DataTemplate>
+        
     </Page.Resources>
     <Grid Width="auto" Height="auto">
         
         <DockPanel x:Name="MainLayout" LastChildFill="True" Margin="0,0,0,0"  Width="auto" Height="auto" RenderTransformOrigin="0,0">
-            <Menu Height="28" VerticalAlignment="Top" Width="auto" DockPanel.Dock="Top">
-            <MenuItem Header="_File" >
-                <Separator/>
-                <MenuItem Header= "_Exit" MouseEnter="MouseEnterExitArea" MouseLeave="MouseLeaveArea" />
-            </MenuItem>
-            <MenuItem Header="_Edit">
-                <MenuItem Command="ApplicationCommands.Copy"/>
-            </MenuItem>
-        </Menu>
-        <Grid Height="120" Width="Auto" DockPanel.Dock="Top" VerticalAlignment="Top" Background="DarkGray">
-            <DockPanel HorizontalAlignment="Left" Height="44" LastChildFill="True" Margin="38,36,0,0" VerticalAlignment="Top" Width="248">
-                <Label Content="Label" Height="44" VerticalAlignment="Top" Width="92"/>
-                <Label Content="Label" Height="44" VerticalAlignment="Top"/>
-            </DockPanel>
-            <DockPanel HorizontalAlignment="Left" Height="44" LastChildFill="True" Margin="347,36,0,0" VerticalAlignment="Top" Width="248">
-                <Label Content="Label" Height="44" VerticalAlignment="Top" Width="92"/>
-                <Label Content="Label" Height="44" VerticalAlignment="Top"/>
-            </DockPanel>
-            <DockPanel HorizontalAlignment="Left" Height="44" LastChildFill="True" Margin="668,36,0,0" VerticalAlignment="Top" Width="248">
-                <Label Content="Label" Height="44" VerticalAlignment="Top" Width="92"/>
-                <Label Content="Label" Height="44" VerticalAlignment="Top"/>
-            </DockPanel>
-            <DockPanel HorizontalAlignment="Left" Height="44" LastChildFill="True" Margin="982,36,0,0" VerticalAlignment="Top" Width="248">
-                <Label Content="Label" Height="44" VerticalAlignment="Top" Width="92"/>
-                <Label Content="Label" Height="44" VerticalAlignment="Top"/>
-            </DockPanel>
 
-        </Grid>
+        <local:DoctorInfoBlock DockPanel.Dock="Top" Height="120" Width="Auto" VerticalAlignment="Top" Background="DarkGray"></local:DoctorInfoBlock>
         <StackPanel Height="auto" Width="200" Background="gray">
             <Button x:Name="btnLoader" Content="Load" Margin="10,10,10,0" Click="btnLoad_Clicked"/>
             <Button x:Name="btnSpinner"  Content="Button" Margin="10,10,10,0" Command="{Binding AddNewCommand}"/>
             <Button Content="Button" Margin="10,10,10,0"/>
-            <StatusBar Height="100" Margin="10,50,0,0">
-                <StatusBarItem>
-                    <TextBlock Name="StatBarText" Text="Ready" />
-                </StatusBarItem>
-            </StatusBar>
+            
         </StackPanel>
             <Grid Height="auto">
                 <local:PrescriptionFileListBox x:Name="PrescriptionListBox" Height="auto"></local:PrescriptionFileListBox>
@@ -63,12 +34,53 @@
             </Grid>
             <DockPanel Height="auto" LastChildFill="True" DockPanel.Dock="Right" Width="auto">
                 <Grid Height="200" Width="Auto" DockPanel.Dock="Top"/>
+                <Border BorderThickness="2" BorderBrush="Gray">
                 <Grid Height="Auto" Width="232" DockPanel.Dock="Left">
-                    <DataGrid HorizontalAlignment="Left" Margin="45,92,0,0" VerticalAlignment="Top"/>
+                        <Label HorizontalAlignment="Center" Content="-----Patient Infomation-----" />
+                        <DockPanel LastChildFill="True" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="34,50,30,0" Width="170">
+                        <Label Content="123:" Width="41"/>
+                        <Label Content="123:" Width="auto"/>
+                    </DockPanel>
+                    <DockPanel LastChildFill="True" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="34,90,30,0" Width="170">
+                        <Label Content="123:" Width="41"/>
+                        <Label Content="123:" Width="auto"/>
+                    </DockPanel>
+                    <DockPanel LastChildFill="True" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="34,130,30,0" Width="170">
+                        <Label Content="123:" Width="41"/>
+                        <Label Content="123:" Width="auto"/>
+                    </DockPanel>
+                        <DockPanel LastChildFill="True" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="34,170,30,0" Width="170">
+                        <Label Content="123:" Width="41"/>
+                        <Label Content="123:" Width="auto"/>
+                    </DockPanel>
+                    <DockPanel LastChildFill="True" HorizontalAlignment="Center" Margin="34,210,30,0" Width="170">
+                        <Label Content="123:" Width="41"/>
+                        <TextBox TextWrapping="Wrap" Text="123112312323123123123123123123:" Width="auto" Background="White"/>
+                    </DockPanel>
                 </Grid>
+                </Border>
                 <DockPanel LastChildFill="True" Height="auto" Width="auto">
                     <Grid DockPanel.Dock="Top" Height="347" Width="Auto"  VerticalAlignment="Top">
-                        <DataGrid HorizontalAlignment="Left" Margin="328,176,0,0" VerticalAlignment="Top"/>
+                        <DataGrid HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top">
+                            <DataGrid.Columns>
+                                <DataGridTemplateColumn Header="Option" Width="40" Visibility="Collapsed">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <!--放控件 -->
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTextColumn Header="药品名称" Width="80" Binding="{Binding DrugName}"/>
+                                <DataGridTextColumn Header="用法" Width="40" Binding="{Binding Usage}"/>
+                                <DataGridTextColumn Header="用药天数" Width="60" Binding="{Binding TimeDuration}"/>
+                                <DataGridTextColumn Header="一天用药次数" Width="90" Binding="{Binding TimeDuration}"/>
+                                <DataGridTextColumn Header="早上" Width="60" Binding="{Binding TimeDuration}"/>
+                                <DataGridTextColumn Header="中午" Width="60" Binding="{Binding TimeDuration}"/>
+                                <DataGridTextColumn Header="晚上" Width="60" Binding="{Binding TimeDuration}"/>
+                                <DataGridTextColumn Header="一次用药量" Width="70" Binding="{Binding TimeDuration}"/>
+                                <DataGridTextColumn Header="使用说明" Width="300" Binding="{Binding TimeDuration}"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
                     </Grid>
                     <Grid DockPanel.Dock="Bottom" Height="auto" Width="auto">
                         <Button Content="Report" FontSize="14" FontWeight="Bold"  Margin="506,0,92,10" Click="btnReportCreation_Clicked">

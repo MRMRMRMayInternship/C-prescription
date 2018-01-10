@@ -28,6 +28,8 @@ namespace WpfProDemo {
         
         private DoctorDataTable tableDoctor;
         
+        private DrugsDataTable tableDrugs;
+        
         private PatientDataTable tablePatient;
         
         private PrescriptionDataTable tablePrescription;
@@ -72,6 +74,9 @@ namespace WpfProDemo {
                 if ((ds.Tables["Doctor"] != null)) {
                     base.Tables.Add(new DoctorDataTable(ds.Tables["Doctor"]));
                 }
+                if ((ds.Tables["Drugs"] != null)) {
+                    base.Tables.Add(new DrugsDataTable(ds.Tables["Drugs"]));
+                }
                 if ((ds.Tables["Patient"] != null)) {
                     base.Tables.Add(new PatientDataTable(ds.Tables["Patient"]));
                 }
@@ -113,6 +118,16 @@ namespace WpfProDemo {
         public DoctorDataTable Doctor {
             get {
                 return this.tableDoctor;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public DrugsDataTable Drugs {
+            get {
+                return this.tableDrugs;
             }
         }
         
@@ -209,6 +224,9 @@ namespace WpfProDemo {
                 if ((ds.Tables["Doctor"] != null)) {
                     base.Tables.Add(new DoctorDataTable(ds.Tables["Doctor"]));
                 }
+                if ((ds.Tables["Drugs"] != null)) {
+                    base.Tables.Add(new DrugsDataTable(ds.Tables["Drugs"]));
+                }
                 if ((ds.Tables["Patient"] != null)) {
                     base.Tables.Add(new PatientDataTable(ds.Tables["Patient"]));
                 }
@@ -260,6 +278,12 @@ namespace WpfProDemo {
                     this.tableDoctor.InitVars();
                 }
             }
+            this.tableDrugs = ((DrugsDataTable)(base.Tables["Drugs"]));
+            if ((initTable == true)) {
+                if ((this.tableDrugs != null)) {
+                    this.tableDrugs.InitVars();
+                }
+            }
             this.tablePatient = ((PatientDataTable)(base.Tables["Patient"]));
             if ((initTable == true)) {
                 if ((this.tablePatient != null)) {
@@ -289,6 +313,8 @@ namespace WpfProDemo {
             base.Tables.Add(this.tableAccount);
             this.tableDoctor = new DoctorDataTable();
             base.Tables.Add(this.tableDoctor);
+            this.tableDrugs = new DrugsDataTable();
+            base.Tables.Add(this.tableDrugs);
             this.tablePatient = new PatientDataTable();
             base.Tables.Add(this.tablePatient);
             this.tablePrescription = new PrescriptionDataTable();
@@ -316,6 +342,12 @@ namespace WpfProDemo {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private bool ShouldSerializeDoctor() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private bool ShouldSerializeDrugs() {
             return false;
         }
         
@@ -391,6 +423,9 @@ namespace WpfProDemo {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public delegate void DoctorRowChangeEventHandler(object sender, DoctorRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public delegate void DrugsRowChangeEventHandler(object sender, DrugsRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public delegate void PatientRowChangeEventHandler(object sender, PatientRowChangeEvent e);
@@ -547,7 +582,7 @@ namespace WpfProDemo {
                                 this.columnDid}, true));
                 this.columnDid.AllowDBNull = false;
                 this.columnDid.Unique = true;
-                this.columnDid.MaxLength = 20;
+                this.columnDid.MaxLength = 50;
                 this.columnAccountPw.AllowDBNull = false;
                 this.columnAccountPw.MaxLength = 50;
             }
@@ -864,14 +899,14 @@ namespace WpfProDemo {
                                 this.columnDid}, true));
                 this.columnDid.AllowDBNull = false;
                 this.columnDid.Unique = true;
-                this.columnDid.MaxLength = 20;
+                this.columnDid.MaxLength = 50;
                 this.columnName.AllowDBNull = false;
-                this.columnName.MaxLength = 20;
+                this.columnName.MaxLength = 50;
                 this.columnSex.AllowDBNull = false;
                 this.columnSex.MaxLength = 4;
                 this.columnAge.AllowDBNull = false;
                 this.columnDepartment.AllowDBNull = false;
-                this.columnDepartment.MaxLength = 20;
+                this.columnDepartment.MaxLength = 50;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1003,6 +1038,410 @@ namespace WpfProDemo {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class DrugsDataTable : global::System.Data.TypedTableBase<DrugsRow> {
+            
+            private global::System.Data.DataColumn columnPrescriptionId;
+            
+            private global::System.Data.DataColumn columnDrugName;
+            
+            private global::System.Data.DataColumn columnTimeDuration;
+            
+            private global::System.Data.DataColumn columnTimesPerDay;
+            
+            private global::System.Data.DataColumn columnDosagePerTime;
+            
+            private global::System.Data.DataColumn columnUsage;
+            
+            private global::System.Data.DataColumn columnInstruction;
+            
+            private global::System.Data.DataColumn columnWhenMorning;
+            
+            private global::System.Data.DataColumn columnWhenAfternoon;
+            
+            private global::System.Data.DataColumn columnWhenEvening;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public DrugsDataTable() {
+                this.TableName = "Drugs";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal DrugsDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected DrugsDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn PrescriptionIdColumn {
+                get {
+                    return this.columnPrescriptionId;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn DrugNameColumn {
+                get {
+                    return this.columnDrugName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn TimeDurationColumn {
+                get {
+                    return this.columnTimeDuration;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn TimesPerDayColumn {
+                get {
+                    return this.columnTimesPerDay;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn DosagePerTimeColumn {
+                get {
+                    return this.columnDosagePerTime;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn UsageColumn {
+                get {
+                    return this.columnUsage;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn InstructionColumn {
+                get {
+                    return this.columnInstruction;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn WhenMorningColumn {
+                get {
+                    return this.columnWhenMorning;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn WhenAfternoonColumn {
+                get {
+                    return this.columnWhenAfternoon;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn WhenEveningColumn {
+                get {
+                    return this.columnWhenEvening;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public DrugsRow this[int index] {
+                get {
+                    return ((DrugsRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event DrugsRowChangeEventHandler DrugsRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event DrugsRowChangeEventHandler DrugsRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event DrugsRowChangeEventHandler DrugsRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event DrugsRowChangeEventHandler DrugsRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void AddDrugsRow(DrugsRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public DrugsRow AddDrugsRow(string PrescriptionId, string DrugName, string TimeDuration, string TimesPerDay, string DosagePerTime, string Usage, string Instruction, string WhenMorning, string WhenAfternoon, string WhenEvening) {
+                DrugsRow rowDrugsRow = ((DrugsRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        PrescriptionId,
+                        DrugName,
+                        TimeDuration,
+                        TimesPerDay,
+                        DosagePerTime,
+                        Usage,
+                        Instruction,
+                        WhenMorning,
+                        WhenAfternoon,
+                        WhenEvening};
+                rowDrugsRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowDrugsRow);
+                return rowDrugsRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public DrugsRow FindByPrescriptionIdDrugName(string PrescriptionId, string DrugName) {
+                return ((DrugsRow)(this.Rows.Find(new object[] {
+                            PrescriptionId,
+                            DrugName})));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                DrugsDataTable cln = ((DrugsDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new DrugsDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal void InitVars() {
+                this.columnPrescriptionId = base.Columns["PrescriptionId"];
+                this.columnDrugName = base.Columns["DrugName"];
+                this.columnTimeDuration = base.Columns["TimeDuration"];
+                this.columnTimesPerDay = base.Columns["TimesPerDay"];
+                this.columnDosagePerTime = base.Columns["DosagePerTime"];
+                this.columnUsage = base.Columns["Usage"];
+                this.columnInstruction = base.Columns["Instruction"];
+                this.columnWhenMorning = base.Columns["WhenMorning"];
+                this.columnWhenAfternoon = base.Columns["WhenAfternoon"];
+                this.columnWhenEvening = base.Columns["WhenEvening"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            private void InitClass() {
+                this.columnPrescriptionId = new global::System.Data.DataColumn("PrescriptionId", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPrescriptionId);
+                this.columnDrugName = new global::System.Data.DataColumn("DrugName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDrugName);
+                this.columnTimeDuration = new global::System.Data.DataColumn("TimeDuration", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTimeDuration);
+                this.columnTimesPerDay = new global::System.Data.DataColumn("TimesPerDay", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTimesPerDay);
+                this.columnDosagePerTime = new global::System.Data.DataColumn("DosagePerTime", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDosagePerTime);
+                this.columnUsage = new global::System.Data.DataColumn("Usage", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnUsage);
+                this.columnInstruction = new global::System.Data.DataColumn("Instruction", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnInstruction);
+                this.columnWhenMorning = new global::System.Data.DataColumn("WhenMorning", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnWhenMorning);
+                this.columnWhenAfternoon = new global::System.Data.DataColumn("WhenAfternoon", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnWhenAfternoon);
+                this.columnWhenEvening = new global::System.Data.DataColumn("WhenEvening", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnWhenEvening);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnPrescriptionId,
+                                this.columnDrugName}, true));
+                this.columnPrescriptionId.AllowDBNull = false;
+                this.columnPrescriptionId.MaxLength = 50;
+                this.columnDrugName.AllowDBNull = false;
+                this.columnDrugName.MaxLength = 50;
+                this.columnTimeDuration.AllowDBNull = false;
+                this.columnTimeDuration.MaxLength = 20;
+                this.columnTimesPerDay.AllowDBNull = false;
+                this.columnTimesPerDay.MaxLength = 20;
+                this.columnDosagePerTime.AllowDBNull = false;
+                this.columnDosagePerTime.MaxLength = 20;
+                this.columnUsage.AllowDBNull = false;
+                this.columnUsage.MaxLength = 20;
+                this.columnInstruction.AllowDBNull = false;
+                this.columnInstruction.MaxLength = 1073741823;
+                this.columnWhenMorning.AllowDBNull = false;
+                this.columnWhenMorning.MaxLength = 20;
+                this.columnWhenAfternoon.AllowDBNull = false;
+                this.columnWhenAfternoon.MaxLength = 20;
+                this.columnWhenEvening.AllowDBNull = false;
+                this.columnWhenEvening.MaxLength = 20;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public DrugsRow NewDrugsRow() {
+                return ((DrugsRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new DrugsRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(DrugsRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.DrugsRowChanged != null)) {
+                    this.DrugsRowChanged(this, new DrugsRowChangeEvent(((DrugsRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.DrugsRowChanging != null)) {
+                    this.DrugsRowChanging(this, new DrugsRowChangeEvent(((DrugsRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.DrugsRowDeleted != null)) {
+                    this.DrugsRowDeleted(this, new DrugsRowChangeEvent(((DrugsRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.DrugsRowDeleting != null)) {
+                    this.DrugsRowDeleting(this, new DrugsRowChangeEvent(((DrugsRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void RemoveDrugsRow(DrugsRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                PIPDataSet ds = new PIPDataSet();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "DrugsDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class PatientDataTable : global::System.Data.TypedTableBase<PatientRow> {
             
             private global::System.Data.DataColumn columnPatientId;
@@ -1012,8 +1451,6 @@ namespace WpfProDemo {
             private global::System.Data.DataColumn columnAge;
             
             private global::System.Data.DataColumn columnSex;
-            
-            private global::System.Data.DataColumn columnDiagnosis;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -1082,14 +1519,6 @@ namespace WpfProDemo {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn DiagnosisColumn {
-                get {
-                    return this.columnDiagnosis;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1125,14 +1554,13 @@ namespace WpfProDemo {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public PatientRow AddPatientRow(string PatientId, string Name, string Age, string Sex, string Diagnosis) {
+            public PatientRow AddPatientRow(string PatientId, string Name, string Age, string Sex) {
                 PatientRow rowPatientRow = ((PatientRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         PatientId,
                         Name,
                         Age,
-                        Sex,
-                        Diagnosis};
+                        Sex};
                 rowPatientRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowPatientRow);
                 return rowPatientRow;
@@ -1166,7 +1594,6 @@ namespace WpfProDemo {
                 this.columnName = base.Columns["Name"];
                 this.columnAge = base.Columns["Age"];
                 this.columnSex = base.Columns["Sex"];
-                this.columnDiagnosis = base.Columns["Diagnosis"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1180,21 +1607,17 @@ namespace WpfProDemo {
                 base.Columns.Add(this.columnAge);
                 this.columnSex = new global::System.Data.DataColumn("Sex", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnSex);
-                this.columnDiagnosis = new global::System.Data.DataColumn("Diagnosis", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDiagnosis);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnPatientId}, true));
                 this.columnPatientId.AllowDBNull = false;
                 this.columnPatientId.Unique = true;
-                this.columnPatientId.MaxLength = 20;
+                this.columnPatientId.MaxLength = 50;
                 this.columnName.AllowDBNull = false;
-                this.columnName.MaxLength = 20;
+                this.columnName.MaxLength = 50;
                 this.columnAge.AllowDBNull = false;
                 this.columnAge.MaxLength = 20;
                 this.columnSex.AllowDBNull = false;
                 this.columnSex.MaxLength = 4;
-                this.columnDiagnosis.AllowDBNull = false;
-                this.columnDiagnosis.MaxLength = 2147483647;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1336,25 +1759,9 @@ namespace WpfProDemo {
             
             private global::System.Data.DataColumn columnDate;
             
-            private global::System.Data.DataColumn columnDrugName;
-            
-            private global::System.Data.DataColumn columnTimeDuration;
-            
-            private global::System.Data.DataColumn columnTimesPerDay;
-            
-            private global::System.Data.DataColumn columnDosagePerTime;
-            
-            private global::System.Data.DataColumn columnUsage;
-            
-            private global::System.Data.DataColumn columnInstruction;
-            
-            private global::System.Data.DataColumn columnWhenMorning;
-            
-            private global::System.Data.DataColumn columnWhenAfternoon;
-            
-            private global::System.Data.DataColumn columnWhenEvening;
-            
             private global::System.Data.DataColumn columnStatus;
+            
+            private global::System.Data.DataColumn columnDiagnosis;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -1423,81 +1830,17 @@ namespace WpfProDemo {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn DrugNameColumn {
-                get {
-                    return this.columnDrugName;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn TimeDurationColumn {
-                get {
-                    return this.columnTimeDuration;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn TimesPerDayColumn {
-                get {
-                    return this.columnTimesPerDay;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn DosagePerTimeColumn {
-                get {
-                    return this.columnDosagePerTime;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn UsageColumn {
-                get {
-                    return this.columnUsage;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn InstructionColumn {
-                get {
-                    return this.columnInstruction;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn WhenMorningColumn {
-                get {
-                    return this.columnWhenMorning;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn WhenAfternoonColumn {
-                get {
-                    return this.columnWhenAfternoon;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn WhenEveningColumn {
-                get {
-                    return this.columnWhenEvening;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public global::System.Data.DataColumn StatusColumn {
                 get {
                     return this.columnStatus;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn DiagnosisColumn {
+                get {
+                    return this.columnDiagnosis;
                 }
             }
             
@@ -1538,23 +1881,15 @@ namespace WpfProDemo {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public PrescriptionRow AddPrescriptionRow(string PrescriptionId, DoctorRow parentDoctorRowByFK_Prescription_ToDoctor, PatientRow parentPatientRowByFK_Prescription_ToPatient, string Date, string DrugName, string TimeDuration, string TimesPerDay, string DosagePerTime, string Usage, string Instruction, string WhenMorning, string WhenAfternoon, string WhenEvening, bool Status) {
+            public PrescriptionRow AddPrescriptionRow(string PrescriptionId, DoctorRow parentDoctorRowByFK_Prescription_ToDoctor, PatientRow parentPatientRowByFK_Prescription_ToPatient, string Date, bool Status, string Diagnosis) {
                 PrescriptionRow rowPrescriptionRow = ((PrescriptionRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         PrescriptionId,
                         null,
                         null,
                         Date,
-                        DrugName,
-                        TimeDuration,
-                        TimesPerDay,
-                        DosagePerTime,
-                        Usage,
-                        Instruction,
-                        WhenMorning,
-                        WhenAfternoon,
-                        WhenEvening,
-                        Status};
+                        Status,
+                        Diagnosis};
                 if ((parentDoctorRowByFK_Prescription_ToDoctor != null)) {
                     columnValuesArray[1] = parentDoctorRowByFK_Prescription_ToDoctor[0];
                 }
@@ -1568,10 +1903,9 @@ namespace WpfProDemo {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public PrescriptionRow FindByPrescriptionIdDrugName(string PrescriptionId, string DrugName) {
+            public PrescriptionRow FindByPrescriptionId(string PrescriptionId) {
                 return ((PrescriptionRow)(this.Rows.Find(new object[] {
-                            PrescriptionId,
-                            DrugName})));
+                            PrescriptionId})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1595,16 +1929,8 @@ namespace WpfProDemo {
                 this.columnDid = base.Columns["Did"];
                 this.columnPatientId = base.Columns["PatientId"];
                 this.columnDate = base.Columns["Date"];
-                this.columnDrugName = base.Columns["DrugName"];
-                this.columnTimeDuration = base.Columns["TimeDuration"];
-                this.columnTimesPerDay = base.Columns["TimesPerDay"];
-                this.columnDosagePerTime = base.Columns["DosagePerTime"];
-                this.columnUsage = base.Columns["Usage"];
-                this.columnInstruction = base.Columns["Instruction"];
-                this.columnWhenMorning = base.Columns["WhenMorning"];
-                this.columnWhenAfternoon = base.Columns["WhenAfternoon"];
-                this.columnWhenEvening = base.Columns["WhenEvening"];
                 this.columnStatus = base.Columns["Status"];
+                this.columnDiagnosis = base.Columns["Diagnosis"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1618,56 +1944,23 @@ namespace WpfProDemo {
                 base.Columns.Add(this.columnPatientId);
                 this.columnDate = new global::System.Data.DataColumn("Date", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDate);
-                this.columnDrugName = new global::System.Data.DataColumn("DrugName", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDrugName);
-                this.columnTimeDuration = new global::System.Data.DataColumn("TimeDuration", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnTimeDuration);
-                this.columnTimesPerDay = new global::System.Data.DataColumn("TimesPerDay", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnTimesPerDay);
-                this.columnDosagePerTime = new global::System.Data.DataColumn("DosagePerTime", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDosagePerTime);
-                this.columnUsage = new global::System.Data.DataColumn("Usage", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnUsage);
-                this.columnInstruction = new global::System.Data.DataColumn("Instruction", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnInstruction);
-                this.columnWhenMorning = new global::System.Data.DataColumn("WhenMorning", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnWhenMorning);
-                this.columnWhenAfternoon = new global::System.Data.DataColumn("WhenAfternoon", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnWhenAfternoon);
-                this.columnWhenEvening = new global::System.Data.DataColumn("WhenEvening", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnWhenEvening);
                 this.columnStatus = new global::System.Data.DataColumn("Status", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnStatus);
+                this.columnDiagnosis = new global::System.Data.DataColumn("Diagnosis", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDiagnosis);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnPrescriptionId,
-                                this.columnDrugName}, true));
+                                this.columnPrescriptionId}, true));
                 this.columnPrescriptionId.AllowDBNull = false;
-                this.columnPrescriptionId.MaxLength = 20;
+                this.columnPrescriptionId.Unique = true;
+                this.columnPrescriptionId.MaxLength = 50;
                 this.columnDid.AllowDBNull = false;
-                this.columnDid.MaxLength = 20;
+                this.columnDid.MaxLength = 50;
                 this.columnPatientId.AllowDBNull = false;
-                this.columnPatientId.MaxLength = 20;
+                this.columnPatientId.MaxLength = 50;
                 this.columnDate.AllowDBNull = false;
-                this.columnDate.MaxLength = 20;
-                this.columnDrugName.AllowDBNull = false;
-                this.columnDrugName.MaxLength = 20;
-                this.columnTimeDuration.AllowDBNull = false;
-                this.columnTimeDuration.MaxLength = 20;
-                this.columnTimesPerDay.AllowDBNull = false;
-                this.columnTimesPerDay.MaxLength = 20;
-                this.columnDosagePerTime.AllowDBNull = false;
-                this.columnDosagePerTime.MaxLength = 20;
-                this.columnUsage.AllowDBNull = false;
-                this.columnUsage.MaxLength = 20;
-                this.columnInstruction.AllowDBNull = false;
-                this.columnInstruction.MaxLength = 2147483647;
-                this.columnWhenMorning.AllowDBNull = false;
-                this.columnWhenMorning.MaxLength = 20;
-                this.columnWhenAfternoon.AllowDBNull = false;
-                this.columnWhenAfternoon.MaxLength = 20;
-                this.columnWhenEvening.AllowDBNull = false;
-                this.columnWhenEvening.MaxLength = 20;
+                this.columnDate.MaxLength = 50;
                 this.columnStatus.AllowDBNull = false;
+                this.columnDiagnosis.MaxLength = 1073741823;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1937,6 +2230,131 @@ namespace WpfProDemo {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
+        public partial class DrugsRow : global::System.Data.DataRow {
+            
+            private DrugsDataTable tableDrugs;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal DrugsRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableDrugs = ((DrugsDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string PrescriptionId {
+                get {
+                    return ((string)(this[this.tableDrugs.PrescriptionIdColumn]));
+                }
+                set {
+                    this[this.tableDrugs.PrescriptionIdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string DrugName {
+                get {
+                    return ((string)(this[this.tableDrugs.DrugNameColumn]));
+                }
+                set {
+                    this[this.tableDrugs.DrugNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string TimeDuration {
+                get {
+                    return ((string)(this[this.tableDrugs.TimeDurationColumn]));
+                }
+                set {
+                    this[this.tableDrugs.TimeDurationColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string TimesPerDay {
+                get {
+                    return ((string)(this[this.tableDrugs.TimesPerDayColumn]));
+                }
+                set {
+                    this[this.tableDrugs.TimesPerDayColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string DosagePerTime {
+                get {
+                    return ((string)(this[this.tableDrugs.DosagePerTimeColumn]));
+                }
+                set {
+                    this[this.tableDrugs.DosagePerTimeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Usage {
+                get {
+                    return ((string)(this[this.tableDrugs.UsageColumn]));
+                }
+                set {
+                    this[this.tableDrugs.UsageColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Instruction {
+                get {
+                    return ((string)(this[this.tableDrugs.InstructionColumn]));
+                }
+                set {
+                    this[this.tableDrugs.InstructionColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string WhenMorning {
+                get {
+                    return ((string)(this[this.tableDrugs.WhenMorningColumn]));
+                }
+                set {
+                    this[this.tableDrugs.WhenMorningColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string WhenAfternoon {
+                get {
+                    return ((string)(this[this.tableDrugs.WhenAfternoonColumn]));
+                }
+                set {
+                    this[this.tableDrugs.WhenAfternoonColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string WhenEvening {
+                get {
+                    return ((string)(this[this.tableDrugs.WhenEveningColumn]));
+                }
+                set {
+                    this[this.tableDrugs.WhenEveningColumn] = value;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
         public partial class PatientRow : global::System.Data.DataRow {
             
             private PatientDataTable tablePatient;
@@ -1989,17 +2407,6 @@ namespace WpfProDemo {
                 }
                 set {
                     this[this.tablePatient.SexColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string Diagnosis {
-                get {
-                    return ((string)(this[this.tablePatient.DiagnosisColumn]));
-                }
-                set {
-                    this[this.tablePatient.DiagnosisColumn] = value;
                 }
             }
             
@@ -2075,111 +2482,28 @@ namespace WpfProDemo {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string DrugName {
-                get {
-                    return ((string)(this[this.tablePrescription.DrugNameColumn]));
-                }
-                set {
-                    this[this.tablePrescription.DrugNameColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string TimeDuration {
-                get {
-                    return ((string)(this[this.tablePrescription.TimeDurationColumn]));
-                }
-                set {
-                    this[this.tablePrescription.TimeDurationColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string TimesPerDay {
-                get {
-                    return ((string)(this[this.tablePrescription.TimesPerDayColumn]));
-                }
-                set {
-                    this[this.tablePrescription.TimesPerDayColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string DosagePerTime {
-                get {
-                    return ((string)(this[this.tablePrescription.DosagePerTimeColumn]));
-                }
-                set {
-                    this[this.tablePrescription.DosagePerTimeColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string Usage {
-                get {
-                    return ((string)(this[this.tablePrescription.UsageColumn]));
-                }
-                set {
-                    this[this.tablePrescription.UsageColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string Instruction {
-                get {
-                    return ((string)(this[this.tablePrescription.InstructionColumn]));
-                }
-                set {
-                    this[this.tablePrescription.InstructionColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string WhenMorning {
-                get {
-                    return ((string)(this[this.tablePrescription.WhenMorningColumn]));
-                }
-                set {
-                    this[this.tablePrescription.WhenMorningColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string WhenAfternoon {
-                get {
-                    return ((string)(this[this.tablePrescription.WhenAfternoonColumn]));
-                }
-                set {
-                    this[this.tablePrescription.WhenAfternoonColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string WhenEvening {
-                get {
-                    return ((string)(this[this.tablePrescription.WhenEveningColumn]));
-                }
-                set {
-                    this[this.tablePrescription.WhenEveningColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool Status {
                 get {
                     return ((bool)(this[this.tablePrescription.StatusColumn]));
                 }
                 set {
                     this[this.tablePrescription.StatusColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Diagnosis {
+                get {
+                    try {
+                        return ((string)(this[this.tablePrescription.DiagnosisColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("\'Prescription\' 테이블의 \'Diagnosis\' 열의 값이 DBNull입니다.", e);
+                    }
+                }
+                set {
+                    this[this.tablePrescription.DiagnosisColumn] = value;
                 }
             }
             
@@ -2203,6 +2527,18 @@ namespace WpfProDemo {
                 set {
                     this.SetParentRow(value, this.Table.ParentRelations["FK_Prescription_ToPatient"]);
                 }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsDiagnosisNull() {
+                return this.IsNull(this.tablePrescription.DiagnosisColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetDiagnosisNull() {
+                this[this.tablePrescription.DiagnosisColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -2260,6 +2596,40 @@ namespace WpfProDemo {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public DoctorRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public class DrugsRowChangeEvent : global::System.EventArgs {
+            
+            private DrugsRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public DrugsRowChangeEvent(DrugsRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public DrugsRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -2475,25 +2845,25 @@ namespace WpfProDemo.PIPDataSetTableAdapters {
             this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[Account] WHERE (([Did] = @Original_Did) AND ([AccountPw] = @Or" +
                 "iginal_AccountPw))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Did", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Did", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_AccountPw", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AccountPw", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Did", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Did", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_AccountPw", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AccountPw", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
             this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[Account] ([Did], [AccountPw]) VALUES (@Did, @AccountPw);\r\nSELE" +
                 "CT Did, AccountPw FROM Account WHERE (Did = @Did)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Did", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Did", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@AccountPw", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AccountPw", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Did", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Did", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@AccountPw", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AccountPw", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
             this._adapter.UpdateCommand.CommandText = "UPDATE [dbo].[Account] SET [Did] = @Did, [AccountPw] = @AccountPw WHERE (([Did] =" +
                 " @Original_Did) AND ([AccountPw] = @Original_AccountPw));\r\nSELECT Did, AccountPw" +
                 " FROM Account WHERE (Did = @Did)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Did", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Did", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@AccountPw", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AccountPw", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Did", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Did", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_AccountPw", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AccountPw", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Did", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Did", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@AccountPw", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AccountPw", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Did", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Did", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_AccountPw", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AccountPw", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2819,37 +3189,37 @@ namespace WpfProDemo.PIPDataSetTableAdapters {
                 "_Name) AND ([Sex] = @Original_Sex) AND ([Age] = @Original_Age) AND ([Department]" +
                 " = @Original_Department))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Did", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Did", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Name", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Name", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Sex", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Sex", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Did", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Did", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Name", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Sex", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Sex", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Age", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Age", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Department", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Department", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Department", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Department", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
             this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[Doctor] ([Did], [Name], [Sex], [Age], [Department]) VALUES (@D" +
                 "id, @Name, @Sex, @Age, @Department);\r\nSELECT Did, Name, Sex, Age, Department FRO" +
                 "M Doctor WHERE (Did = @Did)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Did", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Did", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Name", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Sex", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Sex", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Did", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Did", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Sex", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Sex", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Age", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Age", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Department", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Department", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Department", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Department", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
             this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Doctor] SET [Did] = @Did, [Name] = @Name, [Sex] = @Sex, [Age] = @Age, [Department] = @Department WHERE (([Did] = @Original_Did) AND ([Name] = @Original_Name) AND ([Sex] = @Original_Sex) AND ([Age] = @Original_Age) AND ([Department] = @Original_Department));
 SELECT Did, Name, Sex, Age, Department FROM Doctor WHERE (Did = @Did)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Did", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Did", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Name", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Sex", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Sex", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Did", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Did", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Sex", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Sex", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Age", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Age", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Department", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Department", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Did", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Did", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Name", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Name", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Sex", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Sex", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Department", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Department", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Did", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Did", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Name", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Sex", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Sex", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Age", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Age", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Department", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Department", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Department", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Department", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3103,6 +3473,599 @@ SELECT Did, Name, Sex, Age, Department FROM Doctor WHERE (Did = @Did)";
     [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class DrugsTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::System.Data.SqlClient.SqlConnection _connection;
+        
+        private global::System.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public DrugsTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        internal global::System.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        internal global::System.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "Drugs";
+            tableMapping.ColumnMappings.Add("PrescriptionId", "PrescriptionId");
+            tableMapping.ColumnMappings.Add("DrugName", "DrugName");
+            tableMapping.ColumnMappings.Add("TimeDuration", "TimeDuration");
+            tableMapping.ColumnMappings.Add("TimesPerDay", "TimesPerDay");
+            tableMapping.ColumnMappings.Add("DosagePerTime", "DosagePerTime");
+            tableMapping.ColumnMappings.Add("Usage", "Usage");
+            tableMapping.ColumnMappings.Add("Instruction", "Instruction");
+            tableMapping.ColumnMappings.Add("WhenMorning", "WhenMorning");
+            tableMapping.ColumnMappings.Add("WhenAfternoon", "WhenAfternoon");
+            tableMapping.ColumnMappings.Add("WhenEvening", "WhenEvening");
+            this._adapter.TableMappings.Add(tableMapping);
+            this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.DeleteCommand.Connection = this.Connection;
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[Drugs] WHERE (([PrescriptionId] = @Original_PrescriptionId) AND ([DrugName] = @Original_DrugName) AND ([TimeDuration] = @Original_TimeDuration) AND ([TimesPerDay] = @Original_TimesPerDay) AND ([DosagePerTime] = @Original_DosagePerTime) AND ([Usage] = @Original_Usage) AND ([WhenMorning] = @Original_WhenMorning) AND ([WhenAfternoon] = @Original_WhenAfternoon) AND ([WhenEvening] = @Original_WhenEvening))";
+            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_PrescriptionId", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PrescriptionId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_DrugName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DrugName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_TimeDuration", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TimeDuration", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_TimesPerDay", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TimesPerDay", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_DosagePerTime", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DosagePerTime", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Usage", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Usage", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_WhenMorning", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "WhenMorning", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_WhenAfternoon", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "WhenAfternoon", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_WhenEvening", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "WhenEvening", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.InsertCommand.Connection = this.Connection;
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[Drugs] ([PrescriptionId], [DrugName], [TimeDuration], [TimesPerDay], [DosagePerTime], [Usage], [Instruction], [WhenMorning], [WhenAfternoon], [WhenEvening]) VALUES (@PrescriptionId, @DrugName, @TimeDuration, @TimesPerDay, @DosagePerTime, @Usage, @Instruction, @WhenMorning, @WhenAfternoon, @WhenEvening);
+SELECT PrescriptionId, DrugName, TimeDuration, TimesPerDay, DosagePerTime, Usage, Instruction, WhenMorning, WhenAfternoon, WhenEvening FROM Drugs WHERE (DrugName = @DrugName) AND (PrescriptionId = @PrescriptionId)";
+            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@PrescriptionId", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PrescriptionId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DrugName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DrugName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TimeDuration", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TimeDuration", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TimesPerDay", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TimesPerDay", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DosagePerTime", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DosagePerTime", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Usage", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Usage", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Instruction", global::System.Data.SqlDbType.NText, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Instruction", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@WhenMorning", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "WhenMorning", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@WhenAfternoon", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "WhenAfternoon", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@WhenEvening", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "WhenEvening", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.UpdateCommand.Connection = this.Connection;
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Drugs] SET [PrescriptionId] = @PrescriptionId, [DrugName] = @DrugName, [TimeDuration] = @TimeDuration, [TimesPerDay] = @TimesPerDay, [DosagePerTime] = @DosagePerTime, [Usage] = @Usage, [Instruction] = @Instruction, [WhenMorning] = @WhenMorning, [WhenAfternoon] = @WhenAfternoon, [WhenEvening] = @WhenEvening WHERE (([PrescriptionId] = @Original_PrescriptionId) AND ([DrugName] = @Original_DrugName) AND ([TimeDuration] = @Original_TimeDuration) AND ([TimesPerDay] = @Original_TimesPerDay) AND ([DosagePerTime] = @Original_DosagePerTime) AND ([Usage] = @Original_Usage) AND ([WhenMorning] = @Original_WhenMorning) AND ([WhenAfternoon] = @Original_WhenAfternoon) AND ([WhenEvening] = @Original_WhenEvening));
+SELECT PrescriptionId, DrugName, TimeDuration, TimesPerDay, DosagePerTime, Usage, Instruction, WhenMorning, WhenAfternoon, WhenEvening FROM Drugs WHERE (DrugName = @DrugName) AND (PrescriptionId = @PrescriptionId)";
+            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@PrescriptionId", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PrescriptionId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DrugName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DrugName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TimeDuration", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TimeDuration", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TimesPerDay", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TimesPerDay", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DosagePerTime", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DosagePerTime", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Usage", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Usage", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Instruction", global::System.Data.SqlDbType.NText, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Instruction", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@WhenMorning", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "WhenMorning", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@WhenAfternoon", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "WhenAfternoon", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@WhenEvening", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "WhenEvening", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_PrescriptionId", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PrescriptionId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_DrugName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DrugName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_TimeDuration", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TimeDuration", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_TimesPerDay", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TimesPerDay", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_DosagePerTime", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DosagePerTime", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Usage", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Usage", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_WhenMorning", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "WhenMorning", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_WhenAfternoon", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "WhenAfternoon", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_WhenEvening", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "WhenEvening", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = global::WpfProDemo.Properties.Settings.Default.PIPConnectionString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = "SELECT PrescriptionId, DrugName, TimeDuration, TimesPerDay, DosagePerTime, Usage," +
+                " Instruction, WhenMorning, WhenAfternoon, WhenEvening FROM dbo.Drugs";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
+        public virtual int Fill(PIPDataSet.DrugsDataTable dataTable) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual PIPDataSet.DrugsDataTable GetData() {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            PIPDataSet.DrugsDataTable dataTable = new PIPDataSet.DrugsDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(PIPDataSet.DrugsDataTable dataTable) {
+            return this.Adapter.Update(dataTable);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(PIPDataSet dataSet) {
+            return this.Adapter.Update(dataSet, "Drugs");
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow dataRow) {
+            return this.Adapter.Update(new global::System.Data.DataRow[] {
+                        dataRow});
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow[] dataRows) {
+            return this.Adapter.Update(dataRows);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
+        public virtual int Delete(string Original_PrescriptionId, string Original_DrugName, string Original_TimeDuration, string Original_TimesPerDay, string Original_DosagePerTime, string Original_Usage, string Original_WhenMorning, string Original_WhenAfternoon, string Original_WhenEvening) {
+            if ((Original_PrescriptionId == null)) {
+                throw new global::System.ArgumentNullException("Original_PrescriptionId");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[0].Value = ((string)(Original_PrescriptionId));
+            }
+            if ((Original_DrugName == null)) {
+                throw new global::System.ArgumentNullException("Original_DrugName");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[1].Value = ((string)(Original_DrugName));
+            }
+            if ((Original_TimeDuration == null)) {
+                throw new global::System.ArgumentNullException("Original_TimeDuration");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[2].Value = ((string)(Original_TimeDuration));
+            }
+            if ((Original_TimesPerDay == null)) {
+                throw new global::System.ArgumentNullException("Original_TimesPerDay");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[3].Value = ((string)(Original_TimesPerDay));
+            }
+            if ((Original_DosagePerTime == null)) {
+                throw new global::System.ArgumentNullException("Original_DosagePerTime");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[4].Value = ((string)(Original_DosagePerTime));
+            }
+            if ((Original_Usage == null)) {
+                throw new global::System.ArgumentNullException("Original_Usage");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[5].Value = ((string)(Original_Usage));
+            }
+            if ((Original_WhenMorning == null)) {
+                throw new global::System.ArgumentNullException("Original_WhenMorning");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[6].Value = ((string)(Original_WhenMorning));
+            }
+            if ((Original_WhenAfternoon == null)) {
+                throw new global::System.ArgumentNullException("Original_WhenAfternoon");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[7].Value = ((string)(Original_WhenAfternoon));
+            }
+            if ((Original_WhenEvening == null)) {
+                throw new global::System.ArgumentNullException("Original_WhenEvening");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[8].Value = ((string)(Original_WhenEvening));
+            }
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
+            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.DeleteCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.DeleteCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
+        public virtual int Insert(string PrescriptionId, string DrugName, string TimeDuration, string TimesPerDay, string DosagePerTime, string Usage, string Instruction, string WhenMorning, string WhenAfternoon, string WhenEvening) {
+            if ((PrescriptionId == null)) {
+                throw new global::System.ArgumentNullException("PrescriptionId");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[0].Value = ((string)(PrescriptionId));
+            }
+            if ((DrugName == null)) {
+                throw new global::System.ArgumentNullException("DrugName");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(DrugName));
+            }
+            if ((TimeDuration == null)) {
+                throw new global::System.ArgumentNullException("TimeDuration");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(TimeDuration));
+            }
+            if ((TimesPerDay == null)) {
+                throw new global::System.ArgumentNullException("TimesPerDay");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[3].Value = ((string)(TimesPerDay));
+            }
+            if ((DosagePerTime == null)) {
+                throw new global::System.ArgumentNullException("DosagePerTime");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[4].Value = ((string)(DosagePerTime));
+            }
+            if ((Usage == null)) {
+                throw new global::System.ArgumentNullException("Usage");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[5].Value = ((string)(Usage));
+            }
+            if ((Instruction == null)) {
+                throw new global::System.ArgumentNullException("Instruction");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[6].Value = ((string)(Instruction));
+            }
+            if ((WhenMorning == null)) {
+                throw new global::System.ArgumentNullException("WhenMorning");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[7].Value = ((string)(WhenMorning));
+            }
+            if ((WhenAfternoon == null)) {
+                throw new global::System.ArgumentNullException("WhenAfternoon");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[8].Value = ((string)(WhenAfternoon));
+            }
+            if ((WhenEvening == null)) {
+                throw new global::System.ArgumentNullException("WhenEvening");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[9].Value = ((string)(WhenEvening));
+            }
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
+            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.InsertCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.InsertCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(
+                    string PrescriptionId, 
+                    string DrugName, 
+                    string TimeDuration, 
+                    string TimesPerDay, 
+                    string DosagePerTime, 
+                    string Usage, 
+                    string Instruction, 
+                    string WhenMorning, 
+                    string WhenAfternoon, 
+                    string WhenEvening, 
+                    string Original_PrescriptionId, 
+                    string Original_DrugName, 
+                    string Original_TimeDuration, 
+                    string Original_TimesPerDay, 
+                    string Original_DosagePerTime, 
+                    string Original_Usage, 
+                    string Original_WhenMorning, 
+                    string Original_WhenAfternoon, 
+                    string Original_WhenEvening) {
+            if ((PrescriptionId == null)) {
+                throw new global::System.ArgumentNullException("PrescriptionId");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(PrescriptionId));
+            }
+            if ((DrugName == null)) {
+                throw new global::System.ArgumentNullException("DrugName");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(DrugName));
+            }
+            if ((TimeDuration == null)) {
+                throw new global::System.ArgumentNullException("TimeDuration");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(TimeDuration));
+            }
+            if ((TimesPerDay == null)) {
+                throw new global::System.ArgumentNullException("TimesPerDay");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(TimesPerDay));
+            }
+            if ((DosagePerTime == null)) {
+                throw new global::System.ArgumentNullException("DosagePerTime");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(DosagePerTime));
+            }
+            if ((Usage == null)) {
+                throw new global::System.ArgumentNullException("Usage");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(Usage));
+            }
+            if ((Instruction == null)) {
+                throw new global::System.ArgumentNullException("Instruction");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(Instruction));
+            }
+            if ((WhenMorning == null)) {
+                throw new global::System.ArgumentNullException("WhenMorning");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(WhenMorning));
+            }
+            if ((WhenAfternoon == null)) {
+                throw new global::System.ArgumentNullException("WhenAfternoon");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(WhenAfternoon));
+            }
+            if ((WhenEvening == null)) {
+                throw new global::System.ArgumentNullException("WhenEvening");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(WhenEvening));
+            }
+            if ((Original_PrescriptionId == null)) {
+                throw new global::System.ArgumentNullException("Original_PrescriptionId");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((string)(Original_PrescriptionId));
+            }
+            if ((Original_DrugName == null)) {
+                throw new global::System.ArgumentNullException("Original_DrugName");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((string)(Original_DrugName));
+            }
+            if ((Original_TimeDuration == null)) {
+                throw new global::System.ArgumentNullException("Original_TimeDuration");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((string)(Original_TimeDuration));
+            }
+            if ((Original_TimesPerDay == null)) {
+                throw new global::System.ArgumentNullException("Original_TimesPerDay");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((string)(Original_TimesPerDay));
+            }
+            if ((Original_DosagePerTime == null)) {
+                throw new global::System.ArgumentNullException("Original_DosagePerTime");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[14].Value = ((string)(Original_DosagePerTime));
+            }
+            if ((Original_Usage == null)) {
+                throw new global::System.ArgumentNullException("Original_Usage");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[15].Value = ((string)(Original_Usage));
+            }
+            if ((Original_WhenMorning == null)) {
+                throw new global::System.ArgumentNullException("Original_WhenMorning");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[16].Value = ((string)(Original_WhenMorning));
+            }
+            if ((Original_WhenAfternoon == null)) {
+                throw new global::System.ArgumentNullException("Original_WhenAfternoon");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[17].Value = ((string)(Original_WhenAfternoon));
+            }
+            if ((Original_WhenEvening == null)) {
+                throw new global::System.ArgumentNullException("Original_WhenEvening");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[18].Value = ((string)(Original_WhenEvening));
+            }
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
+            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.UpdateCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.UpdateCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(
+                    string TimeDuration, 
+                    string TimesPerDay, 
+                    string DosagePerTime, 
+                    string Usage, 
+                    string Instruction, 
+                    string WhenMorning, 
+                    string WhenAfternoon, 
+                    string WhenEvening, 
+                    string Original_PrescriptionId, 
+                    string Original_DrugName, 
+                    string Original_TimeDuration, 
+                    string Original_TimesPerDay, 
+                    string Original_DosagePerTime, 
+                    string Original_Usage, 
+                    string Original_WhenMorning, 
+                    string Original_WhenAfternoon, 
+                    string Original_WhenEvening) {
+            return this.Update(Original_PrescriptionId, Original_DrugName, TimeDuration, TimesPerDay, DosagePerTime, Usage, Instruction, WhenMorning, WhenAfternoon, WhenEvening, Original_PrescriptionId, Original_DrugName, Original_TimeDuration, Original_TimesPerDay, Original_DosagePerTime, Original_Usage, Original_WhenMorning, Original_WhenAfternoon, Original_WhenEvening);
+        }
+    }
+    
+    /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
     public partial class PatientTableAdapter : global::System.ComponentModel.Component {
         
         private global::System.Data.SqlClient.SqlDataAdapter _adapter;
@@ -3219,42 +4182,39 @@ SELECT Did, Name, Sex, Age, Department FROM Doctor WHERE (Did = @Did)";
             tableMapping.ColumnMappings.Add("Name", "Name");
             tableMapping.ColumnMappings.Add("Age", "Age");
             tableMapping.ColumnMappings.Add("Sex", "Sex");
-            tableMapping.ColumnMappings.Add("Diagnosis", "Diagnosis");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
             this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[Patient] WHERE (([PatientId] = @Original_PatientId) AND ([Name" +
                 "] = @Original_Name) AND ([Age] = @Original_Age) AND ([Sex] = @Original_Sex))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_PatientId", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PatientId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Name", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Name", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Age", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Age", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Sex", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Sex", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_PatientId", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PatientId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Name", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Age", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Age", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Sex", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Sex", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[Patient] ([PatientId], [Name], [Age], [Sex], [Diagnosis]) VALU" +
-                "ES (@PatientId, @Name, @Age, @Sex, @Diagnosis);\r\nSELECT PatientId, Name, Age, Se" +
-                "x, Diagnosis FROM Patient WHERE (PatientId = @PatientId)";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[Patient] ([PatientId], [Name], [Age], [Sex]) VALUES (@PatientI" +
+                "d, @Name, @Age, @Sex);\r\nSELECT PatientId, Name, Age, Sex FROM Patient WHERE (Pat" +
+                "ientId = @PatientId)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@PatientId", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PatientId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Name", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Age", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Age", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Sex", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Sex", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Diagnosis", global::System.Data.SqlDbType.Text, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Diagnosis", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@PatientId", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PatientId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Age", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Age", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Sex", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Sex", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Patient] SET [PatientId] = @PatientId, [Name] = @Name, [Age] = @Age, [Sex] = @Sex, [Diagnosis] = @Diagnosis WHERE (([PatientId] = @Original_PatientId) AND ([Name] = @Original_Name) AND ([Age] = @Original_Age) AND ([Sex] = @Original_Sex));
-SELECT PatientId, Name, Age, Sex, Diagnosis FROM Patient WHERE (PatientId = @PatientId)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Patient] SET [PatientId] = @PatientId, [Name] = @Name, [Age] = @Age, [Sex] = @Sex WHERE (([PatientId] = @Original_PatientId) AND ([Name] = @Original_Name) AND ([Age] = @Original_Age) AND ([Sex] = @Original_Sex));
+SELECT PatientId, Name, Age, Sex FROM Patient WHERE (PatientId = @PatientId)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@PatientId", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PatientId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Name", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Age", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Age", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Sex", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Sex", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Diagnosis", global::System.Data.SqlDbType.Text, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Diagnosis", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_PatientId", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PatientId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Name", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Name", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Age", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Age", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Sex", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Sex", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@PatientId", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PatientId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Age", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Age", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Sex", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Sex", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_PatientId", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PatientId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Name", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Age", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Age", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Sex", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Sex", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3270,7 +4230,7 @@ SELECT PatientId, Name, Age, Sex, Diagnosis FROM Patient WHERE (PatientId = @Pat
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT PatientId, Name, Age, Sex, Diagnosis FROM dbo.Patient";
+            this._commandCollection[0].CommandText = "SELECT PatientId, Name, Age, Sex FROM dbo.Patient";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -3376,7 +4336,7 @@ SELECT PatientId, Name, Age, Sex, Diagnosis FROM Patient WHERE (PatientId = @Pat
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string PatientId, string Name, string Age, string Sex, string Diagnosis) {
+        public virtual int Insert(string PatientId, string Name, string Age, string Sex) {
             if ((PatientId == null)) {
                 throw new global::System.ArgumentNullException("PatientId");
             }
@@ -3401,12 +4361,6 @@ SELECT PatientId, Name, Age, Sex, Diagnosis FROM Patient WHERE (PatientId = @Pat
             else {
                 this.Adapter.InsertCommand.Parameters[3].Value = ((string)(Sex));
             }
-            if ((Diagnosis == null)) {
-                throw new global::System.ArgumentNullException("Diagnosis");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[4].Value = ((string)(Diagnosis));
-            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -3427,7 +4381,7 @@ SELECT PatientId, Name, Age, Sex, Diagnosis FROM Patient WHERE (PatientId = @Pat
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string PatientId, string Name, string Age, string Sex, string Diagnosis, string Original_PatientId, string Original_Name, string Original_Age, string Original_Sex) {
+        public virtual int Update(string PatientId, string Name, string Age, string Sex, string Original_PatientId, string Original_Name, string Original_Age, string Original_Sex) {
             if ((PatientId == null)) {
                 throw new global::System.ArgumentNullException("PatientId");
             }
@@ -3452,35 +4406,29 @@ SELECT PatientId, Name, Age, Sex, Diagnosis FROM Patient WHERE (PatientId = @Pat
             else {
                 this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(Sex));
             }
-            if ((Diagnosis == null)) {
-                throw new global::System.ArgumentNullException("Diagnosis");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(Diagnosis));
-            }
             if ((Original_PatientId == null)) {
                 throw new global::System.ArgumentNullException("Original_PatientId");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(Original_PatientId));
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(Original_PatientId));
             }
             if ((Original_Name == null)) {
                 throw new global::System.ArgumentNullException("Original_Name");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(Original_Name));
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(Original_Name));
             }
             if ((Original_Age == null)) {
                 throw new global::System.ArgumentNullException("Original_Age");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(Original_Age));
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(Original_Age));
             }
             if ((Original_Sex == null)) {
                 throw new global::System.ArgumentNullException("Original_Sex");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(Original_Sex));
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(Original_Sex));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -3502,8 +4450,8 @@ SELECT PatientId, Name, Age, Sex, Diagnosis FROM Patient WHERE (PatientId = @Pat
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string Name, string Age, string Sex, string Diagnosis, string Original_PatientId, string Original_Name, string Original_Age, string Original_Sex) {
-            return this.Update(Original_PatientId, Name, Age, Sex, Diagnosis, Original_PatientId, Original_Name, Original_Age, Original_Sex);
+        public virtual int Update(string Name, string Age, string Sex, string Original_PatientId, string Original_Name, string Original_Age, string Original_Sex) {
+            return this.Update(Original_PatientId, Name, Age, Sex, Original_PatientId, Original_Name, Original_Age, Original_Sex);
         }
     }
     
@@ -3632,84 +4580,46 @@ SELECT PatientId, Name, Age, Sex, Diagnosis FROM Patient WHERE (PatientId = @Pat
             tableMapping.ColumnMappings.Add("Did", "Did");
             tableMapping.ColumnMappings.Add("PatientId", "PatientId");
             tableMapping.ColumnMappings.Add("Date", "Date");
-            tableMapping.ColumnMappings.Add("DrugName", "DrugName");
-            tableMapping.ColumnMappings.Add("TimeDuration", "TimeDuration");
-            tableMapping.ColumnMappings.Add("TimesPerDay", "TimesPerDay");
-            tableMapping.ColumnMappings.Add("DosagePerTime", "DosagePerTime");
-            tableMapping.ColumnMappings.Add("Usage", "Usage");
-            tableMapping.ColumnMappings.Add("Instruction", "Instruction");
-            tableMapping.ColumnMappings.Add("WhenMorning", "WhenMorning");
-            tableMapping.ColumnMappings.Add("WhenAfternoon", "WhenAfternoon");
-            tableMapping.ColumnMappings.Add("WhenEvening", "WhenEvening");
             tableMapping.ColumnMappings.Add("Status", "Status");
+            tableMapping.ColumnMappings.Add("Diagnosis", "Diagnosis");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[Prescription] WHERE (([PrescriptionId] = @Original_PrescriptionId) AND ([Did] = @Original_Did) AND ([PatientId] = @Original_PatientId) AND ([Date] = @Original_Date) AND ([DrugName] = @Original_DrugName) AND ([TimeDuration] = @Original_TimeDuration) AND ([TimesPerDay] = @Original_TimesPerDay) AND ([DosagePerTime] = @Original_DosagePerTime) AND ([Usage] = @Original_Usage) AND ([WhenMorning] = @Original_WhenMorning) AND ([WhenAfternoon] = @Original_WhenAfternoon) AND ([WhenEvening] = @Original_WhenEvening) AND ([Status] = @Original_Status))";
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[Prescription] WHERE (([PrescriptionId] = @Original_Prescriptio" +
+                "nId) AND ([Did] = @Original_Did) AND ([PatientId] = @Original_PatientId) AND ([D" +
+                "ate] = @Original_Date) AND ([Status] = @Original_Status))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_PrescriptionId", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PrescriptionId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Did", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Did", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_PatientId", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PatientId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Date", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Date", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_DrugName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DrugName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_TimeDuration", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TimeDuration", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_TimesPerDay", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TimesPerDay", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_DosagePerTime", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DosagePerTime", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Usage", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Usage", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_WhenMorning", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "WhenMorning", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_WhenAfternoon", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "WhenAfternoon", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_WhenEvening", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "WhenEvening", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_PrescriptionId", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PrescriptionId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Did", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Did", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_PatientId", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PatientId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Date", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Date", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Status", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Status", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[Prescription] ([PrescriptionId], [Did], [PatientId], [Date], [DrugName], [TimeDuration], [TimesPerDay], [DosagePerTime], [Usage], [Instruction], [WhenMorning], [WhenAfternoon], [WhenEvening], [Status]) VALUES (@PrescriptionId, @Did, @PatientId, @Date, @DrugName, @TimeDuration, @TimesPerDay, @DosagePerTime, @Usage, @Instruction, @WhenMorning, @WhenAfternoon, @WhenEvening, @Status);
-SELECT PrescriptionId, Did, PatientId, Date, DrugName, TimeDuration, TimesPerDay, DosagePerTime, Usage, Instruction, WhenMorning, WhenAfternoon, WhenEvening, Status FROM Prescription WHERE (DrugName = @DrugName) AND (PrescriptionId = @PrescriptionId)";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[Prescription] ([PrescriptionId], [Did], [PatientId], [Date], [Status], [Diagnosis]) VALUES (@PrescriptionId, @Did, @PatientId, @Date, @Status, @Diagnosis);
+SELECT PrescriptionId, Did, PatientId, Date, Status, Diagnosis FROM Prescription WHERE (PrescriptionId = @PrescriptionId)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@PrescriptionId", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PrescriptionId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Did", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Did", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@PatientId", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PatientId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Date", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Date", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DrugName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DrugName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TimeDuration", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TimeDuration", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TimesPerDay", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TimesPerDay", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DosagePerTime", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DosagePerTime", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Usage", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Usage", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Instruction", global::System.Data.SqlDbType.Text, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Instruction", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@WhenMorning", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "WhenMorning", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@WhenAfternoon", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "WhenAfternoon", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@WhenEvening", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "WhenEvening", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@PrescriptionId", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PrescriptionId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Did", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Did", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@PatientId", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PatientId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Date", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Date", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Status", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Status", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Diagnosis", global::System.Data.SqlDbType.NText, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Diagnosis", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Prescription] SET [PrescriptionId] = @PrescriptionId, [Did] = @Did, [PatientId] = @PatientId, [Date] = @Date, [DrugName] = @DrugName, [TimeDuration] = @TimeDuration, [TimesPerDay] = @TimesPerDay, [DosagePerTime] = @DosagePerTime, [Usage] = @Usage, [Instruction] = @Instruction, [WhenMorning] = @WhenMorning, [WhenAfternoon] = @WhenAfternoon, [WhenEvening] = @WhenEvening, [Status] = @Status WHERE (([PrescriptionId] = @Original_PrescriptionId) AND ([Did] = @Original_Did) AND ([PatientId] = @Original_PatientId) AND ([Date] = @Original_Date) AND ([DrugName] = @Original_DrugName) AND ([TimeDuration] = @Original_TimeDuration) AND ([TimesPerDay] = @Original_TimesPerDay) AND ([DosagePerTime] = @Original_DosagePerTime) AND ([Usage] = @Original_Usage) AND ([WhenMorning] = @Original_WhenMorning) AND ([WhenAfternoon] = @Original_WhenAfternoon) AND ([WhenEvening] = @Original_WhenEvening) AND ([Status] = @Original_Status));
-SELECT PrescriptionId, Did, PatientId, Date, DrugName, TimeDuration, TimesPerDay, DosagePerTime, Usage, Instruction, WhenMorning, WhenAfternoon, WhenEvening, Status FROM Prescription WHERE (DrugName = @DrugName) AND (PrescriptionId = @PrescriptionId)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Prescription] SET [PrescriptionId] = @PrescriptionId, [Did] = @Did, [PatientId] = @PatientId, [Date] = @Date, [Status] = @Status, [Diagnosis] = @Diagnosis WHERE (([PrescriptionId] = @Original_PrescriptionId) AND ([Did] = @Original_Did) AND ([PatientId] = @Original_PatientId) AND ([Date] = @Original_Date) AND ([Status] = @Original_Status));
+SELECT PrescriptionId, Did, PatientId, Date, Status, Diagnosis FROM Prescription WHERE (PrescriptionId = @PrescriptionId)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@PrescriptionId", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PrescriptionId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Did", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Did", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@PatientId", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PatientId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Date", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Date", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DrugName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DrugName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TimeDuration", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TimeDuration", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TimesPerDay", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TimesPerDay", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DosagePerTime", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DosagePerTime", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Usage", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Usage", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Instruction", global::System.Data.SqlDbType.Text, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Instruction", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@WhenMorning", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "WhenMorning", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@WhenAfternoon", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "WhenAfternoon", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@WhenEvening", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "WhenEvening", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@PrescriptionId", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PrescriptionId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Did", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Did", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@PatientId", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PatientId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Date", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Date", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Status", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Status", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_PrescriptionId", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PrescriptionId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Did", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Did", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_PatientId", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PatientId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Date", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Date", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_DrugName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DrugName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_TimeDuration", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TimeDuration", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_TimesPerDay", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TimesPerDay", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_DosagePerTime", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DosagePerTime", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Usage", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Usage", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_WhenMorning", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "WhenMorning", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_WhenAfternoon", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "WhenAfternoon", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_WhenEvening", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "WhenEvening", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Diagnosis", global::System.Data.SqlDbType.NText, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Diagnosis", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_PrescriptionId", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PrescriptionId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Did", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Did", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_PatientId", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PatientId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Date", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Date", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Status", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Status", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
         
@@ -3726,9 +4636,8 @@ SELECT PrescriptionId, Did, PatientId, Date, DrugName, TimeDuration, TimesPerDay
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT PrescriptionId, Did, PatientId, Date, DrugName, TimeDuration, TimesPerDay," +
-                " DosagePerTime, Usage, Instruction, WhenMorning, WhenAfternoon, WhenEvening, Sta" +
-                "tus FROM dbo.Prescription";
+            this._commandCollection[0].CommandText = "SELECT PrescriptionId, Did, PatientId, Date, Status, Diagnosis FROM dbo.Prescript" +
+                "ion";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -3789,7 +4698,7 @@ SELECT PrescriptionId, Did, PatientId, Date, DrugName, TimeDuration, TimesPerDay
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(string Original_PrescriptionId, string Original_Did, string Original_PatientId, string Original_Date, string Original_DrugName, string Original_TimeDuration, string Original_TimesPerDay, string Original_DosagePerTime, string Original_Usage, string Original_WhenMorning, string Original_WhenAfternoon, string Original_WhenEvening, bool Original_Status) {
+        public virtual int Delete(string Original_PrescriptionId, string Original_Did, string Original_PatientId, string Original_Date, bool Original_Status) {
             if ((Original_PrescriptionId == null)) {
                 throw new global::System.ArgumentNullException("Original_PrescriptionId");
             }
@@ -3814,55 +4723,7 @@ SELECT PrescriptionId, Did, PatientId, Date, DrugName, TimeDuration, TimesPerDay
             else {
                 this.Adapter.DeleteCommand.Parameters[3].Value = ((string)(Original_Date));
             }
-            if ((Original_DrugName == null)) {
-                throw new global::System.ArgumentNullException("Original_DrugName");
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[4].Value = ((string)(Original_DrugName));
-            }
-            if ((Original_TimeDuration == null)) {
-                throw new global::System.ArgumentNullException("Original_TimeDuration");
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[5].Value = ((string)(Original_TimeDuration));
-            }
-            if ((Original_TimesPerDay == null)) {
-                throw new global::System.ArgumentNullException("Original_TimesPerDay");
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[6].Value = ((string)(Original_TimesPerDay));
-            }
-            if ((Original_DosagePerTime == null)) {
-                throw new global::System.ArgumentNullException("Original_DosagePerTime");
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[7].Value = ((string)(Original_DosagePerTime));
-            }
-            if ((Original_Usage == null)) {
-                throw new global::System.ArgumentNullException("Original_Usage");
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[8].Value = ((string)(Original_Usage));
-            }
-            if ((Original_WhenMorning == null)) {
-                throw new global::System.ArgumentNullException("Original_WhenMorning");
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[9].Value = ((string)(Original_WhenMorning));
-            }
-            if ((Original_WhenAfternoon == null)) {
-                throw new global::System.ArgumentNullException("Original_WhenAfternoon");
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[10].Value = ((string)(Original_WhenAfternoon));
-            }
-            if ((Original_WhenEvening == null)) {
-                throw new global::System.ArgumentNullException("Original_WhenEvening");
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[11].Value = ((string)(Original_WhenEvening));
-            }
-            this.Adapter.DeleteCommand.Parameters[12].Value = ((bool)(Original_Status));
+            this.Adapter.DeleteCommand.Parameters[4].Value = ((bool)(Original_Status));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -3883,7 +4744,7 @@ SELECT PrescriptionId, Did, PatientId, Date, DrugName, TimeDuration, TimesPerDay
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string PrescriptionId, string Did, string PatientId, string Date, string DrugName, string TimeDuration, string TimesPerDay, string DosagePerTime, string Usage, string Instruction, string WhenMorning, string WhenAfternoon, string WhenEvening, bool Status) {
+        public virtual int Insert(string PrescriptionId, string Did, string PatientId, string Date, bool Status, string Diagnosis) {
             if ((PrescriptionId == null)) {
                 throw new global::System.ArgumentNullException("PrescriptionId");
             }
@@ -3908,61 +4769,13 @@ SELECT PrescriptionId, Did, PatientId, Date, DrugName, TimeDuration, TimesPerDay
             else {
                 this.Adapter.InsertCommand.Parameters[3].Value = ((string)(Date));
             }
-            if ((DrugName == null)) {
-                throw new global::System.ArgumentNullException("DrugName");
+            this.Adapter.InsertCommand.Parameters[4].Value = ((bool)(Status));
+            if ((Diagnosis == null)) {
+                this.Adapter.InsertCommand.Parameters[5].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[4].Value = ((string)(DrugName));
+                this.Adapter.InsertCommand.Parameters[5].Value = ((string)(Diagnosis));
             }
-            if ((TimeDuration == null)) {
-                throw new global::System.ArgumentNullException("TimeDuration");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[5].Value = ((string)(TimeDuration));
-            }
-            if ((TimesPerDay == null)) {
-                throw new global::System.ArgumentNullException("TimesPerDay");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[6].Value = ((string)(TimesPerDay));
-            }
-            if ((DosagePerTime == null)) {
-                throw new global::System.ArgumentNullException("DosagePerTime");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[7].Value = ((string)(DosagePerTime));
-            }
-            if ((Usage == null)) {
-                throw new global::System.ArgumentNullException("Usage");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[8].Value = ((string)(Usage));
-            }
-            if ((Instruction == null)) {
-                throw new global::System.ArgumentNullException("Instruction");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[9].Value = ((string)(Instruction));
-            }
-            if ((WhenMorning == null)) {
-                throw new global::System.ArgumentNullException("WhenMorning");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[10].Value = ((string)(WhenMorning));
-            }
-            if ((WhenAfternoon == null)) {
-                throw new global::System.ArgumentNullException("WhenAfternoon");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[11].Value = ((string)(WhenAfternoon));
-            }
-            if ((WhenEvening == null)) {
-                throw new global::System.ArgumentNullException("WhenEvening");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[12].Value = ((string)(WhenEvening));
-            }
-            this.Adapter.InsertCommand.Parameters[13].Value = ((bool)(Status));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -3983,34 +4796,7 @@ SELECT PrescriptionId, Did, PatientId, Date, DrugName, TimeDuration, TimesPerDay
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(
-                    string PrescriptionId, 
-                    string Did, 
-                    string PatientId, 
-                    string Date, 
-                    string DrugName, 
-                    string TimeDuration, 
-                    string TimesPerDay, 
-                    string DosagePerTime, 
-                    string Usage, 
-                    string Instruction, 
-                    string WhenMorning, 
-                    string WhenAfternoon, 
-                    string WhenEvening, 
-                    bool Status, 
-                    string Original_PrescriptionId, 
-                    string Original_Did, 
-                    string Original_PatientId, 
-                    string Original_Date, 
-                    string Original_DrugName, 
-                    string Original_TimeDuration, 
-                    string Original_TimesPerDay, 
-                    string Original_DosagePerTime, 
-                    string Original_Usage, 
-                    string Original_WhenMorning, 
-                    string Original_WhenAfternoon, 
-                    string Original_WhenEvening, 
-                    bool Original_Status) {
+        public virtual int Update(string PrescriptionId, string Did, string PatientId, string Date, bool Status, string Diagnosis, string Original_PrescriptionId, string Original_Did, string Original_PatientId, string Original_Date, bool Original_Status) {
             if ((PrescriptionId == null)) {
                 throw new global::System.ArgumentNullException("PrescriptionId");
             }
@@ -4035,134 +4821,38 @@ SELECT PrescriptionId, Did, PatientId, Date, DrugName, TimeDuration, TimesPerDay
             else {
                 this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(Date));
             }
-            if ((DrugName == null)) {
-                throw new global::System.ArgumentNullException("DrugName");
+            this.Adapter.UpdateCommand.Parameters[4].Value = ((bool)(Status));
+            if ((Diagnosis == null)) {
+                this.Adapter.UpdateCommand.Parameters[5].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(DrugName));
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(Diagnosis));
             }
-            if ((TimeDuration == null)) {
-                throw new global::System.ArgumentNullException("TimeDuration");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(TimeDuration));
-            }
-            if ((TimesPerDay == null)) {
-                throw new global::System.ArgumentNullException("TimesPerDay");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(TimesPerDay));
-            }
-            if ((DosagePerTime == null)) {
-                throw new global::System.ArgumentNullException("DosagePerTime");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(DosagePerTime));
-            }
-            if ((Usage == null)) {
-                throw new global::System.ArgumentNullException("Usage");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(Usage));
-            }
-            if ((Instruction == null)) {
-                throw new global::System.ArgumentNullException("Instruction");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(Instruction));
-            }
-            if ((WhenMorning == null)) {
-                throw new global::System.ArgumentNullException("WhenMorning");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((string)(WhenMorning));
-            }
-            if ((WhenAfternoon == null)) {
-                throw new global::System.ArgumentNullException("WhenAfternoon");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[11].Value = ((string)(WhenAfternoon));
-            }
-            if ((WhenEvening == null)) {
-                throw new global::System.ArgumentNullException("WhenEvening");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[12].Value = ((string)(WhenEvening));
-            }
-            this.Adapter.UpdateCommand.Parameters[13].Value = ((bool)(Status));
             if ((Original_PrescriptionId == null)) {
                 throw new global::System.ArgumentNullException("Original_PrescriptionId");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[14].Value = ((string)(Original_PrescriptionId));
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(Original_PrescriptionId));
             }
             if ((Original_Did == null)) {
                 throw new global::System.ArgumentNullException("Original_Did");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[15].Value = ((string)(Original_Did));
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(Original_Did));
             }
             if ((Original_PatientId == null)) {
                 throw new global::System.ArgumentNullException("Original_PatientId");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[16].Value = ((string)(Original_PatientId));
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(Original_PatientId));
             }
             if ((Original_Date == null)) {
                 throw new global::System.ArgumentNullException("Original_Date");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[17].Value = ((string)(Original_Date));
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(Original_Date));
             }
-            if ((Original_DrugName == null)) {
-                throw new global::System.ArgumentNullException("Original_DrugName");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[18].Value = ((string)(Original_DrugName));
-            }
-            if ((Original_TimeDuration == null)) {
-                throw new global::System.ArgumentNullException("Original_TimeDuration");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[19].Value = ((string)(Original_TimeDuration));
-            }
-            if ((Original_TimesPerDay == null)) {
-                throw new global::System.ArgumentNullException("Original_TimesPerDay");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[20].Value = ((string)(Original_TimesPerDay));
-            }
-            if ((Original_DosagePerTime == null)) {
-                throw new global::System.ArgumentNullException("Original_DosagePerTime");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[21].Value = ((string)(Original_DosagePerTime));
-            }
-            if ((Original_Usage == null)) {
-                throw new global::System.ArgumentNullException("Original_Usage");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[22].Value = ((string)(Original_Usage));
-            }
-            if ((Original_WhenMorning == null)) {
-                throw new global::System.ArgumentNullException("Original_WhenMorning");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[23].Value = ((string)(Original_WhenMorning));
-            }
-            if ((Original_WhenAfternoon == null)) {
-                throw new global::System.ArgumentNullException("Original_WhenAfternoon");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[24].Value = ((string)(Original_WhenAfternoon));
-            }
-            if ((Original_WhenEvening == null)) {
-                throw new global::System.ArgumentNullException("Original_WhenEvening");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[25].Value = ((string)(Original_WhenEvening));
-            }
-            this.Adapter.UpdateCommand.Parameters[26].Value = ((bool)(Original_Status));
+            this.Adapter.UpdateCommand.Parameters[10].Value = ((bool)(Original_Status));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -4183,33 +4873,8 @@ SELECT PrescriptionId, Did, PatientId, Date, DrugName, TimeDuration, TimesPerDay
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(
-                    string Did, 
-                    string PatientId, 
-                    string Date, 
-                    string TimeDuration, 
-                    string TimesPerDay, 
-                    string DosagePerTime, 
-                    string Usage, 
-                    string Instruction, 
-                    string WhenMorning, 
-                    string WhenAfternoon, 
-                    string WhenEvening, 
-                    bool Status, 
-                    string Original_PrescriptionId, 
-                    string Original_Did, 
-                    string Original_PatientId, 
-                    string Original_Date, 
-                    string Original_DrugName, 
-                    string Original_TimeDuration, 
-                    string Original_TimesPerDay, 
-                    string Original_DosagePerTime, 
-                    string Original_Usage, 
-                    string Original_WhenMorning, 
-                    string Original_WhenAfternoon, 
-                    string Original_WhenEvening, 
-                    bool Original_Status) {
-            return this.Update(Original_PrescriptionId, Did, PatientId, Date, Original_DrugName, TimeDuration, TimesPerDay, DosagePerTime, Usage, Instruction, WhenMorning, WhenAfternoon, WhenEvening, Status, Original_PrescriptionId, Original_Did, Original_PatientId, Original_Date, Original_DrugName, Original_TimeDuration, Original_TimesPerDay, Original_DosagePerTime, Original_Usage, Original_WhenMorning, Original_WhenAfternoon, Original_WhenEvening, Original_Status);
+        public virtual int Update(string Did, string PatientId, string Date, bool Status, string Diagnosis, string Original_PrescriptionId, string Original_Did, string Original_PatientId, string Original_Date, bool Original_Status) {
+            return this.Update(Original_PrescriptionId, Did, PatientId, Date, Status, Diagnosis, Original_PrescriptionId, Original_Did, Original_PatientId, Original_Date, Original_Status);
         }
     }
     
@@ -4228,6 +4893,8 @@ SELECT PrescriptionId, Did, PatientId, Date, DrugName, TimeDuration, TimesPerDay
         private AccountTableAdapter _accountTableAdapter;
         
         private DoctorTableAdapter _doctorTableAdapter;
+        
+        private DrugsTableAdapter _drugsTableAdapter;
         
         private PatientTableAdapter _patientTableAdapter;
         
@@ -4273,6 +4940,20 @@ SELECT PrescriptionId, Did, PatientId, Date, DrugName, TimeDuration, TimesPerDay
             }
             set {
                 this._doctorTableAdapter = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
+            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
+            "a", "System.Drawing.Design.UITypeEditor")]
+        public DrugsTableAdapter DrugsTableAdapter {
+            get {
+                return this._drugsTableAdapter;
+            }
+            set {
+                this._drugsTableAdapter = value;
             }
         }
         
@@ -4331,6 +5012,10 @@ SELECT PrescriptionId, Did, PatientId, Date, DrugName, TimeDuration, TimesPerDay
                             && (this._doctorTableAdapter.Connection != null))) {
                     return this._doctorTableAdapter.Connection;
                 }
+                if (((this._drugsTableAdapter != null) 
+                            && (this._drugsTableAdapter.Connection != null))) {
+                    return this._drugsTableAdapter.Connection;
+                }
                 if (((this._patientTableAdapter != null) 
                             && (this._patientTableAdapter.Connection != null))) {
                     return this._patientTableAdapter.Connection;
@@ -4356,6 +5041,9 @@ SELECT PrescriptionId, Did, PatientId, Date, DrugName, TimeDuration, TimesPerDay
                     count = (count + 1);
                 }
                 if ((this._doctorTableAdapter != null)) {
+                    count = (count + 1);
+                }
+                if ((this._drugsTableAdapter != null)) {
                     count = (count + 1);
                 }
                 if ((this._patientTableAdapter != null)) {
@@ -4402,6 +5090,15 @@ SELECT PrescriptionId, Did, PatientId, Date, DrugName, TimeDuration, TimesPerDay
                     allChangedRows.AddRange(updatedRows);
                 }
             }
+            if ((this._drugsTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.Drugs.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._drugsTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
             if ((this._prescriptionTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.Prescription.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
@@ -4445,6 +5142,14 @@ SELECT PrescriptionId, Did, PatientId, Date, DrugName, TimeDuration, TimesPerDay
                     allAddedRows.AddRange(addedRows);
                 }
             }
+            if ((this._drugsTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.Drugs.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._drugsTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
             if ((this._prescriptionTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.Prescription.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
@@ -4468,6 +5173,14 @@ SELECT PrescriptionId, Did, PatientId, Date, DrugName, TimeDuration, TimesPerDay
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
                     result = (result + this._prescriptionTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._drugsTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.Drugs.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._drugsTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -4542,6 +5255,10 @@ SELECT PrescriptionId, Did, PatientId, Date, DrugName, TimeDuration, TimesPerDay
                         && (this.MatchTableAdapterConnection(this._doctorTableAdapter.Connection) == false))) {
                 throw new global::System.ArgumentException("TableAdapterManager에서 관리하는 모든 TableAdapter에는 동일한 연결 문자열을 사용해야 합니다.");
             }
+            if (((this._drugsTableAdapter != null) 
+                        && (this.MatchTableAdapterConnection(this._drugsTableAdapter.Connection) == false))) {
+                throw new global::System.ArgumentException("TableAdapterManager에서 관리하는 모든 TableAdapter에는 동일한 연결 문자열을 사용해야 합니다.");
+            }
             if (((this._patientTableAdapter != null) 
                         && (this.MatchTableAdapterConnection(this._patientTableAdapter.Connection) == false))) {
                 throw new global::System.ArgumentException("TableAdapterManager에서 관리하는 모든 TableAdapter에는 동일한 연결 문자열을 사용해야 합니다.");
@@ -4597,6 +5314,15 @@ SELECT PrescriptionId, Did, PatientId, Date, DrugName, TimeDuration, TimesPerDay
                     if (this._doctorTableAdapter.Adapter.AcceptChangesDuringUpdate) {
                         this._doctorTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
                         adaptersWithAcceptChangesDuringUpdate.Add(this._doctorTableAdapter.Adapter);
+                    }
+                }
+                if ((this._drugsTableAdapter != null)) {
+                    revertConnections.Add(this._drugsTableAdapter, this._drugsTableAdapter.Connection);
+                    this._drugsTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
+                    this._drugsTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
+                    if (this._drugsTableAdapter.Adapter.AcceptChangesDuringUpdate) {
+                        this._drugsTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
+                        adaptersWithAcceptChangesDuringUpdate.Add(this._drugsTableAdapter.Adapter);
                     }
                 }
                 if ((this._patientTableAdapter != null)) {
@@ -4682,6 +5408,10 @@ SELECT PrescriptionId, Did, PatientId, Date, DrugName, TimeDuration, TimesPerDay
                 if ((this._doctorTableAdapter != null)) {
                     this._doctorTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._doctorTableAdapter]));
                     this._doctorTableAdapter.Transaction = null;
+                }
+                if ((this._drugsTableAdapter != null)) {
+                    this._drugsTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._drugsTableAdapter]));
+                    this._drugsTableAdapter.Transaction = null;
                 }
                 if ((this._patientTableAdapter != null)) {
                     this._patientTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._patientTableAdapter]));

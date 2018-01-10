@@ -22,6 +22,16 @@ namespace WpfProDemo.Views
         public ReportWindow()
         {
             InitializeComponent();
+            this.Closed += ReportWindow_Closed;
+        }
+        public void LoadData(string prescriptionID){
+            this.ReportViewer.PrescriptionID = prescriptionID;
+        }
+        private void ReportWindow_Closed(object sender, EventArgs e)
+        {
+            //this.ReportViewer._reportViewer.DataBindings.Clear();
+            //this.ReportViewer._reportViewer.Clear();
+            //this.ReportViewer._reportViewer.Dispose();
         }
     }
 }

@@ -5,7 +5,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSPrescriptionInterfaceProgramBate001.Models
+namespace WpfProDemo.Models
 {
     class DrugsClass : System.Runtime.Serialization.IExtensibleDataObject
     {

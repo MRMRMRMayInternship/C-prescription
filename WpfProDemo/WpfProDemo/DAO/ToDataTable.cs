@@ -24,5 +24,17 @@ namespace WpfProDemo.DAO
             }
             return dt;
         }
+        public static System.Data.DataTable ToDataTableMethod<T>(this T data)
+        {
+            PropertyDescriptorCollection properties = TypeDescriptor.GetProperties(typeof(T));
+            System.Data.DataTable dt = new System.Data.DataTable();
+            foreach (PropertyDescriptor prop in properties)
+                dt.Columns.Add(prop.Name, Nullable.GetUnderlyingType(prop.PropertyType) ?? prop.PropertyType);
+                System.Data.DataRow row = dt.NewRow();
+                foreach (PropertyDescriptor prop in properties)
+                    row[prop.Name] = prop.GetValue(data) ?? DBNull.Value;
+                dt.Rows.Add(row);
+            return dt;
+        }
     }
 }

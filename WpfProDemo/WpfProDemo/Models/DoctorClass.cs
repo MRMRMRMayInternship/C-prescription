@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSPrescriptionInterfaceProgramBate001.Models
+namespace WpfProDemo.Models
 {
     [Serializable]
     public class DoctorClass : EmployeeClass
     {
+
     }
 }

@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<PrescriptionClass xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <PrescriptionID>RX100180102154223</PrescriptionID>
+  <Date>2018-01-02 오후 3:42:33</Date>
+  <Patient>
+    <Name>홍기동</Name>
+    <Age>21</Age>
+    <Sex>M</Sex>
+    <SymptomDescription />
+    <PatientID>P100171227150211</PatientID>
+  </Patient>
+  <Doctor>
+    <Name>신라</Name>
+    <ID>D100171227173011</ID>
+    <Department>내과</Department>
+  </Doctor>
+  <Drugs>
+  </Drugs>
+</PrescriptionClass>

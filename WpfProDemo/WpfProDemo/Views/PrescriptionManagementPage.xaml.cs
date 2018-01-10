@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,6 +20,8 @@ namespace WpfProDemo.Views
 {
     /// <summary>
     /// PrescriptionManagementPage.xaml에 대한 상호 작용 논리
+    /// GridData操作参考： http://blog.csdn.net/lanshengsheng2012/article/details/16938229
+    /// DataBinding : http://blog.csdn.net/mao_mao37/article/details/51242249
     /// </summary>
     public partial class PrescriptionManagementPage : Page
     {
@@ -44,6 +47,103 @@ namespace WpfProDemo.Views
             this.Loaded +=PrescriptionManagementPage_Loaded;
         }
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public bool SaveInDB(Models.PrescriptionClass obj)
+        {
+            using (PIPusingWPFModel.PIPEntities conn = new PIPusingWPFModel.PIPEntities())
+            {
+                CultureInfo cultureInfo = CultureInfo.CreateSpecificCulture("en-US");
+                PIPusingWPFModel.Prescription result;
+                try
+                {
+                    result = conn.Prescriptions.Where(a => a.PrescriptionId.Equals(obj.PrescriptionID)).FirstOrDefault();
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show("Query : " + e.Message);
+                    return false;
+                }
+                if (result != null)
+                {
+                    var resultDate = Convert.ToDateTime(result.Date);
+                    var targetDate = Convert.ToDateTime(obj.Date);
+                    if (resultDate.Equals(targetDate))
+                    {
+                        return true;
+                    }
+                    try
+                    {
+                        var delDrugObjCollection = conn.Drugs.Where(a => a.PrescriptionId.Equals(result.PrescriptionId)).ToList();
+                        conn.Prescriptions.Remove(result);
+                        conn.Drugs.RemoveRange(delDrugObjCollection);
+                        conn.SaveChanges();
+                    }
+                    catch (Exception e)
+                    {
+                        MessageBox.Show("1:" + e.Message);
+                        return false;
+                    }
+                }
+                else
+                {
+                    var AttachPreObj = new PIPusingWPFModel.Prescription()
+                    {
+                        PrescriptionId = obj.PrescriptionID,
+                        PatientId = obj.Patient.PatientID,
+                        Did = obj.Doctor.ID,
+                        Date = Convert.ToDateTime(obj.Date).ToString(cultureInfo),
+                        Status = false,
+                        Diagnosis = obj.Patient.SymptomDescription,
+                        Doctor = conn.Doctors.Where(a => a.Did.Equals(obj.Doctor.ID)).FirstOrDefault(),
+                        Patient = conn.Patients.Where(a => a.PatientId.Equals(obj.Patient.PatientID)).FirstOrDefault()
+                    };
+                    try
+                    {
+                        conn.Prescriptions.Add(AttachPreObj);
+                        conn.SaveChanges();
+                    }
+                    catch (Exception e)
+                    {
+                        MessageBox.Show("2:" + e.Message);
+                        return false;
+                    }
+                    List<PIPusingWPFModel.Drug> list = new List<PIPusingWPFModel.Drug>();
+                    foreach (var drug in obj.Drugs)
+                    {
+                        var AttachDrugObj = new PIPusingWPFModel.Drug()
+                        {
+                            PrescriptionId = obj.PrescriptionID,
+                            DrugName = drug.DrugName,
+                            DosagePerTime = drug.DosagePerTime_Value + drug.DosagePerTime_Unit,
+                            Instruction = drug.Instruction,
+                            TimeDuration = drug.TimeDuration,
+                            TimesPerDay = drug.TimesPerDay,
+                            Usage = drug.Usage,
+                            WhenAfternoon = drug.WhenAfternoon ? "√" : "x",
+                            WhenEvening = drug.WhenEvening ? "√" : "x",
+                            WhenMorning = drug.WhenMorning ? "√" : "x"
+                        };
+                        list.Add(AttachDrugObj);
+                    }
+                    try
+                    {
+                        conn.Drugs.AddRange(list);
+                        conn.SaveChanges();
+                    }
+                    catch (Exception e)
+                    {
+                        MessageBox.Show("3:" + e.Message);
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+        }
+        /// <summary>
         /// 委托:开始载入
         /// </summary>
         private void FileLoadAction()
@@ -67,7 +167,12 @@ namespace WpfProDemo.Views
             this.PrescriptionListBox.loadCompletedAction += this.pListLoadCompleted_Handler;
             this.PrescriptionListBox.loadProgressChangedAction += this.pListLoadProgressChanged_Handler;
             this.PrescriptionListBox.loadStartedAction += this.pListLoaderWorker_Handler;
+            this.PrescriptionListBox.ListItem_DoubleClickedAction += pListItem_DoubleClicked_Handler;
             this.pListBoxMask.FileLoadLinkAction += FileLoadAction;
+        }
+        private void pListItem_DoubleClicked_Handler(string prescriptionID)
+        {
+
         }
         /// <summary>
         /// 委托：完成罗列储存在本地硬盘的处方文件到listbox控件后所执行的事件
@@ -127,9 +232,11 @@ namespace WpfProDemo.Views
         {
             try
             {
+                string selectedID = (this.PrescriptionListBox.PrescriptionListBox.SelectedItem as PrescriptionFileInfoListItemModel).PrescriptionID;
+                SaveInDB(StaticMethod.PrescriptionListManagement.PrescriptionList.Find(a => a.PrescriptionID.Equals(selectedID)));
                 Views.ReportWindow reportWin = new Views.ReportWindow();
-                reportWin.Owner = this.parentWindow;
-                var i = reportWin.ShowDialog();
+                reportWin.LoadData(selectedID);
+                reportWin.Show();
             }
             catch (Exception ex)
             {
@@ -145,33 +252,8 @@ namespace WpfProDemo.Views
         {
             
         }
-        /// <summary>
-        /// 鼠标移入
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="args"></param>
-        private void MouseEnterExitArea(object sender, RoutedEventArgs args)
-        {
-            StatBarText.Text = "Exit the Application";
-        }
-        /// <summary>
-        /// 鼠标移入工具
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="args"></param>
-        private void MouseEnterToolsHintsArea(object sender, RoutedEventArgs args)
-        {
-            StatBarText.Text = "Show Spelling Suggestions";
-        }
-        /// <summary>
-        /// 鼠标移出
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="args"></param>
-        private void MouseLeaveArea(object sender, RoutedEventArgs args)
-        {
-            StatBarText.Text = "Ready";
-        }
+        
+        
         private bool isSpinning = false;
         /// <summary>
         /// 鼠标移入转动按钮

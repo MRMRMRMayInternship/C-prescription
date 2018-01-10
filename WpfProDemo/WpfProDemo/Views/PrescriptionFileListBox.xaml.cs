@@ -19,6 +19,8 @@ namespace WpfProDemo.Views
     public delegate void LoadCompletedEvent();
     public delegate void LoadProgressChangedEvent(int value);
     public delegate void LoadStartedEvent(int total);
+    public delegate void ListItem_DoubleClickedEvent(string selectedItemID);
+    public delegate void LoadCancelEvent();
     /// <summary>
     /// PrescriptionFileListBox.xaml에 대한 상호 작용 논리
     /// 参考资料：https://www.lookmw.cn/doc/uejyni.html
@@ -28,9 +30,13 @@ namespace WpfProDemo.Views
         public LoadCompletedEvent loadCompletedAction;
         public LoadProgressChangedEvent loadProgressChangedAction;
         public LoadStartedEvent loadStartedAction;
+        public ListItem_DoubleClickedEvent ListItem_DoubleClickedAction;
+        public LoadCancelEvent LoadCancelAction;
         private BackgroundWorker worker = new BackgroundWorker();
         private ObservableCollection<PrescriptionFileInfoListItemModel> _ListBoxItems;
         private List<PrescriptionFileInfoListItemModel> updateList;
+        private string selectedItemID;
+        private string path;
         private ObservableCollection<PrescriptionFileInfoListItemModel> ListBoxItems
         {
             get
@@ -52,9 +58,7 @@ namespace WpfProDemo.Views
         private void PrescriptionFileListBox_Loaded(object sender, RoutedEventArgs e)
         {
             PrescriptionListBox.ItemsSource = _ListBoxItems;
-            PrescriptionListBox.MouseDoubleClick += PrescriptionListBox_MouseDoubleClick;
-            
-
+            PrescriptionListBox.PreviewMouseDoubleClick += PrescriptionListBox_PreviewMouseDoubleClick;
             worker.WorkerReportsProgress = true;
             worker.WorkerSupportsCancellation = true;
             worker.DoWork += new DoWorkEventHandler(pListLoaderWorker);
@@ -62,12 +66,16 @@ namespace WpfProDemo.Views
             worker.RunWorkerCompleted += pListLoadCompleted_Handler;
         }
 
-        private void PrescriptionListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void PrescriptionListBox_PreviewMouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             try
             {
-                var str = e.Device.Target.GetType().ToString();
-                MessageBox.Show(str);
+                selectedItemID = (this.PrescriptionListBox.SelectedItem as PrescriptionFileInfoListItemModel).PrescriptionID;
+                
+                //string pID = selectedItem.PrescriptionID;
+                if (MessageBox.Show(selectedItemID, "Double Selecting", MessageBoxButton.YesNo) == MessageBoxResult.OK) {
+                    ListItem_DoubleClickedAction(selectedItemID);
+                }
             }
             catch (Exception ex)
             {
@@ -104,8 +112,17 @@ namespace WpfProDemo.Views
         /// <param name="e"></param>
         private void pListLoaderWorker(object sender, DoWorkEventArgs e)
         {
-            //获得处方文件数量
-            int total = 10;
+                //获得处方文件数量
+            List<string> fList = System.IO.Directory.GetFiles(@path).ToList();
+            int total = fList.Count();
+            string msg = total <= 0 ? "There is no file" : string.Empty;
+            if (!string.IsNullOrEmpty(msg))
+            {
+                MessageBox.Show(msg);
+                worker.CancelAsync();
+                //this.LoadCancelAction();
+                return;
+            }
             //loadingProgressValue.TotalValue = total;
             //loadingProgressValue.DoingValue = 1;
             loadStartedAction(total);
@@ -114,8 +131,11 @@ namespace WpfProDemo.Views
                 updateList = new List<PrescriptionFileInfoListItemModel>();
                 for (int i = 1; i <= total; i++)
                 {
-                    var temp = new PrescriptionFileInfoListItemModel() { PrescriptionID = "123", PatientName = "123", CreationDate = "123" };
+                    Models.PrescriptionClass prescription = DAO.XmlSerializer.LoadFromXml(fList[i - 1], typeof(Models.PrescriptionClass)) as Models.PrescriptionClass;
+                    var temp = new PrescriptionFileInfoListItemModel() { PrescriptionID = prescription.PrescriptionID, PatientName = prescription.Patient.Name, CreationDate = prescription.Date };
                     //直接修改source也等于直接修改UI，从而导致异常。解决方案就是使用调解委托。
+                    if (!StaticMethod.PrescriptionListManagement.PrescriptionList.Contains(prescription))
+                        StaticMethod.PrescriptionListManagement.PrescriptionList.Add(prescription);
                     Dispatcher.Invoke(new Action(() =>
                     {
                         ListBoxItems.Add(temp);
@@ -127,11 +147,19 @@ namespace WpfProDemo.Views
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("pListLoaderWorker : "+ex.Message);
             }
         }
+
         public void RunWorker()
         {
+            path = StaticMethod.ConfigManagement.GetConfigValue(StaticMethod.ConfigManagement.ConfigSettingPIPFilesPathKey);
+            string msg = System.IO.Directory.Exists(path) ? string.Empty : "There is no dir";
+            if (!string.IsNullOrEmpty(msg))
+            {
+                MessageBox.Show(msg);
+                return;
+            }
             worker.RunWorkerAsync();
         }
 

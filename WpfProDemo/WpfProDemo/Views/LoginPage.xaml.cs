@@ -17,11 +17,13 @@ namespace WpfProDemo.Views
 {
     /// <summary>
     /// LoginPage.xaml에 대한 상호 작용 논리
+    /// 对于app.config的读写参考： http://blog.xieyc.com/csharp-read-and-write-configuration-file-app-config/
     /// </summary>
     public partial class LoginPage : Page
     {
         private DAO.LoginEventHandle loginEventHandle = new DAO.LoginEventHandle();
         private MainWindow parentWindow = null;
+        private System.Configuration.Configuration config;
         public MainWindow ParentWindow
         {
             get
@@ -36,6 +38,7 @@ namespace WpfProDemo.Views
         public LoginPage()
         {
             InitializeComponent();
+            config = System.Configuration.ConfigurationManager.OpenExeConfiguration(System.Configuration.ConfigurationUserLevel.None);
         }
         private void BtnExit_Clicked(object sender, RoutedEventArgs e)
         {
@@ -57,6 +60,15 @@ namespace WpfProDemo.Views
             {
                 //this.idTextBox.Clear();
                 //this.pwTextBox.Clear();
+                //var id = idTextBox.Text;
+                var id = "root";
+                try {
+                    StaticMethod.ConfigManagement.SetConfigValue(StaticMethod.ConfigManagement.ConfigSettingDoctorKey, id).ToString();
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
                 this.ParentWindow.CallMenuPage();
             }
             else

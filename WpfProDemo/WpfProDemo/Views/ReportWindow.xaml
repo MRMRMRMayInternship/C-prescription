@@ -4,6 +4,6 @@
         xmlns:local="clr-namespace:WpfProDemo.Views"
         Title="ReportWindow" Height="1024" Width="1050">
     <Grid>
-        <local:ReportCtr/>
+        <local:ReportCtr x:Name="ReportViewer"/>
     </Grid>
 </Window>
