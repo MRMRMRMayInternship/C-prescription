@@ -72,17 +72,17 @@ namespace WpfProDemo.Views
             using (PIPusingWPFModel.PIPEntities conn = new PIPusingWPFModel.PIPEntities())
             {
                 var prescriptionResult = conn.Prescriptions.Where(a => a.PrescriptionId.Equals(PrescriptionID)).First();
-                prescriptionTable = DAO.ToDataTable.ToDataTableMethod(prescriptionResult);
+                prescriptionTable = DAO.ToDataTable.ToDataTableMethodForObject(prescriptionResult);
                 var patientResult = conn.Patients.Where(a => a.PatientId.Equals(prescriptionResult.PatientId)).First();
-                patientTable = DAO.ToDataTable.ToDataTableMethod(patientResult);
+                patientTable = DAO.ToDataTable.ToDataTableMethodForObject(patientResult);
                 var doctorResult = conn.Doctors.Where(a => a.Did.Equals(prescriptionResult.Did)).First();
-                doctorTable = DAO.ToDataTable.ToDataTableMethod(doctorResult);
+                doctorTable = DAO.ToDataTable.ToDataTableMethodForObject(doctorResult);
                 var result = conn.Drugs.Where(a => a.PrescriptionId.Equals(PrescriptionID)).ToList();
-                drugTable = DAO.ToDataTable.ToDataTableMethod(result);
+                drugTable = DAO.ToDataTable.ToDataTableMethodForList(result);
             }
             
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource = new Microsoft.Reporting.WinForms.ReportDataSource();
-            reportDataSource.Name = "DrugDataSet";
+            reportDataSource.Name = "DrugsDataSet";
             reportDataSource.Value = drugTable;
             
             //2. Load Data into report
@@ -97,6 +97,7 @@ namespace WpfProDemo.Views
             _reportViewer.LocalReport.DataSources.Add(new Microsoft.Reporting.WinForms.ReportDataSource() { Name = "PrescriptionDataSet", Value = prescriptionTable });
 
             _reportViewer.LocalReport.DataSources.Add(reportDataSource);
+
             _reportViewer.RefreshReport();
             //3. show report
         }

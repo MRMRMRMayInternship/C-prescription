@@ -17,12 +17,27 @@ namespace WpfProDemo.Views
 {
     /// <summary>
     /// TitleBar.xaml에 대한 상호 작용 논리
+    /// DispatcherTimer: https://www.cnblogs.com/tonyqus/archive/2006/12/21/599334.html
     /// </summary>
     public partial class TitleBar : UserControl
     {
+        private System.Windows.Threading.DispatcherTimer timer;
         public TitleBar()
         {
             InitializeComponent();
+            timer = new System.Windows.Threading.DispatcherTimer();
+            timer.Interval = new TimeSpan(0, 0, 1);
+            timer.Tick += new EventHandler(timer_Tick);
+            timer.Start();
+            this.Loaded += TitleBar_Loaded;
+        }
+
+        private void TitleBar_Loaded(object sender, RoutedEventArgs e)
+        {
+        }
+        private void timer_Tick(object sender, EventArgs args)
+        {
+            this.NowDate.Content = DateTime.Now.ToString();
         }
     }
 }

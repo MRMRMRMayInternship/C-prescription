@@ -13,7 +13,6 @@ namespace WpfProDemo.DAO
         private readonly SqlConnectionStringBuilder connStr = null;
         private static Stack<SqlConnection> connectionPool = null;
         private const int size = 0;
-        private int useCount = 0;
         public DatabaseConnectionPool()
         {
             if (connStr == null)

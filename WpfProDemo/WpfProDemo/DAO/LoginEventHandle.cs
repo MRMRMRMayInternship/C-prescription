@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using PIPusingWPFModel;
 namespace WpfProDemo.DAO
 {
-    public class LoginEventHandle
+    public static class LoginEventHandle
     {
         //private DatabaseConnection DB = null;
         //private SqlCommand cmd;
@@ -30,7 +30,7 @@ namespace WpfProDemo.DAO
         /// <param name="id"></param>
         /// <param name="pw"></param>
         /// <returns></returns>
-        public bool IsValid(string id, string pw)
+        public static bool IsValid(string id, string pw)
         {
             using(PIPusingWPFModel.PIPEntities conn = new PIPusingWPFModel.PIPEntities()){
                 var result = conn.Accounts.Where(u => u.Did.Equals(id) && u.AccountPw.Equals(pw)).FirstOrDefault();

@@ -10,14 +10,21 @@ namespace LambdaSimple
     {
         static void Main(string[] args)
         {
-            List<int> test = new List<int>();
-            for (int i = 0; i < 100; i++)
-            {
-                test.Add(i);
+            string source= "홍기동";
+            var bytes = System.Text.Encoding.Default.GetBytes(source);
+            string result = string.Empty;
+            foreach(var temp in bytes){
+                System.Console.Write("{0,3}",temp.ToString());
+                result += string.Format(@"?{0,3}", temp.ToString());
             }
-            test.RemoveAll(i=>i<50);
-            foreach(int i in test)
-                Console.WriteLine(i);
+            var list = new List<byte>();
+            var templist = result.Split('?');
+            foreach (var temp in templist)
+            {
+                if(!string.IsNullOrEmpty(temp))
+                list.Add(Convert.ToByte(temp));
+            }
+            System.Console.Write(System.Text.Encoding.Default.GetString(list.ToArray()));
         }
     }
 }

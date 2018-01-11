@@ -46,105 +46,24 @@ namespace WpfProDemo.Views
             InitializeComponent();
             this.Loaded +=PrescriptionManagementPage_Loaded;
         }
+        
         /// <summary>
-        /// 
+        /// 载入文件信息通过处方ID
         /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
-        public bool SaveInDB(Models.PrescriptionClass obj)
+        /// <param name="prescriptonID"></param>
+        private void LoadFileInfoAction(string prescriptonID)
         {
-            using (PIPusingWPFModel.PIPEntities conn = new PIPusingWPFModel.PIPEntities())
+            try
             {
-                CultureInfo cultureInfo = CultureInfo.CreateSpecificCulture("en-US");
-                PIPusingWPFModel.Prescription result;
-                try
-                {
-                    result = conn.Prescriptions.Where(a => a.PrescriptionId.Equals(obj.PrescriptionID)).FirstOrDefault();
-                }
-                catch (Exception e)
-                {
-                    MessageBox.Show("Query : " + e.Message);
-                    return false;
-                }
-                if (result != null)
-                {
-                    var resultDate = Convert.ToDateTime(result.Date);
-                    var targetDate = Convert.ToDateTime(obj.Date);
-                    if (resultDate.Equals(targetDate))
-                    {
-                        return true;
-                    }
-                    try
-                    {
-                        var delDrugObjCollection = conn.Drugs.Where(a => a.PrescriptionId.Equals(result.PrescriptionId)).ToList();
-                        conn.Prescriptions.Remove(result);
-                        conn.Drugs.RemoveRange(delDrugObjCollection);
-                        conn.SaveChanges();
-                    }
-                    catch (Exception e)
-                    {
-                        MessageBox.Show("1:" + e.Message);
-                        return false;
-                    }
-                }
-                else
-                {
-                    var AttachPreObj = new PIPusingWPFModel.Prescription()
-                    {
-                        PrescriptionId = obj.PrescriptionID,
-                        PatientId = obj.Patient.PatientID,
-                        Did = obj.Doctor.ID,
-                        Date = Convert.ToDateTime(obj.Date).ToString(cultureInfo),
-                        Status = false,
-                        Diagnosis = obj.Patient.SymptomDescription,
-                        Doctor = conn.Doctors.Where(a => a.Did.Equals(obj.Doctor.ID)).FirstOrDefault(),
-                        Patient = conn.Patients.Where(a => a.PatientId.Equals(obj.Patient.PatientID)).FirstOrDefault()
-                    };
-                    try
-                    {
-                        conn.Prescriptions.Add(AttachPreObj);
-                        conn.SaveChanges();
-                    }
-                    catch (Exception e)
-                    {
-                        MessageBox.Show("2:" + e.Message);
-                        return false;
-                    }
-                    List<PIPusingWPFModel.Drug> list = new List<PIPusingWPFModel.Drug>();
-                    foreach (var drug in obj.Drugs)
-                    {
-                        var AttachDrugObj = new PIPusingWPFModel.Drug()
-                        {
-                            PrescriptionId = obj.PrescriptionID,
-                            DrugName = drug.DrugName,
-                            DosagePerTime = drug.DosagePerTime_Value + drug.DosagePerTime_Unit,
-                            Instruction = drug.Instruction,
-                            TimeDuration = drug.TimeDuration,
-                            TimesPerDay = drug.TimesPerDay,
-                            Usage = drug.Usage,
-                            WhenAfternoon = drug.WhenAfternoon ? "√" : "x",
-                            WhenEvening = drug.WhenEvening ? "√" : "x",
-                            WhenMorning = drug.WhenMorning ? "√" : "x"
-                        };
-                        list.Add(AttachDrugObj);
-                    }
-                    try
-                    {
-                        conn.Drugs.AddRange(list);
-                        conn.SaveChanges();
-                    }
-                    catch (Exception e)
-                    {
-                        MessageBox.Show("3:" + e.Message);
-                        return false;
-                    }
-                }
+                Models.PrescriptionClass obj = StaticMethod.PrescriptionListManagement.PrescriptionList.Where(a => a.PrescriptionID.Equals(prescriptonID)).First();
             }
-
-            return true;
+            catch(Exception e)
+            {
+                MessageBox.Show(e.StackTrace + "\n" + e.Message);
+            }
         }
         /// <summary>
-        /// 委托:开始载入
+        /// 委托:开始载入文件立标
         /// </summary>
         private void FileLoadAction()
         {
@@ -168,11 +87,86 @@ namespace WpfProDemo.Views
             this.PrescriptionListBox.loadProgressChangedAction += this.pListLoadProgressChanged_Handler;
             this.PrescriptionListBox.loadStartedAction += this.pListLoaderWorker_Handler;
             this.PrescriptionListBox.ListItem_DoubleClickedAction += pListItem_DoubleClicked_Handler;
+            this.PrescriptionListBox.LoadFileInfoBtn.Click += LoadFileInfoBtn_Click;
+            this.PrescriptionListBox.SetMaskLay += SetMaskLayerVisible;
+            InitializePrescriptionInfoBlock();
             this.pListBoxMask.FileLoadLinkAction += FileLoadAction;
+            pListBoxMask.Visibility = System.Windows.Visibility.Visible;
+
+            this.btnMenu.Click += btnMenu_Click;
         }
+
+        void btnMenu_Click(object sender, RoutedEventArgs e)
+        {
+            parentWindow.CallMenuPage();
+        }
+        private void SetMaskLayerVisible(Visibility setting)
+        {
+            if (this.PrescriptionFileListLoadingProgressMaskLayer.Visibility != setting)
+                this.PrescriptionFileListLoadingProgressMaskLayer.Visibility = setting;
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void LoadFileInfoBtn_Click(object sender, RoutedEventArgs e)
+        {
+            LoadFileToInfomationBlockAction((this.PrescriptionListBox.PrescriptionListBox.SelectedItem as PrescriptionFileInfoListItemModel).PrescriptionID);
+        }
+        /// <summary>
+        /// 初始化处方信息区块
+        /// </summary>
+        private PatientInfoOfPrescription patientInfoSource;
+        //private System.Collections.ObjectModel.ObservableCollection<PIPusingWPFModel.Drug> drugsList;
+        private void InitializePrescriptionInfoBlock()
+        {
+            
+            patientInfoSource = new PatientInfoOfPrescription(){};
+            //drugsList = new System.Collections.ObjectModel.ObservableCollection<PIPusingWPFModel.Drug>();
+            this.MyPrescriptionInfoBlock.DiagnosisLabel.IsEnabled = false;
+            this.MyPrescriptionInfoBlock.PatientAgeLabel.SetBinding(Label.ContentProperty, new Binding(PatientInfoOfPrescription.PatientAgeBindingPath) { Source = patientInfoSource, Mode = BindingMode.OneWay});
+            this.MyPrescriptionInfoBlock.PatientNameLabel.SetBinding(Label.ContentProperty, new Binding(PatientInfoOfPrescription.PatientNameBindingPath) { Source = patientInfoSource, Mode = BindingMode.OneWay });
+            this.MyPrescriptionInfoBlock.PatientIdLabel.SetBinding(Label.ContentProperty, new Binding(PatientInfoOfPrescription.PatientIDBindingPath) { Source = patientInfoSource, Mode = BindingMode.OneWay });
+            this.MyPrescriptionInfoBlock.PatientSexLabel.SetBinding(Label.ContentProperty, new Binding(PatientInfoOfPrescription.PatientSexBindingPath) { Source = patientInfoSource, Mode = BindingMode.OneWay });
+            this.MyPrescriptionInfoBlock.DiagnosisLabel.SetBinding(TextBox.TextProperty, new Binding(PatientInfoOfPrescription.DiagnosisBindingPath) { Source = patientInfoSource, Mode = BindingMode.OneWay });
+            
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="prescriptionID"></param>
+        private void LoadFileToInfomationBlockAction(string prescriptionID)
+        {
+            var result = StaticMethod.PrescriptionListManagement.PrescriptionList.Where(a => a.PrescriptionID.Equals(prescriptionID)).First();
+            patientInfoSource.PatientName = result.Patient.Name;
+            patientInfoSource.PatientID = result.Patient.PatientID;
+            patientInfoSource.PatientSex = result.Patient.Sex;
+            patientInfoSource.PatientAge = result.Patient.Age;
+            patientInfoSource.Diagnosis = result.Patient.SymptomDescription;
+            this.MyPrescriptionInfoBlock.PrescriptionIDLabel.Content = prescriptionID;
+            using (PIPusingWPFModel.PIPEntities conn = new PIPusingWPFModel.PIPEntities())
+            {
+                try
+                {
+                    var queryDrugsList = conn.Drugs.Where(drug => drug.PrescriptionId.Equals(prescriptionID)).ToList();
+                    this.MyPrescriptionInfoBlock.DrugsDataGrid.ItemsSource = queryDrugsList;
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(string.Format("{0} : {1}", e.Message, e.StackTrace));
+                }
+            }
+            MessageBox.Show("Loading ...:");
+        }
+        /// <summary>
+        /// 双击表项目载入文件信息
+        /// </summary>
+        /// <param name="prescriptionID"></param>
         private void pListItem_DoubleClicked_Handler(string prescriptionID)
         {
-
+            LoadFileToInfomationBlockAction(prescriptionID);
         }
         /// <summary>
         /// 委托：完成罗列储存在本地硬盘的处方文件到listbox控件后所执行的事件
@@ -223,26 +217,26 @@ namespace WpfProDemo.Views
         private void PrescriptionReportViewer_RenderingComplete(object sender, Microsoft.Reporting.WinForms.RenderingCompleteEventArgs e)
         {
         }
-        /// <summary>
-        /// 生成报表
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnReportCreation_Clicked(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                string selectedID = (this.PrescriptionListBox.PrescriptionListBox.SelectedItem as PrescriptionFileInfoListItemModel).PrescriptionID;
-                SaveInDB(StaticMethod.PrescriptionListManagement.PrescriptionList.Find(a => a.PrescriptionID.Equals(selectedID)));
-                Views.ReportWindow reportWin = new Views.ReportWindow();
-                reportWin.LoadData(selectedID);
-                reportWin.Show();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("btnReport: " + ex.Message);
-            }
-        }
+        ///// <summary>
+        ///// 生成报表
+        ///// </summary>
+        ///// <param name="sender"></param>
+        ///// <param name="e"></param>
+        //private void btnReportCreation_Clicked(object sender, RoutedEventArgs e)
+        //{
+        //    try
+        //    {
+        //        string selectedID = (this.PrescriptionListBox.PrescriptionListBox.SelectedItem as PrescriptionFileInfoListItemModel).PrescriptionID;
+        //        SaveInDB(StaticMethod.PrescriptionListManagement.PrescriptionList.Find(a => a.PrescriptionID.Equals(selectedID)));
+        //        Views.ReportWindow reportWin = new Views.ReportWindow();
+        //        reportWin.LoadData(selectedID);
+        //        reportWin.Show();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show("btnReport: " + ex.Message);
+        //    }
+        //}
         /// <summary>
         /// 载入文件按钮
         /// </summary>

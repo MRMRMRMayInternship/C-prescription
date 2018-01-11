@@ -26,6 +26,11 @@ namespace WpfProDemo.Views
         public DoctorInfoBlock()
         {
             InitializeComponent();
+           
+            this.Loaded += DoctorInfoBlock_Loaded;
+
+                    }
+        public void DoctorInfoBlock_Loaded(object send, RoutedEventArgs args){
             id = StaticMethod.ConfigManagement.GetConfigValue(StaticMethod.ConfigManagement.ConfigSettingDoctorKey);
             using (PIPusingWPFModel.PIPEntities pip = new PIPusingWPFModel.PIPEntities())
             {
@@ -41,13 +46,9 @@ namespace WpfProDemo.Views
                     MessageBox.Show(ex.Message);
                 }
             }
-            this.Loaded += DoctorInfoBlock_Loaded;
-
             this.DoctorName.SetBinding(Label.ContentProperty, new Binding("Name") { Source = doctor, Mode = BindingMode.OneWay });
             this.DoctorID.SetBinding(Label.ContentProperty, new Binding("ID") { Source = doctor, Mode = BindingMode.OneWay });
             this.Department.SetBinding(Label.ContentProperty, new Binding("Department") { Source = doctor, Mode = BindingMode.OneWay });
-        }
-        public void DoctorInfoBlock_Loaded(object send, RoutedEventArgs args){
         }
     }
     public class Doctor_InfoDataModel : INotifyPropertyChanged

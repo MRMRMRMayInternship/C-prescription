@@ -5,14 +5,31 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WpfProDemo.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="577" d:DesignWidth="300" Width="400" Height="Auto">
+             d:DesignHeight="577" d:DesignWidth="400" Width="auto" Height="Auto">
     <UserControl.Resources>
         <Style TargetType="ListBox" x:Key="PrescriptionListBoxStyle">
             
         </Style>
     </UserControl.Resources>
-    <Grid>
-        <ListBox x:Name="PrescriptionListBox" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+    <DockPanel LastChildFill="True">
+        <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Height="50" Background="White">
+            <Grid MinWidth="280" MinHeight="30" Margin="5,10,0,10">
+                <TextBox x:Name="SearchTextBox" VerticalAlignment="Center" HorizontalAlignment="Left" MinWidth="260" MinHeight="30" MaxWidth="260">
+                    
+                </TextBox>
+                <Button x:Name="SearchTextBoxClearBtn" Content="X" VerticalAlignment="Center" HorizontalAlignment="Right" MinWidth="20" MinHeight="20">
+                    
+                </Button>
+            </Grid>
+            <!--<Button x:Name="SearchBtn" Margin="10" Width="80" Content="Seach"/>-->
+            <local:SearchBtn x:Name="MySearchButton" Margin="10,0,10,0" Width="40"></local:SearchBtn>
+            <!--<Button x:Name="UpdateFileListBtn" Margin="10"></Button>-->
+            <local:UpdateButton x:Name="MyUpdateButton" Margin="0,0,10,0" Width="40"></local:UpdateButton>
+        </StackPanel>
+        <Grid DockPanel.Dock="Bottom" Height="40">
+            <Button x:Name="LoadFileInfoBtn" Content="Load Info"></Button>
+        </Grid>
+        <ListBox DockPanel.Dock="Bottom" x:Name="PrescriptionListBox" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
             <ListBox.ItemTemplate>
                 <DataTemplate >
                     <local:PrescriptionListItem></local:PrescriptionListItem>
@@ -24,6 +41,7 @@
                 </ItemsPanelTemplate>
             </ListBox.ItemsPanel>
         </ListBox>
+        
         <!--<WrapPanel Name="prescriptionFileListPanel"  Height="auto" DockPanel.Dock="Left" Width="400" Background="Black" Orientation="Horizontal">
             <ItemsControl ItemsSource="{Binding Commands}">
                 <ItemsControl.ItemsPanel>
@@ -40,5 +58,5 @@
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
         </WrapPanel>-->
-    </Grid>
+    </DockPanel>
 </UserControl>

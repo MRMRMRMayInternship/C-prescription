@@ -25,71 +25,23 @@
         <StackPanel Height="auto" Width="200" Background="gray">
             <Button x:Name="btnLoader" Content="Load" Margin="10,10,10,0" Click="btnLoad_Clicked"/>
             <Button x:Name="btnSpinner"  Content="Button" Margin="10,10,10,0" Command="{Binding AddNewCommand}"/>
-            <Button Content="Button" Margin="10,10,10,0"/>
-            
+            <Button x:Name="btnMenu" Content="Menu" Margin="10,10,10,0"/>
+         
         </StackPanel>
+            <Grid Width="auto" DockPanel.Dock="Right">
+                <DockPanel Width="auto" >
             <Grid Height="auto">
-                <local:PrescriptionFileListBox x:Name="PrescriptionListBox" Height="auto"></local:PrescriptionFileListBox>
-                <local:PrescriptionListBoxMaskLayer x:Name="pListBoxMask" Width="auto" Height="auto"  Visibility="Visible"></local:PrescriptionListBoxMaskLayer>
-            </Grid>
-            <DockPanel Height="auto" LastChildFill="True" DockPanel.Dock="Right" Width="auto">
-                <Grid Height="200" Width="Auto" DockPanel.Dock="Top"/>
-                <Border BorderThickness="2" BorderBrush="Gray">
-                <Grid Height="Auto" Width="232" DockPanel.Dock="Left">
-                        <Label HorizontalAlignment="Center" Content="-----Patient Infomation-----" />
-                        <DockPanel LastChildFill="True" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="34,50,30,0" Width="170">
-                        <Label Content="123:" Width="41"/>
-                        <Label Content="123:" Width="auto"/>
-                    </DockPanel>
-                    <DockPanel LastChildFill="True" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="34,90,30,0" Width="170">
-                        <Label Content="123:" Width="41"/>
-                        <Label Content="123:" Width="auto"/>
-                    </DockPanel>
-                    <DockPanel LastChildFill="True" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="34,130,30,0" Width="170">
-                        <Label Content="123:" Width="41"/>
-                        <Label Content="123:" Width="auto"/>
-                    </DockPanel>
-                        <DockPanel LastChildFill="True" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="34,170,30,0" Width="170">
-                        <Label Content="123:" Width="41"/>
-                        <Label Content="123:" Width="auto"/>
-                    </DockPanel>
-                    <DockPanel LastChildFill="True" HorizontalAlignment="Center" Margin="34,210,30,0" Width="170">
-                        <Label Content="123:" Width="41"/>
-                        <TextBox TextWrapping="Wrap" Text="123112312323123123123123123123:" Width="auto" Background="White"/>
-                    </DockPanel>
+                <local:PrescriptionFileListBox Margin="5,0,5,0" x:Name="PrescriptionListBox" Height="auto" Width="390"></local:PrescriptionFileListBox>
                 </Grid>
-                </Border>
-                <DockPanel LastChildFill="True" Height="auto" Width="auto">
-                    <Grid DockPanel.Dock="Top" Height="347" Width="Auto"  VerticalAlignment="Top">
-                        <DataGrid HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top">
-                            <DataGrid.Columns>
-                                <DataGridTemplateColumn Header="Option" Width="40" Visibility="Collapsed">
-                                    <DataGridTemplateColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <!--放控件 -->
-                                        </DataTemplate>
-                                    </DataGridTemplateColumn.CellTemplate>
-                                </DataGridTemplateColumn>
-                                <DataGridTextColumn Header="药品名称" Width="80" Binding="{Binding DrugName}"/>
-                                <DataGridTextColumn Header="用法" Width="40" Binding="{Binding Usage}"/>
-                                <DataGridTextColumn Header="用药天数" Width="60" Binding="{Binding TimeDuration}"/>
-                                <DataGridTextColumn Header="一天用药次数" Width="90" Binding="{Binding TimeDuration}"/>
-                                <DataGridTextColumn Header="早上" Width="60" Binding="{Binding TimeDuration}"/>
-                                <DataGridTextColumn Header="中午" Width="60" Binding="{Binding TimeDuration}"/>
-                                <DataGridTextColumn Header="晚上" Width="60" Binding="{Binding TimeDuration}"/>
-                                <DataGridTextColumn Header="一次用药量" Width="70" Binding="{Binding TimeDuration}"/>
-                                <DataGridTextColumn Header="使用说明" Width="300" Binding="{Binding TimeDuration}"/>
-                            </DataGrid.Columns>
-                        </DataGrid>
-                    </Grid>
-                    <Grid DockPanel.Dock="Bottom" Height="auto" Width="auto">
-                        <Button Content="Report" FontSize="14" FontWeight="Bold"  Margin="506,0,92,10" Click="btnReportCreation_Clicked">
-
-                        </Button>
-                    </Grid>
+            <Grid Height="auto" DockPanel.Dock="Right" Width="auto">
+                <local:PrescriptionInfoBlock x:Name="MyPrescriptionInfoBlock"></local:PrescriptionInfoBlock>    
+            </Grid>
                 </DockPanel>
-            </DockPanel>
+                <local:PrescriptionListBoxMaskLayer Margin="5,0,5,0" Background="#969696" x:Name="pListBoxMask" Width="auto" Height="auto"  Visibility="Collapsed"></local:PrescriptionListBoxMaskLayer>
+            </Grid>
+            
         </DockPanel>
+        
         <local:LoadingProgressMaskLayer x:Name="PrescriptionFileListLoadingProgressMaskLayer" Visibility="Collapsed"></local:LoadingProgressMaskLayer>
     </Grid>
 </Page>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PrescriptionClass xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <PrescriptionID>RX100180111174205</PrescriptionID>
+  <Date>2018-01-11 오후 5:43:28</Date>
+  <Patient>
+    <Name>Denys</Name>
+    <Age>9</Age>
+    <Sex>M</Sex>
+    <SymptomDescription>지단결과 iasndfisndfionasiofnioasdfnioasndfionasiodfnioasndfionasiodfnioasdnfioasnfionsiodfnoisdnfiondfoinsdoifsodfnosndfno</SymptomDescription>
+    <PatientID>P100171227151111</PatientID>
+  </Patient>
+  <Doctor>
+    <Name>root</Name>
+    <ID>root</ID>
+    <Department>test</Department>
+  </Doctor>
+  <Drugs>
+    <DrugClass>
+      <DrugName>Capmist DM oral</DrugName>
+      <DrugID>D001180102080515</DrugID>
+      <TimeDuration>1</TimeDuration>
+      <TimesPerDay>1</TimesPerDay>
+      <DosagePerTime_Value>2</DosagePerTime_Value>
+      <DosagePerTime_Unit>개</DosagePerTime_Unit>
+      <Usage>내복</Usage>
+      <Instruction>2</Instruction>
+      <WhenMorning>true</WhenMorning>
+      <WhenAfternoon>false</WhenAfternoon>
+      <WhenEvening>false</WhenEvening>
+    </DrugClass>
+    <DrugClass>
+      <DrugName>Virtussin AC oral</DrugName>
+      <DrugID>D001180102080511</DrugID>
+      <TimeDuration>3</TimeDuration>
+      <TimesPerDay>1</TimesPerDay>
+      <DosagePerTime_Value>4</DosagePerTime_Value>
+      <DosagePerTime_Unit>ml</DosagePerTime_Unit>
+      <Usage>내복</Usage>
+      <Instruction>1</Instruction>
+      <WhenMorning>true</WhenMorning>
+      <WhenAfternoon>false</WhenAfternoon>
+      <WhenEvening>false</WhenEvening>
+    </DrugClass>
+    <DrugClass>
+      <DrugName>Claritin-D 12 Hour oral	</DrugName>
+      <DrugID>D001180102080502</DrugID>
+      <TimeDuration>2</TimeDuration>
+      <TimesPerDay>1</TimesPerDay>
+      <DosagePerTime_Value>3</DosagePerTime_Value>
+      <DosagePerTime_Unit>l</DosagePerTime_Unit>
+      <Usage>내복</Usage>
+      <Instruction>12</Instruction>
+      <WhenMorning>true</WhenMorning>
+      <WhenAfternoon>false</WhenAfternoon>
+      <WhenEvening>false</WhenEvening>
+    </DrugClass>
+    <DrugClass>
+      <DrugName>Mucinex D Maximum Strength oral</DrugName>
+      <DrugID>D001180102080443</DrugID>
+      <TimeDuration>3</TimeDuration>
+      <TimesPerDay>2</TimesPerDay>
+      <DosagePerTime_Value>12</DosagePerTime_Value>
+      <DosagePerTime_Unit>개</DosagePerTime_Unit>
+      <Usage>내복</Usage>
+      <Instruction>2</Instruction>
+      <WhenMorning>true</WhenMorning>
+      <WhenAfternoon>true</WhenAfternoon>
+      <WhenEvening>false</WhenEvening>
+    </DrugClass>
+    <DrugClass>
+      <DrugName>Bromfed DM oral</DrugName>
+      <DrugID>D001180102080452</DrugID>
+      <TimeDuration>3</TimeDuration>
+      <TimesPerDay>1</TimesPerDay>
+      <DosagePerTime_Value>1</DosagePerTime_Value>
+      <DosagePerTime_Unit>l</DosagePerTime_Unit>
+      <Usage>내복</Usage>
+      <Instruction>2</Instruction>
+      <WhenMorning>true</WhenMorning>
+      <WhenAfternoon>false</WhenAfternoon>
+      <WhenEvening>false</WhenEvening>
+    </DrugClass>
+    <DrugClass>
+      <DrugName>Mucinex oral</DrugName>
+      <DrugID>D001180102080340</DrugID>
+      <TimeDuration>1</TimeDuration>
+      <TimesPerDay>1</TimesPerDay>
+      <DosagePerTime_Value>2</DosagePerTime_Value>
+      <DosagePerTime_Unit>ml</DosagePerTime_Unit>
+      <Usage>외용</Usage>
+      <Instruction>2</Instruction>
+      <WhenMorning>true</WhenMorning>
+      <WhenAfternoon>false</WhenAfternoon>
+      <WhenEvening>false</WhenEvening>
+    </DrugClass>
+  </Drugs>
+</PrescriptionClass>

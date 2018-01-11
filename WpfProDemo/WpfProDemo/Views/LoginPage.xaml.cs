@@ -21,7 +21,6 @@ namespace WpfProDemo.Views
     /// </summary>
     public partial class LoginPage : Page
     {
-        private DAO.LoginEventHandle loginEventHandle = new DAO.LoginEventHandle();
         private MainWindow parentWindow = null;
         private System.Configuration.Configuration config;
         public MainWindow ParentWindow
@@ -39,29 +38,34 @@ namespace WpfProDemo.Views
         {
             InitializeComponent();
             config = System.Configuration.ConfigurationManager.OpenExeConfiguration(System.Configuration.ConfigurationUserLevel.None);
+            this.Loaded += LoginPage_Loaded;
+        }
+
+        void LoginPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            this.pwTextBox.Clear();
+            
         }
         private void BtnExit_Clicked(object sender, RoutedEventArgs e)
         {
             this.parentWindow.Close();
         }
-        private bool CheckIdAndPassword()
+        private bool CheckIdAndPassword(string id, string pw)
         {
-            return true;
+            //return true;
             bool isValid = false;
-            var id = idTextBox.Text;
-            var pw = pwTextBox.Password;
             if (!string.IsNullOrWhiteSpace(id) && !string.IsNullOrWhiteSpace(pw))
-                isValid = loginEventHandle.IsValid(id, pw);
+                isValid = DAO.LoginEventHandle.IsValid(id, pw);
             return isValid;
         }
         private void BtnLogin_Clicked(object sender, RoutedEventArgs e)
         {
-            if (CheckIdAndPassword())
+
+            var id = idTextBox.Text;
+            var pw = pwTextBox.Password;
+            if (CheckIdAndPassword(id,pw))
             {
-                //this.idTextBox.Clear();
-                //this.pwTextBox.Clear();
-                //var id = idTextBox.Text;
-                var id = "root";
+                //var id = "root";
                 try {
                     StaticMethod.ConfigManagement.SetConfigValue(StaticMethod.ConfigManagement.ConfigSettingDoctorKey, id).ToString();
                 }

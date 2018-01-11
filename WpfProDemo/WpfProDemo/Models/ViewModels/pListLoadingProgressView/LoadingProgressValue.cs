@@ -9,13 +9,11 @@ namespace WpfProDemo.Models.ViewModels.pListLoadingProgressView
 {
     public class LoadingProgressValue : INotifyPropertyChanged
     {
-        private double _ProgressPercentValue;
+        private double _ProgressPercentValue = 0;
         public double ProgressPercentValue
         {
             get
             {
-                if (_ProgressPercentValue == null)
-                    _ProgressPercentValue = 0;
                 return _ProgressPercentValue;
             }
             set
@@ -24,13 +22,11 @@ namespace WpfProDemo.Models.ViewModels.pListLoadingProgressView
                 OnPropertychanged("ProgressPercentValue");
             }
         }
-        private int _DoingValue;
+        private int _DoingValue = 0;
         public int DoingValue
         {
             get
             {
-                if (_DoingValue == null)
-                    _DoingValue = 0;
                 return _DoingValue;
             }
             set
@@ -38,13 +34,11 @@ namespace WpfProDemo.Models.ViewModels.pListLoadingProgressView
                 _DoingValue = value;
             }
         }
-        private int _TotalValue;
+        private int _TotalValue = 0;
         public int TotalValue
         {
             get
             {
-                if (_TotalValue == null)
-                    _TotalValue = 0;
                 return _TotalValue;
             }
             set

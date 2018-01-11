@@ -9,7 +9,7 @@ namespace WpfProDemo.DAO
 {
     public static class ToDataTable
     {
-        public static System.Data.DataTable ToDataTableMethod<T>(this IList<T> data)
+        public static System.Data.DataTable ToDataTableMethodForList<T>(this IList<T> data)
         {
             PropertyDescriptorCollection properties = TypeDescriptor.GetProperties(typeof(T));
             System.Data.DataTable dt = new System.Data.DataTable();
@@ -24,7 +24,7 @@ namespace WpfProDemo.DAO
             }
             return dt;
         }
-        public static System.Data.DataTable ToDataTableMethod<T>(this T data)
+        public static System.Data.DataTable ToDataTableMethodForObject<T>(this T data)
         {
             PropertyDescriptorCollection properties = TypeDescriptor.GetProperties(typeof(T));
             System.Data.DataTable dt = new System.Data.DataTable();

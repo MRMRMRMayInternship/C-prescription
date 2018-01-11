@@ -94,6 +94,7 @@
     <Compile Include="DAO\DatabaseConnectionPool.cs" />
     <Compile Include="DAO\DoctorsDB.cs" />
     <Compile Include="DAO\LoginEventHandle.cs" />
+    <Compile Include="DAO\PrescriptionDBHandle.cs" />
     <Compile Include="DAO\ToDataTable.cs" />
     <Compile Include="Models\AccountClass.cs" />
     <Compile Include="Models\backup\Account.cs" />
@@ -118,7 +119,9 @@
       <DependentUpon>PIPDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="StaticMethod\ConfigManagement.cs" />
+    <Compile Include="StaticMethod\KeyPressEvent.cs" />
     <Compile Include="StaticMethod\PrescriptionListManagement.cs" />
+    <Compile Include="StaticMethod\StringEncodingManagement.cs" />
     <Compile Include="Views\DoctorInfoBlock.xaml.cs">
       <DependentUpon>DoctorInfoBlock.xaml</DependentUpon>
     </Compile>
@@ -137,6 +140,9 @@
     <Compile Include="Views\PrescriptionFileListBox.xaml.cs">
       <DependentUpon>PrescriptionFileListBox.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\PrescriptionInfoBlock.xaml.cs">
+      <DependentUpon>PrescriptionInfoBlock.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\PrescriptionListItem.xaml.cs">
       <DependentUpon>PrescriptionListItem.xaml</DependentUpon>
     </Compile>
@@ -152,8 +158,17 @@
     <Compile Include="Views\ReportWindow.xaml.cs">
       <DependentUpon>ReportWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\SearchBar.xaml.cs">
+      <DependentUpon>SearchBar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SearchBtn.xaml.cs">
+      <DependentUpon>SearchBtn.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\TitleBar.xaml.cs">
       <DependentUpon>TitleBar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UpdateButton.xaml.cs">
+      <DependentUpon>UpdateButton.xaml</DependentUpon>
     </Compile>
     <Page Include="Views\DoctorInfoBlock.xaml">
       <SubType>Designer</SubType>
@@ -193,6 +208,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\PrescriptionInfoBlock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\PrescriptionListItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -213,7 +232,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\SearchBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SearchBtn.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\TitleBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UpdateButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -321,6 +352,16 @@
     <Resource Include="Resources\prescriptions\P100171227151111_RX100180105175243.xml" />
     <Resource Include="Resources\prescriptions\P100171227151214_RX100180103151759.xml" />
     <Resource Include="Resources\prescriptions\P100171227151214_RX100180104080357.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons\Update.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons\Search.png" />
+    <Resource Include="Resources\Icons\Search_press.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons\Update_press.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

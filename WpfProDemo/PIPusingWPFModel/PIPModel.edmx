@@ -9,31 +9,31 @@
           <Key>
             <PropertyRef Name="Did" />
           </Key>
-          <Property Name="Did" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="AccountPw" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Did" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="AccountPw" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Doctor">
           <Key>
             <PropertyRef Name="Did" />
           </Key>
-          <Property Name="Did" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="Name" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="Sex" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="Did" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Sex" Type="nvarchar" MaxLength="4" Nullable="false" />
           <Property Name="Age" Type="int" Nullable="false" />
-          <Property Name="Department" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Department" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Drugs">
           <Key>
             <PropertyRef Name="PrescriptionId" />
             <PropertyRef Name="DrugName" />
           </Key>
-          <Property Name="PrescriptionId" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="DrugName" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="TimeDuration" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="TimesPerDay" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="DosagePerTime" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="Usage" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="Instruction" Type="text" Nullable="false" />
+          <Property Name="PrescriptionId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DrugName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="TimeDuration" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="TimesPerDay" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="DosagePerTime" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Usage" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Instruction" Type="ntext" Nullable="false" />
           <Property Name="WhenMorning" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="WhenAfternoon" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="WhenEvening" Type="varchar" MaxLength="20" Nullable="false" />
@@ -42,21 +42,21 @@
           <Key>
             <PropertyRef Name="PatientId" />
           </Key>
-          <Property Name="PatientId" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="Name" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="Age" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="Sex" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="PatientId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Age" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Sex" Type="nvarchar" MaxLength="4" Nullable="false" />
         </EntityType>
         <EntityType Name="Prescription">
           <Key>
             <PropertyRef Name="PrescriptionId" />
           </Key>
-          <Property Name="PrescriptionId" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="Did" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="PatientId" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="Date" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="PrescriptionId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Did" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PatientId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Date" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Status" Type="bit" Nullable="false" />
-          <Property Name="Diagnosis" Type="text" />
+          <Property Name="Diagnosis" Type="ntext" />
         </EntityType>
         <Association Name="FK_Account_Doctors">
           <End Role="Doctor" Type="Self.Doctor" Multiplicity="1" />
@@ -122,19 +122,19 @@
           <Key>
             <PropertyRef Name="Did" />
           </Key>
-          <Property Name="Did" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="AccountPw" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Did" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AccountPw" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Doctor" Relationship="Self.FK_Account_Doctors" FromRole="Account" ToRole="Doctor" />
         </EntityType>
         <EntityType Name="Doctor">
           <Key>
             <PropertyRef Name="Did" />
           </Key>
-          <Property Name="Did" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Sex" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Did" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Sex" Type="String" MaxLength="4" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Age" Type="Int32" Nullable="false" />
-          <Property Name="Department" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Department" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Account" Relationship="Self.FK_Account_Doctors" FromRole="Doctor" ToRole="Account" />
           <NavigationProperty Name="Prescriptions" Relationship="Self.FK_Prescription_ToDoctor" FromRole="Doctor" ToRole="Prescription" />
         </EntityType>
@@ -143,13 +143,13 @@
             <PropertyRef Name="PrescriptionId" />
             <PropertyRef Name="DrugName" />
           </Key>
-          <Property Name="PrescriptionId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="DrugName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="TimeDuration" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="TimesPerDay" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="DosagePerTime" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Usage" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Instruction" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PrescriptionId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DrugName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TimeDuration" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TimesPerDay" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DosagePerTime" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Usage" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Instruction" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="WhenMorning" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="WhenAfternoon" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="WhenEvening" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
@@ -158,22 +158,22 @@
           <Key>
             <PropertyRef Name="PatientId" />
           </Key>
-          <Property Name="PatientId" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Age" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Sex" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PatientId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Age" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Sex" Type="String" MaxLength="4" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Prescriptions" Relationship="Self.FK_Prescription_ToPatient" FromRole="Patient" ToRole="Prescription" />
         </EntityType>
         <EntityType Name="Prescription">
           <Key>
             <PropertyRef Name="PrescriptionId" />
           </Key>
-          <Property Name="PrescriptionId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Did" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="PatientId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Date" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PrescriptionId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Did" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PatientId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Status" Type="Boolean" Nullable="false" />
-          <Property Name="Diagnosis" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Diagnosis" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Doctor" Relationship="Self.FK_Prescription_ToDoctor" FromRole="Prescription" ToRole="Doctor" />
           <NavigationProperty Name="Patient" Relationship="Self.FK_Prescription_ToPatient" FromRole="Prescription" ToRole="Patient" />
         </EntityType>

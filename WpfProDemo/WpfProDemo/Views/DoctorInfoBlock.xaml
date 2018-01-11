@@ -21,13 +21,10 @@
             <Label Content="ID:" Height="44" VerticalAlignment="Top" Width="43"/>
             <Label Name="DoctorID" Height="44" VerticalAlignment="Top"/>
         </DockPanel>
-        <DockPanel HorizontalAlignment="Left" Height="44" LastChildFill="True" Margin="668,36,0,0" VerticalAlignment="Top" Width="248">
-            <Label Content="Date:" Height="44" VerticalAlignment="Top" Width="92"/>
-            <Label Name="NowDate" Height="44" VerticalAlignment="Top"/>
-        </DockPanel>
-        <DockPanel HorizontalAlignment="Left" Height="44" LastChildFill="True" Margin="982,36,0,0" VerticalAlignment="Top" Width="248">
+        
+        <DockPanel HorizontalAlignment="Left" Height="44" LastChildFill="True" Margin="667,36,0,0" VerticalAlignment="Top" Width="388">
             <Label Content="Department:" Height="44" VerticalAlignment="Top" Width="128"/>
-            <Label Name="Department" Height="44" VerticalAlignment="Top" Width="130"/>
+            <Label Name="Department" Height="44" VerticalAlignment="Top" Width="auto"/>
         </DockPanel>
 
     </Grid>

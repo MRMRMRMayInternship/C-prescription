@@ -22,7 +22,7 @@
             <Button Grid.Row="0" Grid.Column="2" Style="{StaticResource MenuBtnStyle}" Content="option"></Button>
             <Button Grid.Row="1" Grid.Column="0" Style="{StaticResource MenuBtnStyle}" Content="option"></Button>
             <Button Grid.Row="1" Grid.Column="1" Style="{StaticResource MenuBtnStyle}" Content="option"></Button>
-            <Button Grid.Row="1" Grid.Column="2" Style="{StaticResource MenuBtnStyle}" Content="Exit"></Button>
+            <Button Grid.Row="1" Grid.Column="2" Style="{StaticResource MenuBtnStyle}" Content="Exit" x:Name="btnExit"></Button>
         </UniformGrid>
     </Grid>
 </Page>

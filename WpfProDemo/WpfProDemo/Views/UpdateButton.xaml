@@ -1,25 +1,24 @@
-﻿<UserControl x:Class="WpfProDemo.Views.TitleBar"
+﻿<UserControl x:Class="WpfProDemo.Views.UpdateButton"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:WpfProDemo.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="40" d:DesignWidth="1550" >
+             d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
-        <Style TargetType="Button" x:Key="btnExitStyle">
+        <Style TargetType="Button" x:Key="btnUpdateStyle">
             <Setter Property="Background">
                 <Setter.Value>
-                    <ImageBrush ImageSource="..\Resources\Icons\poweroff.png"/>
+                    <ImageBrush ImageSource="..\Resources\Icons\Update.png"/>
                 </Setter.Value>
             </Setter>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
-                        <Image Name="btnExitBg" Source="..\Resources\Icons\poweroff.png"/>
+                        <Image Name="btnUpdateBg" Source="..\Resources\Icons\Update.png"/>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True" >
-                                <Setter TargetName="btnExitBg" Property="Source" Value="..\Resources\Icons\poweroff_press.png"/>
+                                <Setter TargetName="btnUpdateBg" Property="Source" Value="..\Resources\Icons\Update_press.png"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -27,10 +26,5 @@
             </Setter>
         </Style>
     </UserControl.Resources>
-    <Border>
-        <Grid>
-            <Label Name="NowDate" Content="time" FontSize="25" Foreground="White" VerticalContentAlignment="Center" Height="40" Width="300" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,100,0"/>
-            <Button Name="BtnExit" Style="{StaticResource btnExitStyle}"  HorizontalAlignment="Right" Width="auto" Height="auto" Margin="0,0,0,0" FontSize="14"/>
-        </Grid>
-    </Border>
+    <Button Style="{StaticResource btnUpdateStyle}" x:Name="UpdateBtn"></Button>
 </UserControl>

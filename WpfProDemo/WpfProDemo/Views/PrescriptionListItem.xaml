@@ -65,15 +65,15 @@
     <Border BorderBrush="Gray" BorderThickness="1" Height="120" Width="150" Margin="10">
         <StackPanel Orientation="Vertical"  VerticalAlignment="Center" HorizontalAlignment="Center">
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
-                <Label Content="Prescription ID: "></Label>
+                <!--<Label Content="Prescription ID: "></Label>-->
                 <Label x:Name="ItemPrescriptionIDlabel" Content="{Binding PrescriptionID}" />
             </StackPanel>
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
-                <Label Content="Patient Name: "></Label>
+                <!--<Label Content="Patient Name: "></Label>-->
                 <Label x:Name="ItemPatientNameLabel" Content="{Binding PatientName}" />
             </StackPanel>
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
-                <Label Content="Date: "></Label>
+                <!--<Label Content="Date: "></Label>-->
                 <Label x:Name="ItemCreationDateLabel" Content="{Binding CreationDate}"/>
             </StackPanel>
         </StackPanel>
