@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using System.Windows.Forms;
-
 namespace WpfProDemo.StaticMethod
 {
     static class KeyPressEvent
@@ -50,7 +50,6 @@ namespace WpfProDemo.StaticMethod
          ***/
         public static void KeyPressOnlyNumberAndLetterEventHandle(object sender, KeyPressEventArgs e)
         {
-            TextBox txt = (TextBox)sender;
             string exp = @"[0-9a-zA-Z]|[\b]";
             if (!System.Text.RegularExpressions.Regex.IsMatch("" + e.KeyChar, exp))
             {
@@ -60,11 +59,10 @@ namespace WpfProDemo.StaticMethod
         /***
          * some textBox be allow to entry only letter;
          ***/
-        public static void KeyPressOnlyLetterEventHandle(object sender, KeyPressEventArgs e)
+        public static void KeyPressOnlyLetterEventHandle(object sender, System.Windows.Input.KeyEventArgs e)
         {
-            TextBox txt = (TextBox)sender;
             string exp = @"[a-zA-Z]|[\b]"; 
-            if (!System.Text.RegularExpressions.Regex.IsMatch("" + e.KeyChar, exp))
+            if (!System.Text.RegularExpressions.Regex.IsMatch("" + e.Key, exp))
             {
                 e.Handled = true;
             }

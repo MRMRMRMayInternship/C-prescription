@@ -28,33 +28,49 @@ namespace WpfProDemo.Views
     /// </summary>
     public partial class MainWindow : Window
     {
+        /// <summary>
+        /// 登陆界面实例
+        /// </summary>
         private LoginPage loginpage;
+        /// <summary>
+        /// 处方管理实例
+        /// </summary>
         private PrescriptionManagementPage pmPage;
+        /// <summary>
+        /// 菜单页面实例
+        /// </summary>
         private MenuPage menuPage;
+        /// <summary>
+        /// 构造函数
+        /// </summary>
         public MainWindow()
         {
             
             InitializeComponent();
-            InitializePages();
+            //InitializePages();
             this.Loaded += MainWindow_Loaded;
             this.Closed += MainWindow_Closed;
         }
 
         private void MainWindow_Closed(object sender, EventArgs e)
         {
-            
         }
-        private void InitializePages(){
-            loginpage = new LoginPage();
-            loginpage.ParentWindow = this;
-            pmPage = new PrescriptionManagementPage();
-            pmPage.ParentWindow = this;
-            menuPage = new MenuPage();
-            menuPage.ParentWindow = this;
-        }
+        //private void InitializePages(){
+        //    loginpage = new LoginPage();
+        //    loginpage.ParentWindow = this;
+        //    pmPage = new PrescriptionManagementPage();
+        //    pmPage.ParentWindow = this;
+        //    menuPage = new MenuPage();
+        //    menuPage.ParentWindow = this;
+        //}
+        /// <summary>
+        /// 主窗口渲染事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MainWindow_Loaded(object sender, RoutedEventArgs e){
             myFrame.NavigationUIVisibility = NavigationUIVisibility.Hidden;
-            this.myFrame.Content = loginpage;
+            CallLoginPage();
             this.MyTitleBar.BtnExit.Click += ExitBtn_Clicked;
             this.MyTitleBar.MouseLeftButtonDown += WindowMove;
             this.MyTitleBar.MouseEnter += TitleBar_MouseEnterArea;
@@ -71,6 +87,11 @@ namespace WpfProDemo.Views
         {
             this.DragMove();
         }
+        /// <summary>
+        /// 鼠标移入标题栏
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
         private void TitleBar_MouseEnterArea(object sender, RoutedEventArgs args)
         {
             StatBarText.Text = "Title Bar Area";
@@ -102,22 +123,35 @@ namespace WpfProDemo.Views
         {
             StatBarText.Text = "Ready";
         }
+        /// <summary>
+        /// 转入登陆页面
+        /// </summary>
         public void CallLoginPage()
         {
-            this.myFrame.Content = loginpage;
+            this.myFrame.Content = new LoginPage() { ParentWindow = this};
         }
+        /// <summary>
+        /// 转入处方管理页面
+        /// </summary>
         public void CallPrescriptionManagementPage()
         {
-            this.myFrame.Content = pmPage;
+            this.myFrame.Content = new PrescriptionManagementPage() { ParentWindow = this };
         }
+        /// <summary>
+        /// 转入菜单页面
+        /// </summary>
         public void CallMenuPage()
         {
-            this.myFrame.Content = menuPage;
+            this.myFrame.Content = new MenuPage() { ParentWindow = this};
         }
-
+        /// <summary>
+        /// 退出事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ExitBtn_Clicked(object sender, RoutedEventArgs e)
         {
-            this.Close();
+           this.Close();
         }
     }
 }

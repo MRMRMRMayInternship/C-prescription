@@ -39,15 +39,15 @@ namespace WpfProDemo.Views
         private List<PrescriptionFileInfoListItemModel> updateList;
         private string selectedItemID;
         private string path;
-        private ObservableCollection<PrescriptionFileInfoListItemModel> ListBoxItems
+        private List<PrescriptionFileInfoListItemModel> ListBoxItems
         {
             get
             {
-                return _ListBoxItems;
+                return updateList;
             }
             set
             {
-                _ListBoxItems = value;
+                updateList = value;
             }
         }
         public PrescriptionFileListBox()
@@ -85,7 +85,7 @@ namespace WpfProDemo.Views
         private void SearchTextBoxClearBtn_Click(object sender, RoutedEventArgs e)
         {
             this.SearchTextBox.Clear();
-            PrescriptionListBox.ItemsSource = _ListBoxItems;
+            PrescriptionListBox.ItemsSource = ListBoxItems;
         }
         /// <summary>
         /// 搜索功能
@@ -97,9 +97,9 @@ namespace WpfProDemo.Views
             try
             {
                 var input = this.SearchTextBox.Text;
-                var result = string.IsNullOrWhiteSpace(input) ? 
-                    _ListBoxItems.ToList() : 
-                    _ListBoxItems.Where(obj=>obj.PatientName.ToUpper().Contains(input) || 
+                var result = string.IsNullOrWhiteSpace(input) ?
+                    ListBoxItems.ToList() :
+                    ListBoxItems.Where(obj => obj.PatientName.ToUpper().Contains(input) || 
                         obj.PatientName.ToLower().Contains(input) 
                         ).ToList();
                 if(result.Count <= 0); //出现遮蔽层
@@ -135,9 +135,8 @@ namespace WpfProDemo.Views
         private void pListLoadCompleted_Handler(object sender, RunWorkerCompletedEventArgs e)
         {
             MessageBox.Show("Complete Loading");
-            loadCompletedAction();
-
-            PrescriptionListBox.ItemsSource = _ListBoxItems;
+            SetMaskLay(Visibility.Collapsed);
+            PrescriptionListBox.ItemsSource = ListBoxItems;
             //PrescriptionFileListLoadingProgressMaskLayer.Visibility = System.Windows.Visibility.Collapsed;
         }
         /// <summary>
@@ -157,9 +156,8 @@ namespace WpfProDemo.Views
         /// <param name="e"></param>
         private void pListLoaderWorker(object sender, DoWorkEventArgs e)
         {
-
                 //获得处方文件数量
-            List<string> fList = System.IO.Directory.GetFiles(@path).ToList();
+            List<string> fList = System.IO.Directory.GetFiles(@path).Where(file=>file.Contains("P100") && file.Contains("RX100") && file.Contains(@"_")).ToList();
             int total = fList.Count();
             string msg = total <= 0 ? "There is no file" : string.Empty;
             
@@ -181,7 +179,6 @@ namespace WpfProDemo.Views
             }));
             try
             {
-                updateList = new List<PrescriptionFileInfoListItemModel>();
                 for (int i = 1; i <= total; i++)
                 {
                     Models.PrescriptionClass prescription = DAO.XmlSerializer.LoadFromXml(fList[i - 1], typeof(Models.PrescriptionClass)) as Models.PrescriptionClass;
@@ -193,13 +190,14 @@ namespace WpfProDemo.Views
                         StaticMethod.PrescriptionListManagement.PrescriptionList.Add(prescription);
                         DAO.PrescriptionDBHandle.SaveInDB(prescription);
                     }
-                    if (ListBoxItems.Where(obj=>obj.CreationDate.Equals(temp.CreationDate)).FirstOrDefault()==null)
+                    ////update时候此判断可减少次数
+                    //if (ListBoxItems.Where(obj=>obj.CreationDate.Equals(temp.CreationDate)).FirstOrDefault()==null)
+                    //{
+                    Dispatcher.Invoke(new Action(() =>
                     {
-                        Dispatcher.Invoke(new Action(() =>
-                        {
-                            ListBoxItems.Add(temp);
-                        }));
-                    }
+                        ListBoxItems.Add(temp);
+                    }));
+                    //}
                     worker.ReportProgress(i);
                     System.Threading.Thread.Sleep(100);
                 }
@@ -210,29 +208,29 @@ namespace WpfProDemo.Views
                 MessageBox.Show("pListLoaderWorker : "+ex.Message);
             }
         }
-
         public void RunWorker()
         {
-            _ListBoxItems = new ObservableCollection<PrescriptionFileInfoListItemModel>();
-            path = StaticMethod.ConfigManagement.GetConfigValue(StaticMethod.ConfigManagement.ConfigSettingPIPFilesPathKey);
-            string msg = System.IO.Directory.Exists(path) ? string.Empty : "There is no dir";
-            if (!string.IsNullOrEmpty(msg))
+            //ListBoxItems = new ObservableCollection<PrescriptionFileInfoListItemModel>();
+            
             {
-                MessageBox.Show(msg);
-                return;
+                ListBoxItems = new List<PrescriptionFileInfoListItemModel>();
+                path = StaticMethod.ConfigManagement.GetConfigValue(StaticMethod.ConfigManagement.ConfigSettingPIPFilesPathKey);
+                string msg = System.IO.Directory.Exists(path) ? string.Empty : "There is no dir";
+                if (!string.IsNullOrEmpty(msg))
+                {
+                    MessageBox.Show(msg);
+                    return;
+                }
             }
             worker.RunWorkerAsync();
         }
 
-        //public void InitializeListBoxItem()
-        //{
-        //    System.Collections.ObjectModel.ObservableCollection<PrescriptionFileInfoListItemModel> listBoxItems = new System.Collections.ObjectModel.ObservableCollection<PrescriptionFileInfoListItemModel>(){
-        //    new PrescriptionFileInfoListItemModel(){PrescriptionID="123",PatientName="123",CreationDate="123"},
-        //    new PrescriptionFileInfoListItemModel(){PrescriptionID="123",PatientName="123",CreationDate="123"},
-        //    new PrescriptionFileInfoListItemModel(){PrescriptionID="123",PatientName="123",CreationDate="123"}
-        //    };
-        //    this.PrescriptionListBox.ItemsSource = listBoxItems;
-        //}
+        public void InitializeListBoxItem()
+        {
+            using (PIPusingWPFModel.PIPEntities conn = new PIPusingWPFModel.PIPEntities())
+            {
+            }
+        }
     }
     public class PrescriptionFileInfoListItemModel
     {

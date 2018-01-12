@@ -29,6 +29,8 @@ namespace WpfProDemo.Views
         }
         private void ReportWindow_Closed(object sender, EventArgs e)
         {
+            GC.SuppressFinalize(this.ReportViewer);
+            GC.SuppressFinalize(this);
             //this.ReportViewer._reportViewer.DataBindings.Clear();
             //this.ReportViewer._reportViewer.Clear();
             //this.ReportViewer._reportViewer.Dispose();

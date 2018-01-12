@@ -2,11 +2,11 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"  x:Class="WpfProDemo.Views.MainWindow"
-        Title="MainWindow" Width="1550" Height="900" ResizeMode="CanMinimize" WindowStyle="None" WindowStartupLocation="CenterScreen">
+        Title="MainWindow" Width="1550" Height="850" ResizeMode="CanMinimize" WindowStyle="None" WindowStartupLocation="CenterScreen">
     <Window.Resources>
-        
+
     </Window.Resources>
-    <WrapPanel Orientation="Vertical">
+    <WrapPanel x:Name="LayoutRoot" Orientation="Vertical">
         <Views:TitleBar Height="40" x:Name="MyTitleBar" Background="#696969"></Views:TitleBar>
         <Menu Height="28" VerticalAlignment="Top" Width="auto">
             <MenuItem Header="_File" >
@@ -17,7 +17,7 @@
                 <MenuItem Command="ApplicationCommands.Copy"/>
             </MenuItem>
         </Menu>
-        <Frame x:Name="myFrame" Width="1530" Height="735" VerticalAlignment="Top" Margin="10"/>
+        <Frame x:Name="myFrame" Width="1550" Height="735" VerticalAlignment="Top" Margin="0,10"/>
         <StatusBar Height="auto" Width="auto" Background="Black">
             <StatusBarItem>
                 <TextBlock x:Name="StatBarText" Text="Ready" Foreground="White" />

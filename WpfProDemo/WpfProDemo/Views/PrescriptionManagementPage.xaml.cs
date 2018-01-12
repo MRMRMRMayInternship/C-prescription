@@ -48,7 +48,7 @@ namespace WpfProDemo.Views
         }
         
         /// <summary>
-        /// 载入文件信息通过处方ID
+        /// 载入文件信息by处方ID
         /// </summary>
         /// <param name="prescriptonID"></param>
         private void LoadFileInfoAction(string prescriptonID)
@@ -83,10 +83,9 @@ namespace WpfProDemo.Views
             loadingProgressValue = new Models.ViewModels.pListLoadingProgressView.LoadingProgressValue();
             PrescriptionFileListLoadingProgressMaskLayer.loadingProgressValueLabel.SetBinding(Label.ContentProperty, new Binding("ProgressValue") { Source = loadingProgressValue, Mode = BindingMode.TwoWay });
             PrescriptionFileListLoadingProgressMaskLayer.LoadingBar.SetBinding(ProgressBar.ValueProperty, new Binding("ProgressPercentValue") { Source = loadingProgressValue, Mode = BindingMode.TwoWay });
-            this.PrescriptionListBox.loadCompletedAction += this.pListLoadCompleted_Handler;
             this.PrescriptionListBox.loadProgressChangedAction += this.pListLoadProgressChanged_Handler;
             this.PrescriptionListBox.loadStartedAction += this.pListLoaderWorker_Handler;
-            this.PrescriptionListBox.ListItem_DoubleClickedAction += pListItem_DoubleClicked_Handler;
+            this.PrescriptionListBox.ListItem_DoubleClickedAction += LoadFileToInfomationBlockAction;
             this.PrescriptionListBox.LoadFileInfoBtn.Click += LoadFileInfoBtn_Click;
             this.PrescriptionListBox.SetMaskLay += SetMaskLayerVisible;
             InitializePrescriptionInfoBlock();
@@ -106,13 +105,18 @@ namespace WpfProDemo.Views
                 this.PrescriptionFileListLoadingProgressMaskLayer.Visibility = setting;
         }
         /// <summary>
-        /// 
+        /// 选定item后点击load info按钮触发的事件
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         void LoadFileInfoBtn_Click(object sender, RoutedEventArgs e)
         {
-            LoadFileToInfomationBlockAction((this.PrescriptionListBox.PrescriptionListBox.SelectedItem as PrescriptionFileInfoListItemModel).PrescriptionID);
+            var selectedPrescriptionID = this.PrescriptionListBox.PrescriptionListBox.SelectedItem == null ? 
+                null : (this.PrescriptionListBox.PrescriptionListBox.SelectedItem as PrescriptionFileInfoListItemModel).PrescriptionID;
+            if(selectedPrescriptionID != null)
+                LoadFileToInfomationBlockAction(selectedPrescriptionID);
+            else
+                MessageBox.Show("please select an item");
         }
         /// <summary>
         /// 初始化处方信息区块
@@ -130,11 +134,9 @@ namespace WpfProDemo.Views
             this.MyPrescriptionInfoBlock.PatientIdLabel.SetBinding(Label.ContentProperty, new Binding(PatientInfoOfPrescription.PatientIDBindingPath) { Source = patientInfoSource, Mode = BindingMode.OneWay });
             this.MyPrescriptionInfoBlock.PatientSexLabel.SetBinding(Label.ContentProperty, new Binding(PatientInfoOfPrescription.PatientSexBindingPath) { Source = patientInfoSource, Mode = BindingMode.OneWay });
             this.MyPrescriptionInfoBlock.DiagnosisLabel.SetBinding(TextBox.TextProperty, new Binding(PatientInfoOfPrescription.DiagnosisBindingPath) { Source = patientInfoSource, Mode = BindingMode.OneWay });
-            
         }
-
         /// <summary>
-        /// 
+        /// 将处方信息载入进相应区域 InfomationBlock
         /// </summary>
         /// <param name="prescriptionID"></param>
         private void LoadFileToInfomationBlockAction(string prescriptionID)
@@ -160,23 +162,7 @@ namespace WpfProDemo.Views
             }
             MessageBox.Show("Loading ...:");
         }
-        /// <summary>
-        /// 双击表项目载入文件信息
-        /// </summary>
-        /// <param name="prescriptionID"></param>
-        private void pListItem_DoubleClicked_Handler(string prescriptionID)
-        {
-            LoadFileToInfomationBlockAction(prescriptionID);
-        }
-        /// <summary>
-        /// 委托：完成罗列储存在本地硬盘的处方文件到listbox控件后所执行的事件
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void pListLoadCompleted_Handler()
-        {
-            PrescriptionFileListLoadingProgressMaskLayer.Visibility = System.Windows.Visibility.Collapsed;
-        }
+
         /// <summary>
         /// 委托：当载入进度发生变化时，通过更新绑定对象的值来更新界面中的载入提示文字。
         /// </summary>
@@ -196,47 +182,7 @@ namespace WpfProDemo.Views
             loadingProgressValue.TotalValue = total;
             loadingProgressValue.DoingValue = 1;
         }
-        private void btnExitApp_Clicked(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                Uri uri = new System.Uri("LoginWindow.xaml", System.UriKind.Relative);
-                MessageBox.Show("Test:" + uri.LocalPath);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("btnExit:" + ex.Message);
-            }
-            this.parentWindow.Close();
-        }
-        /// <summary>
-        /// 生成报表结束
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void PrescriptionReportViewer_RenderingComplete(object sender, Microsoft.Reporting.WinForms.RenderingCompleteEventArgs e)
-        {
-        }
-        ///// <summary>
-        ///// 生成报表
-        ///// </summary>
-        ///// <param name="sender"></param>
-        ///// <param name="e"></param>
-        //private void btnReportCreation_Clicked(object sender, RoutedEventArgs e)
-        //{
-        //    try
-        //    {
-        //        string selectedID = (this.PrescriptionListBox.PrescriptionListBox.SelectedItem as PrescriptionFileInfoListItemModel).PrescriptionID;
-        //        SaveInDB(StaticMethod.PrescriptionListManagement.PrescriptionList.Find(a => a.PrescriptionID.Equals(selectedID)));
-        //        Views.ReportWindow reportWin = new Views.ReportWindow();
-        //        reportWin.LoadData(selectedID);
-        //        reportWin.Show();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show("btnReport: " + ex.Message);
-        //    }
-        //}
+
         /// <summary>
         /// 载入文件按钮
         /// </summary>

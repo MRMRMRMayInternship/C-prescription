@@ -4,22 +4,25 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" 
-      d:DesignHeight="735" d:DesignWidth="1527" Width="1527" Height="735"
+      d:DesignHeight="735" d:DesignWidth="1527" MinWidth="1527" MinHeight="735"
 	Title="LoginPage">
-    <Grid Background="Black" >
-        <Border Height="200" Width="250" Margin="725,420,41,150">
-            <StackPanel Background="Gray" >
-                <DockPanel HorizontalAlignment="Left" Height="29" LastChildFill="True"  Margin="10,10,10,10" Width="218">
-                    <Label Content="ID" Height="Auto" VerticalAlignment="Center" Width="67"/>
-                    <TextBox Name="idTextBox" Height="23" TextWrapping="Wrap" VerticalAlignment="Center" DockPanel.Dock="Right" Width="Auto"/>
+    <Page.Background>
+        <ImageBrush  ImageSource="/WpfProDemo;component/Resources/Icons/loginBG.jpg"></ImageBrush>
+    </Page.Background>
+    <Grid  >
+        <Border Height="275" Width="397" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,150,75">
+            <StackPanel Width="auto" >
+                <DockPanel HorizontalAlignment="Left" VerticalAlignment="Center"  Height="auto" LastChildFill="True"  Margin="10,10,10,10" Width="340">
+                    <Label FontSize="20" Foreground="Wheat" Content="ID" Height="Auto" VerticalAlignment="Center" Width="105"/>
+                    <TextBox FontSize="20" Name="idTextBox" Height="40" TextWrapping="Wrap" VerticalAlignment="Center" DockPanel.Dock="Right" Width="215"/>
                 </DockPanel >
-                <DockPanel HorizontalAlignment="Left" Height="29" LastChildFill="True" Margin="10,10,10,10" Width="218">
-                    <Label Content="Password" Height="Auto" VerticalAlignment="Center" Width="67"/>
-                    <PasswordBox Name="pwTextBox" Height="23" Margin="0,0,0,0"  VerticalAlignment="Center" DockPanel.Dock="Right" Width="Auto"/>
+                <DockPanel HorizontalAlignment="Left" VerticalAlignment="Center" Height="auto" LastChildFill="True" Margin="10,10,0,10" Width="340">
+                    <Label FontSize="20" Foreground="Wheat" Content="Password" Height="Auto" VerticalAlignment="Center" Width="105"/>
+                    <PasswordBox FontSize="20" Name="pwTextBox" Height="40" Margin="0,0,0,0"  VerticalAlignment="Center" DockPanel.Dock="Right" Width="215"/>
                 </DockPanel>
                 <DockPanel Margin="10,10,10,10">
-                    <Button Content="Login" Margin="10,10,10,10" Click="BtnLogin_Clicked" Width="75"/>
-                    <Button Content="Exit"  Margin="10,10,10,10" Click="BtnExit_Clicked"  Width="75"/>
+                    <Button x:Name="btnLogin" FontSize="20" Content="Login" Margin="10,10,10,10" Click="BtnLogin_Clicked" Width="100" Height="46"/>
+                    <Button Content="Exit"  FontSize="20" Margin="10,10,50,10" Click="BtnExit_Clicked" VerticalAlignment="Center" HorizontalAlignment="Right" Width="100" Height="46"/>
                 </DockPanel>
             </StackPanel>
         </Border>

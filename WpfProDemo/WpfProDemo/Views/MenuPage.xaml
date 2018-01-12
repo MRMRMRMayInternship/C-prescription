@@ -4,20 +4,78 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" 
-      d:DesignHeight="300" d:DesignWidth="300" Width="1527" Height="735"
+      d:DesignHeight="300" d:DesignWidth="300" MinWidth="1527" MinHeight="735"
 	Title="MenuPage">
+    <!--https://www.cnblogs.com/ztb123/p/5805877.html-->
     <Page.Resources>
         <Style TargetType="Button" x:Key="MenuBtnStyle">
-            <Setter Property="FontSize" Value="35"></Setter>
-            <Setter Property="Margin" Value="20"></Setter>
+            <Setter Property="FontSize" Value="30"></Setter>
+            <Setter Property="Margin" Value="5"></Setter>
             <Setter Property="Content" Value="Option"></Setter>
             <Setter Property="Background" Value="BlueViolet"></Setter>
+            <Setter Property="Width" Value="350"></Setter>
+            <Setter Property="Height" Value="350"></Setter>
+            <Setter Property="Foreground" Value="Wheat"></Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid>
+                            <Ellipse Name="GelBackground" StrokeThickness="1" Fill="Black">
+                                <Ellipse.Stroke>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                        <GradientStop Offset="0" Color="#aaffffff"></GradientStop>
+                                        <GradientStop Offset="1" Color="Transparent"></GradientStop>
+                                    </LinearGradientBrush>
+                                </Ellipse.Stroke>
+                            </Ellipse>
+                            <Ellipse Margin="15,5,15,50">
+                                <Ellipse.Fill>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                        <GradientStop Offset="0" Color="#aaffffff"></GradientStop>
+                                        <GradientStop Offset="1" Color="Transparent"></GradientStop>
+                                    </LinearGradientBrush>
+                                </Ellipse.Fill>
+                            </Ellipse>
+                            <ContentPresenter Name="GelButtonContent" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                              Content="{TemplateBinding Content}"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Foreground" Value="Black"></Setter>
+                                <Setter Property="Ellipse.Fill" TargetName="GelBackground">
+                                    <Setter.Value>
+                                        <RadialGradientBrush>
+                                            <GradientStop Offset="0" Color="White"></GradientStop>
+                                            <GradientStop Offset="1" Color="Black"></GradientStop>
+                                        </RadialGradientBrush>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="False">
+                                <Setter Property="Foreground" Value="White"></Setter>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Ellipse.Fill" TargetName="GelBackground">
+                                    <Setter.Value>
+                                        <RadialGradientBrush>
+                                            <GradientStop Offset="0" Color="Black"></GradientStop>
+                                            <GradientStop Offset="1" Color="WhiteSmoke"></GradientStop>
+                                        </RadialGradientBrush>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
-        
     </Page.Resources>
     <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="..\Resources\Icons\menuBG.jpg"/>
+        </Grid.Background>
         <UniformGrid Rows="2" Columns="3">
-            <Button Grid.Row="0" Grid.Column="0" Style="{StaticResource MenuBtnStyle}" Content="Prescription Managemeng" Click="PrescriptionManagementBtn_Clicked"></Button>
+            <Button Grid.Row="0" Grid.Column="0" Style="{StaticResource MenuBtnStyle}" Content="Prescription Management" Click="PrescriptionManagementBtn_Clicked"></Button>
             <Button Grid.Row="0" Grid.Column="1" Style="{StaticResource MenuBtnStyle}" Content="option"></Button>
             <Button Grid.Row="0" Grid.Column="2" Style="{StaticResource MenuBtnStyle}" Content="option"></Button>
             <Button Grid.Row="1" Grid.Column="0" Style="{StaticResource MenuBtnStyle}" Content="option"></Button>

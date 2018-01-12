@@ -39,12 +39,41 @@ namespace WpfProDemo.Views
             InitializeComponent();
             config = System.Configuration.ConfigurationManager.OpenExeConfiguration(System.Configuration.ConfigurationUserLevel.None);
             this.Loaded += LoginPage_Loaded;
+            this.pwTextBox.PreviewTextInput += PreviewTextInput_Handle;
+            this.idTextBox.PreviewTextInput += PreviewTextInput_Handle;
+            this.idTextBox.KeyDown += idTextBox_KeyDown;
+            this.pwTextBox.KeyDown += pwTextBox_KeyDown;
+        }
+
+        void pwTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key.Equals(Key.Enter))
+                BtnLogin_Clicked(null, null);
+        }
+
+        void idTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key.Equals(Key.Enter))
+                pwTextBox.Focus();
+        }
+
+        private void PreviewTextInput_Handle(object sender, TextCompositionEventArgs e)
+        {
+            string exp = @"[1-9a-zA-Z]|[\b]";
+            if (!System.Text.RegularExpressions.Regex.IsMatch("" + e.Text, exp))
+            {
+                e.Handled = true;
+            }
         }
 
         void LoginPage_Loaded(object sender, RoutedEventArgs e)
         {
-            this.pwTextBox.Clear();
             
+            if(pwTextBox.Password.Count() > 0)
+                this.pwTextBox.Clear();
+            if(idTextBox.Text.Count() > 0)
+                this.idTextBox.Clear();
+            this.idTextBox.Focus();
         }
         private void BtnExit_Clicked(object sender, RoutedEventArgs e)
         {
@@ -60,7 +89,6 @@ namespace WpfProDemo.Views
         }
         private void BtnLogin_Clicked(object sender, RoutedEventArgs e)
         {
-
             var id = idTextBox.Text;
             var pw = pwTextBox.Password;
             if (CheckIdAndPassword(id,pw))
@@ -77,6 +105,7 @@ namespace WpfProDemo.Views
             }
             else
             {
+                idTextBox.Focus();
                 System.Windows.MessageBox.Show("login error");
             }
         }

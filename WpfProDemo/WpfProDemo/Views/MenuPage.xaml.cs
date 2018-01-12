@@ -37,10 +37,20 @@ namespace WpfProDemo.Views
             InitializeComponent();
             this.btnExit.Click += btnExit_Click;
         }
+        /// <summary>
+        /// 登出事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnExit_Click(object sender, RoutedEventArgs e)
         {
             this.parentWindow.CallLoginPage();
         }
+        /// <summary>
+        /// 进入管理页面
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void PrescriptionManagementBtn_Clicked(object sender, RoutedEventArgs e)
         {
             this.ParentWindow.CallPrescriptionManagementPage();

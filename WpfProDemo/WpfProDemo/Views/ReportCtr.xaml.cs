@@ -24,7 +24,6 @@ namespace WpfProDemo.Views
     {
         BackgroundWorker work = new BackgroundWorker();
         private string _PrescriptionID;
-
         private System.Data.DataTable drugTable = new System.Data.DataTable();
         private System.Data.DataTable patientTable = new System.Data.DataTable();
         private System.Data.DataTable prescriptionTable = new System.Data.DataTable();
@@ -52,7 +51,14 @@ namespace WpfProDemo.Views
             this.Loaded += ReportCtr_Loaded;
             this._reportViewer.RenderingComplete += this.PrescriptionReportViewer_RenderingComplete;
         }
-
+        ~ReportCtr()
+        {
+            GC.SuppressFinalize(work);
+            GC.SuppressFinalize(drugTable);
+            GC.SuppressFinalize(patientTable);
+            GC.SuppressFinalize(prescriptionTable);
+            GC.SuppressFinalize(doctorTable);
+        }
         private void RunWorkerCompleted_Handler(object sender, RunWorkerCompletedEventArgs e)
         {
             maskLayer.Visibility = Visibility.Collapsed;
